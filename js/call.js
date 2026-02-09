@@ -1,6 +1,6 @@
 /* ======================================
    WebRTC Audio Call (3 min)
-   FINAL PRODUCTION STABLE LOGIC
+   FINAL FIX (Audio + ICE Buffering)
    Mentor = Caller | Student = Receiver
 ====================================== */
 
@@ -52,10 +52,14 @@ let joined = false;
 let isMentor = false;
 
 let offerSent = false;
-let timerStarted = false;
 
 let timerInterval = null;
 let secondsLeft = 180;
+let timerStarted = false;
+
+/* 🔥 IMPORTANT BUFFERS */
+let pendingIce = [];
+let pendingOffer = null;
 
 /* ---------- Helpers ---------- */
 function setStatus(type, title, sub) {
@@ -124,7 +128,7 @@ function randomId() {
   return "BK" + Date.now();
 }
 
-/* ---------- WebRTC Core ---------- */
+/* ---------- WebRTC ---------- */
 async function getMic() {
   localStream = await navigator.mediaDevices.getUserMedia({
     audio: {
@@ -134,7 +138,6 @@ async function getMic() {
     },
     video: false,
   });
-
   return localStream;
 }
 
@@ -142,14 +145,6 @@ function createPeerConnection() {
   pc = new RTCPeerConnection({
     iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
   });
-
-  /* Debug */
-  pc.onconnectionstatechange = () =>
-    console.log("CONN:", pc.connectionState);
-  pc.oniceconnectionstatechange = () =>
-    console.log("ICE:", pc.iceConnectionState);
-  pc.onsignalingstatechange = () =>
-    console.log("SIGNAL:", pc.signalingState);
 
   pc.onicecandidate = (event) => {
     if (event.candidate && roomId) {
@@ -169,9 +164,9 @@ function createPeerConnection() {
     });
   };
 
-  /* 🔥 Reliable for timer start */
   pc.oniceconnectionstatechange = () => {
     const st = pc.iceConnectionState;
+    console.log("ICE:", st);
 
     if (st === "connected" || st === "completed") {
       setStatus("live", "Connected ✅", "Audio call live. Timer started.");
@@ -182,6 +177,27 @@ function createPeerConnection() {
       setStatus("dead", "Disconnected ❌", "Network issue or other side left.");
     }
   };
+
+  pc.onconnectionstatechange = () => {
+    console.log("CONN:", pc.connectionState);
+  };
+
+  pc.onsignalingstatechange = () => {
+    console.log("SIGNAL:", pc.signalingState);
+  };
+}
+
+/* ---------- Apply buffered ICE ---------- */
+async function flushIce() {
+  if (!pc) return;
+  if (!pc.remoteDescription) return;
+
+  for (const c of pendingIce) {
+    try {
+      await pc.addIceCandidate(new RTCIceCandidate(c));
+    } catch {}
+  }
+  pendingIce = [];
 }
 
 /* ---------- Mentor (Caller) ---------- */
@@ -194,10 +210,9 @@ async function mentorMakeOffer() {
   await getMic();
   createPeerConnection();
 
-  /* 🔥 MUST for stable audio */
+  /* 🔥 Stable audio */
   pc.addTransceiver("audio", { direction: "sendrecv" });
 
-  /* Add only audio track */
   localStream.getAudioTracks().forEach((track) => {
     pc.addTrack(track, localStream);
   });
@@ -206,7 +221,6 @@ async function mentorMakeOffer() {
   await pc.setLocalDescription(offer);
 
   socket.emit("offer", { roomId, offer });
-
   setStatus("wait", "Calling...", "Waiting for student answer...");
 }
 
@@ -231,13 +245,20 @@ async function studentHandleOffer(offer) {
   socket.emit("answer", { roomId, answer });
 
   setStatus("wait", "Answer Sent ✅", "Connecting audio...");
+
+  /* 🔥 Now safe to apply ICE */
+  await flushIce();
 }
 
 /* ---------- Mentor receives answer ---------- */
 async function mentorHandleAnswer(answer) {
   if (!pc) return;
+
   await pc.setRemoteDescription(new RTCSessionDescription(answer));
   setStatus("wait", "Answer Received ✅", "Finalizing connection...");
+
+  /* 🔥 Now safe to apply ICE */
+  await flushIce();
 }
 
 /* ---------- Join Room ---------- */
@@ -265,9 +286,7 @@ function endCall(msg) {
   } catch {}
 
   if (pc) {
-    try {
-      pc.close();
-    } catch {}
+    try { pc.close(); } catch {}
     pc = null;
   }
 
@@ -279,6 +298,9 @@ function endCall(msg) {
   joined = false;
   offerSent = false;
   timerStarted = false;
+
+  pendingIce = [];
+  pendingOffer = null;
 
   setStatus("dead", "Call Ended", "You can close this page.");
 }
@@ -378,7 +400,7 @@ speakerBtn.addEventListener("click", async () => {
     await remoteAudio.play();
     toast("Speaker ON 🔊");
   } catch {
-    alert("Audio controls से play दबाओ (mobile restriction).");
+    alert("Audio play करने के लिए audio controls से Play दबाओ.");
   }
 });
 
@@ -409,7 +431,6 @@ socket.on("room-joined", async (data) => {
 });
 
 socket.on("user-joined", async () => {
-  /* Mentor already in room and student joined later */
   if (isMentor && !pc) {
     await mentorMakeOffer();
   }
@@ -417,7 +438,9 @@ socket.on("user-joined", async () => {
 
 socket.on("offer", async ({ offer }) => {
   if (!isMentor) {
-    await studentHandleOffer(offer);
+    pendingOffer = offer;
+    await studentHandleOffer(pendingOffer);
+    pendingOffer = null;
   }
 });
 
@@ -428,8 +451,14 @@ socket.on("answer", async ({ answer }) => {
 });
 
 socket.on("ice-candidate", async ({ candidate }) => {
+  /* 🔥 Buffer ICE until remoteDescription is ready */
+  if (!pc || !pc.remoteDescription) {
+    pendingIce.push(candidate);
+    return;
+  }
+
   try {
-    if (pc) await pc.addIceCandidate(new RTCIceCandidate(candidate));
+    await pc.addIceCandidate(new RTCIceCandidate(candidate));
   } catch {}
 });
 
