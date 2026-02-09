@@ -214,3 +214,94 @@ audio{
   gap:10px;
   flex-wrap:wrap;
 }
+/* ===============================
+   MOBILE RESPONSIVE FIX (FINAL)
+   mentor.html / premium pages
+================================ */
+
+html, body{
+  width:100%;
+  overflow-x:hidden;
+}
+
+img, video, iframe{
+  max-width:100%;
+  height:auto;
+}
+
+.container, .wrap{
+  width: min(1150px, 94vw) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Topbar fix */
+.topbar{
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+/* Buttons full width on phone */
+@media (max-width: 640px){
+
+  .toolbar{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .filters{
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+  }
+
+  .filters select{
+    width:100%;
+  }
+
+  .grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .card{
+    padding:14px;
+  }
+
+  .row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .badges{
+    flex-direction:row;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+
+  .card-actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  /* Modal full */
+  .modal{
+    width: 96vw !important;
+  }
+
+  /* Drawer full */
+  .drawer{
+    width: 92vw !important;
+  }
+
+  /* Fix long text */
+  h1,h2,h3,p{
+    word-break: break-word;
+  }
+}
+
