@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talk to Selected Mentor (Premium) | nripendra.online</title>
+
+  <link rel="stylesheet" href="./css/premium-mentor.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">N</div>
+      <div>
+        <h1>Talk to Selected Mentor</h1>
+        <p>₹10 / 3 मिनट • Scheduled Call • Premium</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn ghost" id="viewBookingsBtn">My Bookings</button>
+      <a class="btn" href="/">Back Home</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+
+    <!-- Search + Filters -->
+    <section class="toolbar">
+      <div class="searchbox">
+        <input type="text" id="searchInput" placeholder="Search mentor name / exam (SSC, UP Police...)" />
+      </div>
+
+      <div class="filters">
+        <select id="examFilter">
+          <option value="all">All Exams</option>
+          <option value="SSC">SSC</option>
+          <option value="UP Police">UP Police</option>
+          <option value="Railway">Railway</option>
+          <option value="UPSSSC">UPSSSC</option>
+          <option value="NDA">NDA</option>
+          <option value="NEET">NEET</option>
+        </select>
+
+        <select id="sortFilter">
+          <option value="recommended">Sort: Recommended</option>
+          <option value="priceLow">Sort: Price Low</option>
+          <option value="ratingHigh">Sort: Rating High</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Exams + Mentors -->
+    <section class="grid" id="mentorGrid">
+      <!-- JS will render -->
+    </section>
+
+  </main>
+
+  <!-- Booking Modal -->
+  <div class="modal-backdrop" id="bookingModalBackdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <h2 id="modalMentorName">Book Call</h2>
+          <p id="modalMentorMeta">₹10 / 3 minutes • Scheduled</p>
+        </div>
+        <button class="icon-btn" id="closeModalBtn">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mini-card">
+          <div class="mini-left">
+            <div class="avatar" id="modalAvatar">M</div>
+            <div>
+              <h3 id="modalMentorTitle">Mentor</h3>
+              <p id="modalMentorExam">Qualified: SSC</p>
+            </div>
+          </div>
+
+          <div class="mini-right">
+            <span class="badge premium">Premium</span>
+            <span class="badge">₹10 / 3 min</span>
+          </div>
+        </div>
+
+        <div class="form">
+          <div class="field">
+            <label>Select Date</label>
+            <input type="date" id="dateInput" />
+          </div>
+
+          <div class="field">
+            <label>Select Time Slot</label>
+            <select id="timeSlotSelect">
+              <option value="">Select time</option>
+              <option value="09:00">09:00 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="02:00">02:00 PM</option>
+              <option value="03:00">03:00 PM</option>
+              <option value="04:00">04:00 PM</option>
+              <option value="06:00">06:00 PM</option>
+              <option value="07:00">07:00 PM</option>
+              <option value="08:00">08:00 PM</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Call Type</label>
+            <div class="radio-row">
+              <label class="radio">
+                <input type="radio" name="callType" value="Audio" checked />
+                <span>Audio</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="callType" value="Video" />
+                <span>Video</span>
+              </label>
+            </div>
+            <p class="hint">Note: अभी demo mode है. Real call Step-2 में connect होगा.</p>
+          </div>
+
+          <div class="summary">
+            <div class="line">
+              <span>Price</span>
+              <strong>₹10</strong>
+            </div>
+            <div class="line">
+              <span>Duration</span>
+              <strong>3 minutes</strong>
+            </div>
+            <div class="line">
+              <span>Policy</span>
+              <strong>Non-Complimentary</strong>
+            </div>
+          </div>
+
+          <button class="btn pay" id="payNowBtn">
+            Pay ₹10 & Confirm Booking
+          </button>
+
+          <button class="btn ghost" id="demoBookBtn">
+            Demo: Book Without Payment (Testing)
+          </button>
+
+          <p class="tiny">
+            Payment integration (Razorpay) बाद में add होगी. अभी UI + Booking flow तैयार है.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookings Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop">
+    <div class="drawer">
+      <div class="drawer-head">
+        <h2>My Bookings</h2>
+        <button class="icon-btn" id="closeDrawerBtn">✕</button>
+      </div>
+
+      <div class="drawer-body" id="bookingList">
+        <!-- JS render -->
+      </div>
+
+      <div class="drawer-foot">
+        <button class="btn ghost" id="clearBookingsBtn">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/premium-mentor.js"></script>
+</body>
+</html>
