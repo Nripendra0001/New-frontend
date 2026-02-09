@@ -346,6 +346,15 @@ function renderBookings(){
 
         <div class="b-actions">
           <button class="btn small" onclick="joinCall('${b.bookingId}')">Join Call</button>
+
+          <button class="btn ghost small" onclick="openMentorPage('${b.bookingId}')">
+            Mentor Page
+          </button>
+
+          <button class="btn ghost small" onclick="copyMentorLink('${b.bookingId}')">
+            Copy Mentor Link
+          </button>
+
           <button class="btn ghost small" onclick="deleteBooking('${b.bookingId}')">Delete</button>
         </div>
       </div>
@@ -364,11 +373,34 @@ clearBookingsBtn.addEventListener("click", ()=>{
   saveBookings([]);
   renderBookings();
   toast("All cleared.");
+  closeDrawer();
 });
 
-/* ✅ FINAL: Real Call Redirect */
+/* ✅ Student Join Call */
 window.joinCall = function(bookingId){
-  window.location.href = "./call.html?bookingId=" + encodeURIComponent(bookingId);
+  window.location.href = "./call.html?bookingId=" + encodeURIComponent(bookingId) + "&role=student";
+};
+
+/* ✅ Open Mentor Page */
+window.openMentorPage = function(bookingId){
+  window.location.href = "./mentor.html?bookingId=" + encodeURIComponent(bookingId);
+};
+
+/* ✅ Copy Mentor Call Link */
+window.copyMentorLink = async function(bookingId){
+  const link =
+    window.location.origin +
+    "/call.html?bookingId=" +
+    encodeURIComponent(bookingId) +
+    "&role=mentor";
+
+  try{
+    await navigator.clipboard.writeText(link);
+    toast("Mentor link copied ✅");
+    alert("Mentor को ये link भेजो:\n\n" + link);
+  }catch{
+    alert("Copy failed ❌\n\nMentor link:\n" + link);
+  }
 };
 
 // ---------- Events ----------
@@ -393,7 +425,7 @@ sortFilter.addEventListener("change", renderMentors);
       opacity:0;
       transition: all .2s ease;
       z-index: 9999;
-      font-weight:700;
+      font-weight:900;
       font-size: 13px;
     }
     .toast.show{
