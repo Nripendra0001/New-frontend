@@ -176,7 +176,7 @@ html, body{
 }
 
 .video-card::before{
-  content:"▶";
+  content:"";
   color:rgba(255,255,255,.70);
   font-weight:900;
   margin-right:8px;
