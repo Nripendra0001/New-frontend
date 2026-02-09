@@ -1,6 +1,6 @@
 /* ======================================
    WebRTC Audio Call (3 min)
-   FINAL STABLE LOGIC
+   SUPER EASY Student/Mentor Panel
 ====================================== */
 
 const RENDER_URL = "https://nripendra-backend.onrender.com";
@@ -9,46 +9,85 @@ const isLocal =
   location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
 const BACKEND_URL = isLocal ? "http://localhost:3000" : RENDER_URL;
-
 const socket = io(BACKEND_URL, { transports: ["websocket"] });
 
-const bookingIdInput = document.getElementById("bookingIdInput");
-const roleSelect = document.getElementById("roleSelect");
-const nameInput = document.getElementById("nameInput");
-
-const joinBtn = document.getElementById("joinBtn");
+/* ---------- UI Elements ---------- */
+const roomPill = document.getElementById("roomPill");
+const timerPill = document.getElementById("timerPill");
 const endBtn = document.getElementById("endBtn");
-const testMicBtn = document.getElementById("testMicBtn");
-const shareBtn = document.getElementById("shareBtn");
-const copyIdBtn = document.getElementById("copyIdBtn");
-
-const muteBtn = document.getElementById("muteBtn");
-const speakerBtn = document.getElementById("speakerBtn");
-const remoteAudio = document.getElementById("remoteAudio");
 
 const statusDot = document.getElementById("statusDot");
 const statusText = document.getElementById("statusText");
 const statusSub = document.getElementById("statusSub");
 
-const timerPill = document.getElementById("timerPill");
-const roomPill = document.getElementById("roomPill");
+const studentTab = document.getElementById("studentTab");
+const mentorTab = document.getElementById("mentorTab");
 
+const studentPanel = document.getElementById("studentPanel");
+const mentorPanel = document.getElementById("mentorPanel");
+
+const studentCallId = document.getElementById("studentCallId");
+const createIdBtn = document.getElementById("createIdBtn");
+const studentStartBtn = document.getElementById("studentStartBtn");
+const studentShareBtn = document.getElementById("studentShareBtn");
+
+const mentorCallId = document.getElementById("mentorCallId");
+const mentorJoinBtn = document.getElementById("mentorJoinBtn");
+const pasteBtn = document.getElementById("pasteBtn");
+
+const remoteAudio = document.getElementById("remoteAudio");
+const muteBtn = document.getElementById("muteBtn");
+const speakerBtn = document.getElementById("speakerBtn");
+const testMicBtn = document.getElementById("testMicBtn");
+
+/* ---------- State ---------- */
 let pc = null;
 let localStream = null;
 let roomId = null;
 
-let secondsLeft = 180;
-let timerInterval = null;
-let callStarted = false;
-
 let joined = false;
 let iAmCaller = false;
 
+let timerInterval = null;
+let secondsLeft = 180;
+let callStarted = false;
+
+/* ---------- Helpers ---------- */
 function setStatus(type, title, sub) {
   statusDot.classList.remove("live", "wait", "dead");
   if (type) statusDot.classList.add(type);
   statusText.textContent = title;
   statusSub.textContent = sub;
+}
+
+function toast(msg) {
+  const el = document.createElement("div");
+  el.style.position = "fixed";
+  el.style.left = "50%";
+  el.style.bottom = "18px";
+  el.style.transform = "translateX(-50%) translateY(16px)";
+  el.style.background = "rgba(15,17,26,.92)";
+  el.style.color = "#fff";
+  el.style.padding = "12px 14px";
+  el.style.borderRadius = "14px";
+  el.style.fontWeight = "900";
+  el.style.fontSize = "13px";
+  el.style.zIndex = "9999";
+  el.style.opacity = "0";
+  el.style.transition = "all .2s ease";
+  el.textContent = msg;
+  document.body.appendChild(el);
+
+  requestAnimationFrame(() => {
+    el.style.opacity = "1";
+    el.style.transform = "translateX(-50%) translateY(0px)";
+  });
+
+  setTimeout(() => {
+    el.style.opacity = "0";
+    el.style.transform = "translateX(-50%) translateY(16px)";
+    setTimeout(() => el.remove(), 250);
+  }, 1500);
 }
 
 function formatTimer(sec) {
@@ -76,6 +115,11 @@ function startTimer() {
   }, 1000);
 }
 
+function randomId() {
+  return "BK" + Date.now();
+}
+
+/* ---------- WebRTC ---------- */
 async function getMic() {
   localStream = await navigator.mediaDevices.getUserMedia({
     audio: true,
@@ -111,7 +155,7 @@ function createPeerConnection() {
     const st = pc.connectionState;
 
     if (st === "connected") {
-      setStatus("live", "Connected ✅", "Audio call is live. Timer started.");
+      setStatus("live", "Connected ✅", "Call live. Timer started.");
       startTimer();
     }
 
@@ -121,45 +165,24 @@ function createPeerConnection() {
   };
 }
 
-async function joinRoom() {
-  if (joined) return;
-
-  const bookingId = bookingIdInput.value.trim();
-  const role = roleSelect.value;
-  const name = nameInput.value.trim() || role;
-
-  if (!bookingId) {
-    alert("Booking ID required.");
-    return;
-  }
-
-  roomId = bookingId;
-  roomPill.textContent = "Room: " + roomId;
-
-  setStatus("wait", "Joining...", "Connecting to server...");
-
-  socket.emit("join-room", { roomId, role, name });
-  joined = true;
-}
-
-async function startAsCaller() {
+async function startCaller() {
   await getMic();
   createPeerConnection();
 
-  localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
+  localStream.getTracks().forEach((t) => pc.addTrack(t, localStream));
 
   const offer = await pc.createOffer();
   await pc.setLocalDescription(offer);
 
   socket.emit("offer", { roomId, offer });
-  setStatus("wait", "Calling...", "Waiting for other person to join...");
+  setStatus("wait", "Calling...", "Waiting for mentor to join...");
 }
 
-async function startAsReceiver(offer) {
+async function startReceiver(offer) {
   await getMic();
   createPeerConnection();
 
-  localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
+  localStream.getTracks().forEach((t) => pc.addTrack(t, localStream));
 
   await pc.setRemoteDescription(new RTCSessionDescription(offer));
 
@@ -175,11 +198,25 @@ async function handleAnswer(answer) {
   await pc.setRemoteDescription(new RTCSessionDescription(answer));
 }
 
+/* ---------- Socket Join ---------- */
+function joinRoom(id) {
+  if (joined) return;
+
+  roomId = id;
+  roomPill.textContent = "ID: " + roomId;
+
+  setStatus("wait", "Joining...", "Connecting to server...");
+  socket.emit("join-room", { roomId });
+
+  joined = true;
+}
+
+/* ---------- End ---------- */
 function endCall(msg) {
   if (msg) alert(msg);
 
   clearInterval(timerInterval);
-  timerPill.textContent = "00:00";
+  timerPill.textContent = "03:00";
 
   try {
     socket.emit("end-call", { roomId });
@@ -202,26 +239,76 @@ function endCall(msg) {
   setStatus("dead", "Call Ended", "You can close this page.");
 }
 
-/* ==========================
-   Auto-fill from URL
-========================== */
-(function autofill() {
-  const params = new URLSearchParams(window.location.search);
-  const bk = params.get("bookingId");
-  const role = params.get("role");
+/* ---------- Tabs ---------- */
+function showStudent() {
+  studentTab.classList.add("active");
+  mentorTab.classList.remove("active");
+  studentPanel.classList.add("show");
+  mentorPanel.classList.remove("show");
+}
 
-  if (bk) bookingIdInput.value = bk;
-  if (role === "mentor" || role === "student") roleSelect.value = role;
-})();
+function showMentor() {
+  mentorTab.classList.add("active");
+  studentTab.classList.remove("active");
+  mentorPanel.classList.add("show");
+  studentPanel.classList.remove("show");
+}
 
-/* ==========================
-   Buttons
-========================== */
-joinBtn.addEventListener("click", joinRoom);
+studentTab.addEventListener("click", showStudent);
+mentorTab.addEventListener("click", showMentor);
 
-endBtn.addEventListener("click", () => {
-  endCall("Call ended.");
+/* ---------- Student Flow ---------- */
+createIdBtn.addEventListener("click", () => {
+  const id = randomId();
+  studentCallId.value = id;
+  roomPill.textContent = "ID: " + id;
+  toast("Call ID created ✅");
 });
+
+studentStartBtn.addEventListener("click", async () => {
+  const id = studentCallId.value.trim();
+  if (!id) return alert("पहले Create ID दबाओ.");
+
+  joinRoom(id);
+});
+
+studentShareBtn.addEventListener("click", async () => {
+  const id = studentCallId.value.trim();
+  if (!id) return alert("पहले Create ID दबाओ.");
+
+  const link =
+    location.origin +
+    "/call.html?mode=mentor&id=" +
+    encodeURIComponent(id);
+
+  try {
+    await navigator.clipboard.writeText(link);
+    toast("Mentor link copied ✅");
+    alert("Mentor को ये link भेजो:\n\n" + link);
+  } catch {
+    alert("Mentor link:\n\n" + link);
+  }
+});
+
+/* ---------- Mentor Flow ---------- */
+pasteBtn.addEventListener("click", async () => {
+  try {
+    const t = await navigator.clipboard.readText();
+    if (t) mentorCallId.value = t.trim();
+  } catch {
+    alert("Paste not supported. Please paste manually.");
+  }
+});
+
+mentorJoinBtn.addEventListener("click", () => {
+  const id = mentorCallId.value.trim();
+  if (!id) return alert("Call ID required.");
+
+  joinRoom(id);
+});
+
+/* ---------- Common Buttons ---------- */
+endBtn.addEventListener("click", () => endCall("Call ended."));
 
 testMicBtn.addEventListener("click", async () => {
   try {
@@ -252,68 +339,40 @@ speakerBtn.addEventListener("click", async () => {
   }
 });
 
-copyIdBtn.addEventListener("click", async () => {
-  const val = bookingIdInput.value.trim();
-  if (!val) return toast("Booking ID empty.");
-
-  try {
-    await navigator.clipboard.writeText(val);
-    toast("Booking ID copied ✅");
-  } catch {
-    toast("Copy failed ❌");
-  }
-});
-
-shareBtn.addEventListener("click", async () => {
-  const val = bookingIdInput.value.trim();
-  if (!val) return toast("Booking ID empty.");
-
-  const mentorLink =
-    location.origin + "/call.html?bookingId=" + encodeURIComponent(val) + "&role=mentor";
-
-  try {
-    await navigator.clipboard.writeText(mentorLink);
-    toast("Mentor link copied ✅");
-    alert("Mentor को ये link भेजो:\n\n" + mentorLink);
-  } catch {
-    alert("Mentor link:\n\n" + mentorLink);
-  }
-});
-
-/* ==========================
-   Socket Events
-========================== */
+/* ---------- Socket Events ---------- */
 socket.on("connect", () => {
-  setStatus("", "Ready", "Enter bookingId and join call.");
+  setStatus("", "Ready", "Student: Create ID. Mentor: Paste ID.");
 });
 
+/* 🔥 Server returns usersCount */
 socket.on("room-joined", async (data) => {
   setStatus("wait", "Room Joined", `Users in room: ${data.usersCount}`);
 
-  // first joiner becomes caller
   if (data.usersCount === 1) {
     iAmCaller = true;
-    setStatus("wait", "Waiting...", "Share Booking ID / Share Link with other person.");
+    setStatus("wait", "Waiting...", "Other person join kare.");
   }
 
-  // if room becomes 2 and you are caller => start offer
-  if (data.usersCount === 2 && iAmCaller && !pc) {
-    await startAsCaller();
+  if (data.usersCount === 2) {
+    // caller starts offer
+    if (iAmCaller && !pc) {
+      await startCaller();
+    } else {
+      setStatus("wait", "Connecting...", "Waiting for offer...");
+    }
   }
 
   if (data.usersCount > 2) {
     setStatus("dead", "Room Full ❌", "Only 2 people allowed.");
-    endCall("Room full. Only 2 users allowed.");
+    endCall("Room full.");
   }
 });
 
 socket.on("offer", async ({ offer }) => {
-  // receiver side
-  if (!pc) await startAsReceiver(offer);
+  if (!pc) await startReceiver(offer);
 });
 
 socket.on("answer", async ({ answer }) => {
-  // caller side
   await handleAnswer(answer);
 });
 
@@ -327,35 +386,14 @@ socket.on("call-ended", () => {
   endCall("Other side ended the call.");
 });
 
-/* ==========================
-   Toast helper
-========================== */
-function toast(msg) {
-  const el = document.createElement("div");
-  el.style.position = "fixed";
-  el.style.left = "50%";
-  el.style.bottom = "18px";
-  el.style.transform = "translateX(-50%) translateY(16px)";
-  el.style.background = "rgba(15,17,26,.92)";
-  el.style.color = "#fff";
-  el.style.padding = "12px 14px";
-  el.style.borderRadius = "14px";
-  el.style.fontWeight = "900";
-  el.style.fontSize = "13px";
-  el.style.zIndex = "9999";
-  el.style.opacity = "0";
-  el.style.transition = "all .2s ease";
-  el.textContent = msg;
-  document.body.appendChild(el);
+/* ---------- Auto open mentor mode from URL ---------- */
+(function autoMode() {
+  const p = new URLSearchParams(location.search);
+  const mode = p.get("mode");
+  const id = p.get("id");
 
-  requestAnimationFrame(() => {
-    el.style.opacity = "1";
-    el.style.transform = "translateX(-50%) translateY(0px)";
-  });
-
-  setTimeout(() => {
-    el.style.opacity = "0";
-    el.style.transform = "translateX(-50%) translateY(16px)";
-    setTimeout(() => el.remove(), 250);
-  }, 1600);
-}
+  if (mode === "mentor") {
+    showMentor();
+    if (id) mentorCallId.value = id;
+  }
+})();

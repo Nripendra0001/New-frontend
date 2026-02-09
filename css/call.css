@@ -106,7 +106,7 @@ body{
   display:flex;
   gap:12px;
   align-items:flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .dot{
@@ -114,7 +114,6 @@ body{
   background:#94a3b8;
   margin-top:6px;
 }
-
 .dot.wait{ background:#f59e0b; }
 .dot.live{ background:#22c55e; }
 .dot.dead{ background:#ef4444; }
@@ -131,15 +130,44 @@ body{
   font-size:13px;
 }
 
-.form{
+/* Tabs */
+.tabs{
+  display:flex;
+  gap:10px;
+  margin: 10px 0 14px;
+}
+
+.tab{
+  flex:1;
+  padding:12px 14px;
+  border-radius: 999px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#0f172a;
+  border-color:#0f172a;
+  color:#fff;
+}
+
+.panel{
+  display:none;
   border-top: 1px dashed var(--border);
-  padding-top: 16px;
-  margin-top: 10px;
+  padding-top: 14px;
+  margin-top: 6px;
+}
+
+.panel.show{
+  display:block;
 }
 
 .field{
   margin-bottom: 12px;
 }
+
 label{
   display:block;
   font-weight:900;
@@ -147,7 +175,7 @@ label{
   margin-bottom: 6px;
 }
 
-input, select{
+input{
   width:100%;
   padding: 13px 14px;
   border-radius: 14px;
