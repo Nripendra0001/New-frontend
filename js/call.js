@@ -1,6 +1,6 @@
 /* ======================================
    WebRTC Audio Call (3 min)
-   SUPER EASY Student/Mentor Panel
+   SUPER EASY Student/Mentor Panel (FINAL FIXED)
 ====================================== */
 
 const RENDER_URL = "https://nripendra-backend.onrender.com";
@@ -51,6 +51,8 @@ let iAmCaller = false;
 let timerInterval = null;
 let secondsLeft = 180;
 let callStarted = false;
+
+let offerSent = false;
 
 /* ---------- Helpers ---------- */
 function setStatus(type, title, sub) {
@@ -166,6 +168,9 @@ function createPeerConnection() {
 }
 
 async function startCaller() {
+  if (offerSent) return; // 🔥 prevent double offers
+  offerSent = true;
+
   await getMic();
   createPeerConnection();
 
@@ -175,7 +180,7 @@ async function startCaller() {
   await pc.setLocalDescription(offer);
 
   socket.emit("offer", { roomId, offer });
-  setStatus("wait", "Calling...", "Waiting for mentor to join...");
+  setStatus("wait", "Calling...", "Waiting for other person to accept...");
 }
 
 async function startReceiver(offer) {
@@ -235,6 +240,7 @@ function endCall(msg) {
   joined = false;
   iAmCaller = false;
   callStarted = false;
+  offerSent = false;
 
   setStatus("dead", "Call Ended", "You can close this page.");
 }
@@ -265,7 +271,7 @@ createIdBtn.addEventListener("click", () => {
   toast("Call ID created ✅");
 });
 
-studentStartBtn.addEventListener("click", async () => {
+studentStartBtn.addEventListener("click", () => {
   const id = studentCallId.value.trim();
   if (!id) return alert("पहले Create ID दबाओ.");
 
@@ -344,30 +350,41 @@ socket.on("connect", () => {
   setStatus("", "Ready", "Student: Create ID. Mentor: Paste ID.");
 });
 
-/* 🔥 Server returns usersCount */
+/* 🔥 room joined */
 socket.on("room-joined", async (data) => {
   setStatus("wait", "Room Joined", `Users in room: ${data.usersCount}`);
 
+  // first joiner is caller
   if (data.usersCount === 1) {
     iAmCaller = true;
-    setStatus("wait", "Waiting...", "Other person join kare.");
+    setStatus("wait", "Waiting...", "Mentor join kare tab call start hoga.");
   }
 
+  // if I joined as second user => wait for offer
   if (data.usersCount === 2) {
-    // caller starts offer
-    if (iAmCaller && !pc) {
+    if (iAmCaller) {
+      // caller can start offer
       await startCaller();
     } else {
       setStatus("wait", "Connecting...", "Waiting for offer...");
     }
   }
+});
 
-  if (data.usersCount > 2) {
-    setStatus("dead", "Room Full ❌", "Only 2 people allowed.");
-    endCall("Room full.");
+/* 🔥 IMPORTANT FIX: when other user joins */
+socket.on("user-joined", async () => {
+  if (iAmCaller && !pc) {
+    await startCaller();
   }
 });
 
+/* Room full */
+socket.on("room-full", () => {
+  alert("Room full ❌ Only 2 people allowed.");
+  setStatus("dead", "Room Full ❌", "Only 2 users allowed.");
+});
+
+/* Offer/Answer */
 socket.on("offer", async ({ offer }) => {
   if (!pc) await startReceiver(offer);
 });
