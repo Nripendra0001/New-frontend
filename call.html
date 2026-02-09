@@ -50,17 +50,17 @@
           <label>Call ID (Auto)</label>
           <div class="input-row">
             <input id="studentCallId" readonly placeholder="Click Create ID" />
-            <button class="btn small ghost" id="createIdBtn">Create ID</button>
+            <button class="btn small ghost" id="createIdBtn" type="button">Create ID</button>
           </div>
         </div>
 
         <div class="actions">
-          <button class="btn" id="studentStartBtn">Start Call (Student)</button>
-          <button class="btn ghost" id="studentShareBtn">Copy Mentor Link</button>
+          <button class="btn" id="studentStartBtn" type="button">Join as Student</button>
+          <button class="btn ghost" id="studentShareBtn" type="button">Copy Mentor Link</button>
         </div>
 
         <p class="hint">
-          Student: Create ID → Start Call → Mentor ko link bhejo.
+          Student: Create ID → Join → Mentor ko link bhejo.
         </p>
       </div>
 
@@ -75,8 +75,8 @@
         </div>
 
         <div class="actions">
-          <button class="btn" id="mentorJoinBtn">Join as Mentor</button>
-          <button class="btn ghost" id="pasteBtn">Paste</button>
+          <button class="btn" id="mentorJoinBtn" type="button">Join as Mentor</button>
+          <button class="btn ghost" id="pasteBtn" type="button">Paste</button>
         </div>
 
         <p class="hint">
@@ -91,12 +91,13 @@
         <h3>Live Audio</h3>
         <p>Remote voice yaha sunai dega.</p>
 
-        <audio id="remoteAudio" autoplay playsinline></audio>
+        <!-- 🔥 FINAL FIX: controls जरूरी है -->
+        <audio id="remoteAudio" autoplay playsinline controls></audio>
 
         <div class="call-actions">
-          <button class="btn ghost" id="muteBtn">Mute</button>
-          <button class="btn ghost" id="speakerBtn">Speaker Unlock</button>
-          <button class="btn ghost" id="testMicBtn">Test Mic</button>
+          <button class="btn ghost" id="muteBtn" type="button">Mute</button>
+          <button class="btn ghost" id="speakerBtn" type="button">Speaker Unlock</button>
+          <button class="btn ghost" id="testMicBtn" type="button">Test Mic</button>
         </div>
       </div>
 
