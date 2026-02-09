@@ -31,18 +31,22 @@
         <div class="dot" id="statusDot"></div>
         <div>
           <h2 id="statusText">Ready</h2>
-          <p id="statusSub">Enter bookingId and join call.</p>
+          <p id="statusSub">Booking ID डालो और Join दबाओ.</p>
         </div>
       </div>
 
       <div class="form">
+
         <div class="field">
           <label>Booking ID</label>
-          <input id="bookingIdInput" placeholder="Example: BK1700000000000" />
+          <div class="input-row">
+            <input id="bookingIdInput" placeholder="Example: BK1700000000000" />
+            <button class="btn small ghost" id="copyIdBtn" type="button">Copy</button>
+          </div>
         </div>
 
         <div class="field">
-          <label>Your Role</label>
+          <label>Your Side</label>
           <select id="roleSelect">
             <option value="student">Student</option>
             <option value="mentor">Mentor</option>
@@ -56,18 +60,20 @@
 
         <div class="actions">
           <button class="btn" id="joinBtn">Join Call</button>
+          <button class="btn ghost" id="shareBtn">Share Link</button>
           <button class="btn ghost" id="testMicBtn">Test Mic</button>
         </div>
 
         <p class="hint">
-          Note: Call start hone par 3 minute ka timer chalega aur auto end ho jayega.
+          Tip: Mentor को ये link भेजो → <strong>Share Link</strong> बटन से.
         </p>
       </div>
 
       <div class="audio-box">
         <h3>Live Audio</h3>
         <p>Remote voice yaha sunai dega.</p>
-        <audio id="remoteAudio" autoplay></audio>
+
+        <audio id="remoteAudio" autoplay playsinline></audio>
 
         <div class="call-actions">
           <button class="btn ghost" id="muteBtn">Mute</button>

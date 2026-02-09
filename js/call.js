@@ -1,6 +1,6 @@
 /* ======================================
    WebRTC Audio Call (3 min)
-   Socket.IO Signaling (AUTO URL)
+   FINAL STABLE LOGIC
 ====================================== */
 
 const RENDER_URL = "https://nripendra-backend.onrender.com";
@@ -10,11 +10,7 @@ const isLocal =
 
 const BACKEND_URL = isLocal ? "http://localhost:3000" : RENDER_URL;
 
-console.log("✅ Using Backend:", BACKEND_URL);
-
-const socket = io(BACKEND_URL, {
-  transports: ["websocket"],
-});
+const socket = io(BACKEND_URL, { transports: ["websocket"] });
 
 const bookingIdInput = document.getElementById("bookingIdInput");
 const roleSelect = document.getElementById("roleSelect");
@@ -23,10 +19,11 @@ const nameInput = document.getElementById("nameInput");
 const joinBtn = document.getElementById("joinBtn");
 const endBtn = document.getElementById("endBtn");
 const testMicBtn = document.getElementById("testMicBtn");
+const shareBtn = document.getElementById("shareBtn");
+const copyIdBtn = document.getElementById("copyIdBtn");
 
 const muteBtn = document.getElementById("muteBtn");
 const speakerBtn = document.getElementById("speakerBtn");
-
 const remoteAudio = document.getElementById("remoteAudio");
 
 const statusDot = document.getElementById("statusDot");
@@ -39,15 +36,13 @@ const roomPill = document.getElementById("roomPill");
 let pc = null;
 let localStream = null;
 let roomId = null;
+
+let secondsLeft = 180;
+let timerInterval = null;
 let callStarted = false;
 
-let timerInterval = null;
-let secondsLeft = 180;
-
-/* ✅ Auto-fill bookingId from URL */
-const params = new URLSearchParams(window.location.search);
-const bk = params.get("bookingId");
-if (bk) bookingIdInput.value = bk;
+let joined = false;
+let iAmCaller = false;
 
 function setStatus(type, title, sub) {
   statusDot.classList.remove("live", "wait", "dead");
@@ -63,6 +58,9 @@ function formatTimer(sec) {
 }
 
 function startTimer() {
+  if (callStarted) return;
+  callStarted = true;
+
   secondsLeft = 180;
   timerPill.textContent = formatTimer(secondsLeft);
 
@@ -103,7 +101,10 @@ function createPeerConnection() {
   pc.ontrack = (event) => {
     const [stream] = event.streams;
     remoteAudio.srcObject = stream;
-    remoteAudio.play().catch(() => {});
+
+    remoteAudio.play().catch(() => {
+      setStatus("wait", "Tap Speaker 🔊", "Mobile needs a tap to play audio.");
+    });
   };
 
   pc.onconnectionstatechange = () => {
@@ -111,19 +112,18 @@ function createPeerConnection() {
 
     if (st === "connected") {
       setStatus("live", "Connected ✅", "Audio call is live. Timer started.");
-      if (!callStarted) {
-        callStarted = true;
-        startTimer();
-      }
+      startTimer();
     }
 
-    if (st === "disconnected" || st === "failed") {
-      setStatus("dead", "Disconnected ❌", "Call ended or network issue.");
+    if (st === "failed" || st === "disconnected") {
+      setStatus("dead", "Disconnected ❌", "Network issue or other side left.");
     }
   };
 }
 
 async function joinRoom() {
+  if (joined) return;
+
   const bookingId = bookingIdInput.value.trim();
   const role = roleSelect.value;
   const name = nameInput.value.trim() || role;
@@ -139,9 +139,10 @@ async function joinRoom() {
   setStatus("wait", "Joining...", "Connecting to server...");
 
   socket.emit("join-room", { roomId, role, name });
+  joined = true;
 }
 
-async function makeOffer() {
+async function startAsCaller() {
   await getMic();
   createPeerConnection();
 
@@ -151,16 +152,17 @@ async function makeOffer() {
   await pc.setLocalDescription(offer);
 
   socket.emit("offer", { roomId, offer });
-  setStatus("wait", "Calling...", "Waiting for other user to join...");
+  setStatus("wait", "Calling...", "Waiting for other person to join...");
 }
 
-async function handleOffer(offer) {
+async function startAsReceiver(offer) {
   await getMic();
   createPeerConnection();
 
   localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
 
   await pc.setRemoteDescription(new RTCSessionDescription(offer));
+
   const answer = await pc.createAnswer();
   await pc.setLocalDescription(answer);
 
@@ -171,7 +173,6 @@ async function handleOffer(offer) {
 async function handleAnswer(answer) {
   if (!pc) return;
   await pc.setRemoteDescription(new RTCSessionDescription(answer));
-  setStatus("wait", "Connected...", "Finalizing connection...");
 }
 
 function endCall(msg) {
@@ -185,9 +186,7 @@ function endCall(msg) {
   } catch {}
 
   if (pc) {
-    try {
-      pc.close();
-    } catch {}
+    try { pc.close(); } catch {}
     pc = null;
   }
 
@@ -196,20 +195,41 @@ function endCall(msg) {
     localStream = null;
   }
 
+  joined = false;
+  iAmCaller = false;
   callStarted = false;
+
   setStatus("dead", "Call Ended", "You can close this page.");
 }
 
+/* ==========================
+   Auto-fill from URL
+========================== */
+(function autofill() {
+  const params = new URLSearchParams(window.location.search);
+  const bk = params.get("bookingId");
+  const role = params.get("role");
+
+  if (bk) bookingIdInput.value = bk;
+  if (role === "mentor" || role === "student") roleSelect.value = role;
+})();
+
+/* ==========================
+   Buttons
+========================== */
 joinBtn.addEventListener("click", joinRoom);
-endBtn.addEventListener("click", () => endCall("Call ended."));
+
+endBtn.addEventListener("click", () => {
+  endCall("Call ended.");
+});
 
 testMicBtn.addEventListener("click", async () => {
   try {
-    await getMic();
+    const s = await getMic();
     alert("Mic working ✅");
-    localStream.getTracks().forEach((t) => t.stop());
+    s.getTracks().forEach((t) => t.stop());
     localStream = null;
-  } catch (e) {
+  } catch {
     alert("Mic permission denied ❌");
   }
 });
@@ -223,10 +243,41 @@ muteBtn.addEventListener("click", () => {
   muteBtn.textContent = track.enabled ? "Mute" : "Unmute";
 });
 
-speakerBtn.addEventListener("click", () => {
-  alert(
-    "Speaker option mobile browser par auto handle hota hai.\n(Headphones recommended)"
-  );
+speakerBtn.addEventListener("click", async () => {
+  try {
+    await remoteAudio.play();
+    toast("Speaker unlocked 🔊");
+  } catch {
+    toast("Audio will play when connected.");
+  }
+});
+
+copyIdBtn.addEventListener("click", async () => {
+  const val = bookingIdInput.value.trim();
+  if (!val) return toast("Booking ID empty.");
+
+  try {
+    await navigator.clipboard.writeText(val);
+    toast("Booking ID copied ✅");
+  } catch {
+    toast("Copy failed ❌");
+  }
+});
+
+shareBtn.addEventListener("click", async () => {
+  const val = bookingIdInput.value.trim();
+  if (!val) return toast("Booking ID empty.");
+
+  const mentorLink =
+    location.origin + "/call.html?bookingId=" + encodeURIComponent(val) + "&role=mentor";
+
+  try {
+    await navigator.clipboard.writeText(mentorLink);
+    toast("Mentor link copied ✅");
+    alert("Mentor को ये link भेजो:\n\n" + mentorLink);
+  } catch {
+    alert("Mentor link:\n\n" + mentorLink);
+  }
 });
 
 /* ==========================
@@ -239,37 +290,72 @@ socket.on("connect", () => {
 socket.on("room-joined", async (data) => {
   setStatus("wait", "Room Joined", `Users in room: ${data.usersCount}`);
 
-  const role = roleSelect.value;
-
-  if (data.usersCount === 2 && role === "mentor") {
-    await makeOffer();
+  // first joiner becomes caller
+  if (data.usersCount === 1) {
+    iAmCaller = true;
+    setStatus("wait", "Waiting...", "Share Booking ID / Share Link with other person.");
   }
-});
 
-socket.on("user-joined", async () => {
-  const role = roleSelect.value;
+  // if room becomes 2 and you are caller => start offer
+  if (data.usersCount === 2 && iAmCaller && !pc) {
+    await startAsCaller();
+  }
 
-  if (role === "mentor" && !pc) {
-    await makeOffer();
+  if (data.usersCount > 2) {
+    setStatus("dead", "Room Full ❌", "Only 2 people allowed.");
+    endCall("Room full. Only 2 users allowed.");
   }
 });
 
 socket.on("offer", async ({ offer }) => {
-  await handleOffer(offer);
+  // receiver side
+  if (!pc) await startAsReceiver(offer);
 });
 
 socket.on("answer", async ({ answer }) => {
+  // caller side
   await handleAnswer(answer);
 });
 
 socket.on("ice-candidate", async ({ candidate }) => {
   try {
-    if (pc) {
-      await pc.addIceCandidate(new RTCIceCandidate(candidate));
-    }
-  } catch (e) {}
+    if (pc) await pc.addIceCandidate(new RTCIceCandidate(candidate));
+  } catch {}
 });
 
 socket.on("call-ended", () => {
   endCall("Other side ended the call.");
 });
+
+/* ==========================
+   Toast helper
+========================== */
+function toast(msg) {
+  const el = document.createElement("div");
+  el.style.position = "fixed";
+  el.style.left = "50%";
+  el.style.bottom = "18px";
+  el.style.transform = "translateX(-50%) translateY(16px)";
+  el.style.background = "rgba(15,17,26,.92)";
+  el.style.color = "#fff";
+  el.style.padding = "12px 14px";
+  el.style.borderRadius = "14px";
+  el.style.fontWeight = "900";
+  el.style.fontSize = "13px";
+  el.style.zIndex = "9999";
+  el.style.opacity = "0";
+  el.style.transition = "all .2s ease";
+  el.textContent = msg;
+  document.body.appendChild(el);
+
+  requestAnimationFrame(() => {
+    el.style.opacity = "1";
+    el.style.transform = "translateX(-50%) translateY(0px)";
+  });
+
+  setTimeout(() => {
+    el.style.opacity = "0";
+    el.style.transform = "translateX(-50%) translateY(16px)";
+    setTimeout(() => el.remove(), 250);
+  }, 1600);
+}
