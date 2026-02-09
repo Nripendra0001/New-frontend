@@ -2023,6 +2023,64 @@ body, main, section{
   color:#111;
   box-shadow:0 0 0 3px rgba(255,153,0,0.35);
 }
+/* =========================================
+   FINAL MOBILE TOP FIX (Home Page)
+   Team / Header cut issue solved
+   Paste at END of home CSS
+========================================= */
+
+/* 1) Always prevent horizontal scroll */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+/* 2) Mobile: allow full page height (NO CUT) */
+@media (max-width: 900px){
+
+  body{
+    height:auto !important;
+    min-height:100% !important;
+    overflow-y:auto !important;
+  }
+
+  /* If any main wrapper has 100vh, remove it */
+  .main,
+  .wrapper,
+  .container,
+  .home,
+  .page,
+  .layout{
+    height:auto !important;
+    min-height:100% !important;
+    overflow:visible !important;
+  }
+
+  /* If any section uses 100vh, stop it on phone */
+  section,
+  header,
+  .hero,
+  .top,
+  .top-section{
+    height:auto !important;
+    min-height:auto !important;
+  }
+
+  /* Navbar fixed issue */
+  nav,
+  .navbar,
+  .topbar,
+  header{
+    position:relative !important;
+    top:auto !important;
+  }
+
+  /* Give top padding so content not hidden */
+  body{
+    padding-top:0 !important;
+  }
+}
 
 
 
