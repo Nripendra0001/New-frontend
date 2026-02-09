@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Job Details – SarkariNext</title>
+
+<link rel="stylesheet" href="./css/job.css">
+<link rel="icon" type="image/png" href="./favicon.png">
+</head>
+
+<body>
+
+<header class="top-bar">
+  <a href="./index.html">Home</a>
+  <a href="./latest_job.html">Latest Jobs</a>
+</header>
+
+<section class="detail-wrap">
+
+  <div class="detail-head">
+    <h1>SarkariNext</h1>
+    <p>Latest Jobs • Result • Admit Card • Answer Key • Syllabus</p>
+  </div>
+
+  <div class="detail-box">
+
+    <h2 id="title">Loading...</h2>
+
+    <!-- =========================
+         SHORT INFO BOX
+    ========================== -->
+    <div class="mini-info">
+      <div class="mini-card">
+        <span class="mini-label">Organization</span>
+        <span class="mini-value" id="org">--</span>
+      </div>
+      <div class="mini-card">
+        <span class="mini-label">Total Posts</span>
+        <span class="mini-value" id="posts">--</span>
+      </div>
+      <div class="mini-card">
+        <span class="mini-label">Job Type</span>
+        <span class="mini-value" id="jobType">--</span>
+      </div>
+      <div class="mini-card">
+        <span class="mini-label">Location</span>
+        <span class="mini-value" id="state">--</span>
+      </div>
+    </div>
+
+    <!-- =========================
+         IMPORTANT DATES
+    ========================== -->
+    <h3 class="sec-title">Important Dates</h3>
+    <div class="detail-table">
+
+      <div class="row">
+        <span class="label">Post Date</span>
+        <span class="value" id="postDate">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Application Start</span>
+        <span class="value" id="startDate">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Last Date</span>
+        <span class="value" id="lastDate">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Exam Date</span>
+        <span class="value" id="examDate">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Admit Card</span>
+        <span class="value" id="admitCard">--</span>
+      </div>
+
+    </div>
+
+    <!-- =========================
+         APPLICATION FEE
+    ========================== -->
+    <h3 class="sec-title">Application Fee</h3>
+    <div class="detail-table">
+
+      <div class="row">
+        <span class="label">General / OBC</span>
+        <span class="value" id="feeGen">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">SC / ST</span>
+        <span class="value" id="feeScst">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Female</span>
+        <span class="value" id="feeFemale">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Payment Mode</span>
+        <span class="value" id="paymentMode">--</span>
+      </div>
+
+    </div>
+
+    <!-- =========================
+         AGE LIMIT
+    ========================== -->
+    <h3 class="sec-title">Age Limit (As on Date)</h3>
+    <div class="detail-table">
+
+      <div class="row">
+        <span class="label">Minimum Age</span>
+        <span class="value" id="ageMin">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Maximum Age</span>
+        <span class="value" id="ageMax">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Age Relaxation</span>
+        <span class="value" id="ageRelax">--</span>
+      </div>
+
+    </div>
+
+    <!-- =========================
+         ELIGIBILITY
+    ========================== -->
+    <h3 class="sec-title">Eligibility / Qualification</h3>
+    <div class="detail-table">
+      <div class="row">
+        <span class="label">Qualification</span>
+        <span class="value" id="qualification">--</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Extra Requirements</span>
+        <span class="value" id="extraReq">--</span>
+      </div>
+    </div>
+
+    <!-- =========================
+         SELECTION PROCESS
+    ========================== -->
+    <h3 class="sec-title">Selection Process</h3>
+    <div class="detail-table">
+      <div class="row">
+        <span class="label">Selection Stages</span>
+        <span class="value" id="selection">--</span>
+      </div>
+    </div>
+
+    <!-- =========================
+         SALARY
+    ========================== -->
+    <h3 class="sec-title">Salary / Pay Scale</h3>
+    <div class="detail-table">
+      <div class="row">
+        <span class="label">Pay Scale</span>
+        <span class="value" id="salary">--</span>
+      </div>
+    </div>
+
+    <!-- =========================
+         IMPORTANT LINKS
+    ========================== -->
+    <h3 class="sec-title">Important Links</h3>
+    <div class="detail-table">
+
+      <div class="row">
+        <span class="label">Notification PDF</span>
+        <span class="value">
+          <a id="notificationLink" class="link-btn" target="_blank">Download</a>
+        </span>
+      </div>
+
+      <div class="row">
+        <span class="label">Official Website</span>
+        <span class="value">
+          <a id="officialSiteLink" class="link-btn" target="_blank">Visit</a>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- NOTE -->
+    <div class="note-box">
+      <h3>Important Note</h3>
+      <p id="noteText">
+        कृपया Apply करने से पहले Official Notification जरूर पढ़ें। SarkariNext केवल जानकारी देता है।
+      </p>
+    </div>
+
+    <!-- APPLY LAST -->
+    <div class="apply-wrap">
+      <a id="officialLink" target="_blank" class="apply-btn">
+        Apply Online (Official Website)
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="./js/job.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* =====================================================
+   SARKARINEXT – JOBS (SarkariResult Style)
+   File: /css/job.css
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#f2f2f2;
+  color:#111;
+  overflow-x:hidden;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.top-bar{
+  background:#b80000;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  padding:12px 14px;
+  flex-wrap:wrap;
+}
+
+.top-bar a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  font-size:15px;
+  padding:6px 12px;
+  border-radius:4px;
+  transition:0.2s;
+}
+
+.top-bar a:hover{
+  background:rgba(255,255,255,0.18);
+}
+
+/* =========================
+   MAIN WRAP
+========================= */
+.detail-wrap{
+  width:100%;
+  max-width:980px;
+  margin:18px auto;
+  padding:12px;
+}
+
+/* =========================
+   HEADER (SarkariResult style)
+========================= */
+.detail-head{
+  background:#fff;
+  border:2px solid #b80000;
+  text-align:center;
+  padding:16px 12px;
+}
+
+.detail-head h1{
+  font-size:28px;
+  color:#b80000;
+  font-weight:900;
+}
+
+.detail-head p{
+  margin-top:6px;
+  font-size:14px;
+  color:#333;
+}
+
+/* =========================
+   BOX
+========================= */
+.detail-box{
+  margin-top:14px;
+  background:#fff;
+  border:2px solid #000;
+  padding:16px;
+}
+
+.detail-box h2{
+  font-size:20px;
+  font-weight:900;
+  text-align:center;
+  padding:10px;
+  border:1px solid #000;
+  background:#fff5f5;
+  color:#111;
+}
+
+/* =====================================================
+   LATEST JOB LIST
+===================================================== */
+.job-list{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #000;
+  padding:14px;
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.10);
+}
+
+.card h3{
+  font-size:16px;
+  font-weight:900;
+  line-height:1.3;
+  color:#111;
+}
+
+.card p{
+  margin-top:6px;
+  font-size:13px;
+  color:#444;
+  font-weight:700;
+}
+
+/* View Button */
+.view-btn{
+  display:inline-block;
+  margin-top:10px;
+  background:#0b57d0;
+  color:#fff;
+  text-decoration:none;
+  padding:10px 12px;
+  border-radius:4px;
+  font-weight:900;
+  font-size:14px;
+  width:100%;
+  text-align:center;
+}
+
+.view-btn:hover{
+  background:#063a8c;
+}
+
+/* =====================================================
+   DETAIL PAGE TABLE
+===================================================== */
+.detail-table{
+  margin-top:14px;
+  border:1px solid #000;
+}
+
+.detail-table .row{
+  display:flex;
+  border-bottom:1px solid #000;
+}
+
+.detail-table .row:last-child{
+  border-bottom:none;
+}
+
+.detail-table .label{
+  width:35%;
+  padding:12px;
+  font-weight:900;
+  background:#f7f7f7;
+  border-right:1px solid #000;
+}
+
+.detail-table .value{
+  width:65%;
+  padding:12px;
+  font-weight:700;
+  color:#111;
+}
+
+/* =====================================================
+   NOTE BOX
+===================================================== */
+.note-box{
+  margin-top:16px;
+  border:1px solid #000;
+  padding:12px;
+  background:#fffdf3;
+}
+
+.note-box h3{
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.note-box p{
+  font-size:14px;
+  line-height:1.6;
+  color:#111;
+  font-weight:700;
+}
+
+/* =====================================================
+   APPLY BUTTON (LAST)
+===================================================== */
+.apply-wrap{
+  margin-top:18px;
+  text-align:center;
+}
+
+.apply-btn{
+  display:inline-block;
+  width:100%;
+  background:#006400;
+  color:#fff;
+  text-decoration:none;
+  padding:12px 14px;
+  border-radius:4px;
+  font-weight:900;
+  font-size:15px;
+}
+
+.apply-btn:hover{
+  background:#004d00;
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+@media(max-width:700px){
+
+  .detail-head h1{
+    font-size:22px;
+  }
+
+  .detail-box{
+    padding:12px;
+  }
+
+  .detail-box h2{
+    font-size:17px;
+  }
+
+  .job-list{
+    grid-template-columns:1fr;
+  }
+
+  .detail-table .row{
+    flex-direction:column;
+  }
+
+  .detail-table .label,
+  .detail-table .value{
+    width:100%;
+    border-right:none;
+  }
+
+  .detail-table .label{
+    border-bottom:1px solid #000;
+  }
+}
+.sec-title{
+  margin-top:18px;
+  font-size:16px;
+  font-weight:900;
+  padding:10px;
+  border:1px solid #000;
+  background:#f7f7f7;
+}
+
+/* Mini info cards */
+.mini-info{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:10px;
+}
+
+.mini-card{
+  border:1px solid #000;
+  background:#fff;
+  padding:10px;
+  text-align:center;
+}
+
+.mini-label{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  color:#444;
+}
+
+.mini-value{
+  display:block;
+  margin-top:4px;
+  font-size:14px;
+  font-weight:900;
+  color:#111;
+}
+
+/* Link buttons */
+.link-btn{
+  display:inline-block;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:4px;
+  font-weight:900;
+  font-size:14px;
+}
+
+.link-btn:hover{
+  background:#000;
+}
+
+@media(max-width:800px){
+  .mini-info{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+

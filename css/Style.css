@@ -1,0 +1,2033 @@
+/* =====================================================
+   🚀 SARKARINEXT – MASTER CSS (HTML based custom build)
+   Designed only for YOUR provided structure
+===================================================== */
+
+/* ---------- GLOBAL RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins","Segoe UI",Arial,sans-serif;
+}
+
+html,body{
+  width:100%;
+  background:hsl(0, 20%, 95%);
+  color:#0f1111;
+  overflow-x:hidden;
+}
+
+/* ---------- TOP BAR ---------- */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:56px;
+  background:#131921;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+  z-index:3000;
+  box-shadow:0 3px 14px #0006;
+}
+
+.menu-btn,.mode-btn{
+  font-size:22px;
+  cursor:pointer;
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:1px;
+  color:#ff9900;
+}
+
+.logo span{color:white}
+
+.live-bar{
+  position:absolute;
+  bottom:-32px;
+  left:0;right:0;
+  background:#ff9900;
+  color:#111;
+  text-align:center;
+  font-weight:800;
+  padding:6px;
+  font-size:13px;
+}
+
+/* ---------- SIDE MENU ---------- */
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100vh;
+  background:#131921;
+  padding:80px 14px 14px;
+  transition:.35s ease;
+  z-index:2500;
+  box-shadow:4px 0 20px #0007;
+  overflow-y:auto;
+}
+
+.side-menu h3{
+  color:#ff9900;
+  margin-bottom:10px;
+}
+
+.side-menu button{
+  width:100%;
+  padding:10px 12px;
+  margin-bottom:6px;
+  border:none;
+  border-radius:7px;
+  background:#232f3e;
+  color:#ff9900;
+  font-weight:700;
+  cursor:pointer;
+  text-align:left;
+}
+
+.side-menu button:hover{
+  background:#ff9900;
+  color:#111;
+}
+
+/* ---------- MAIN WRAPPER ---------- */
+#mainContent{
+  max-width:1200px;
+  margin:auto;
+  padding-top:96px; /* header + live bar fix */
+  transition:.35s;
+}
+
+#mainContent.shift{
+  transform:translateX(260px);
+}
+
+/* ---------- PAGE SYSTEM ---------- */
+.page{
+  width:100%;
+  padding:20px;
+  animation:fade .3s ease;
+}
+
+.hide{display:none}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ---------- HEADINGS ---------- */
+h1{margin-bottom:10px;color:#b12704}
+h2{margin-bottom:8px}
+p{line-height:1.7}
+
+/* ---------- COMMON BOX ---------- */
+.roadmap-box,
+.doc-hub,
+.bookmark-box,
+.home-info-wide,
+.today-focus,
+.exam-calendar,
+.exam-finder{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin:18px 0;
+  box-shadow:0 6px 20px #0002;
+}
+
+/* ---------- LIST ---------- */
+.simple-list li{
+  margin:7px 0;
+  font-weight:600;
+}
+
+/* ---------- BACK BUTTON ---------- */
+.back-btn{
+  background:#ff9900;
+  color:#111;
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 4px 12px #0004;
+}
+
+#backBtn{
+  position:fixed;
+  top:70px;
+  left:12px;
+  display:none;
+  z-index:2000;
+}
+
+/* ---------- HOME EXPLORE ---------- */
+.explore-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+
+.explore-box{
+  background:white;
+  border-radius:14px;
+  box-shadow:0 6px 18px #0002;
+  padding:10px;
+}
+
+.explore-box summary{
+  font-weight:800;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.explore-content ul{margin-top:10px;padding-left:18px}
+
+/* ---------- ROADMAP ---------- */
+.roadmap-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+
+.roadmap-grid div{
+  background:white;
+  padding:16px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 6px 16px #0002;
+  border-top:4px solid #ff9900;
+}
+
+/* ---------- ROADMAP STEPS ---------- */
+.roadmap-steps{
+  margin:14px 0;
+  padding-left:20px;
+}
+
+.roadmap-steps li{
+  margin:8px 0;
+  font-weight:600;
+}
+
+/* ---------- STUDENT NOTE ---------- */
+.student-note{
+  background:#fff7ed;
+  border-left:5px solid #ff9900;
+  padding:12px;
+  border-radius:10px;
+  margin-top:16px;
+  font-weight:700;
+}
+
+/* ---------- EXAM FINDER ---------- */
+.exam-finder{
+  background:linear-gradient(135deg,#131921,#232f3e);
+  color:white;
+}
+
+.finder-form{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.finder-form select,
+.finder-form input{
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  font-weight:600;
+}
+
+.finder-form button{
+  background:#ff9900;
+  border:none;
+  border-radius:8px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.exam-result{
+  margin-top:14px;
+  background:white;
+  color:#111;
+  padding:12px;
+  border-radius:10px;
+}
+
+/* ---------- MOCK TEST ---------- */
+.q-box{
+  background:white;
+  border-radius:12px;
+  padding:14px;
+  margin:10px 0;
+  box-shadow:0 4px 12px #0002;
+}
+
+.q-box button{
+  width:100%;
+  margin:6px 0;
+  padding:9px;
+  border:none;
+  border-radius:8px;
+  background:#f1f5f9;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.correct{background:#16a34a!important;color:white}
+.wrong{background:#dc2626!important;color:white}
+
+/* ---------- DOCUMENT HUB ---------- */
+.doc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+  margin-top:16px;
+}
+
+.doc-grid div{
+  background:#f8fafc;
+  padding:14px;
+  border-radius:12px;
+  box-shadow:0 4px 12px #0001;
+}
+
+/* ---------- PORTAL CARDS ---------- */
+.portal-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:14px;
+  margin:20px 0;
+}
+
+.portal-cards div{
+  background:white;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 6px 18px #0002;
+  cursor:pointer;
+  border-left:5px solid #ff9900;
+}
+
+/* ---------- QUICK TOOLS ---------- */
+.quick-tools button{
+  margin:6px;
+  padding:10px 14px;
+  border:none;
+  border-radius:20px;
+  background:#131921;
+  color:#ff9900;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:600px){
+  .live-bar{font-size:11px}
+  #mainContent{padding-top:104px}
+}
+/* =====================================================
+   🌟 SARKARINEXT UI UPGRADE + SOFT ANIMATIONS
+   (PASTE THIS AT END OF YOUR EXISTING CSS)
+===================================================== */
+
+/* ---------- SMOOTH FEEL ---------- */
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:linear-gradient(180deg,#e3e6e6,#f8fafc);
+}
+
+/* ---------- PREMIUM HEADINGS ---------- */
+h1{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+h2{
+  font-size:22px;
+  font-weight:800;
+}
+
+h3{
+  font-weight:800;
+}
+
+/* ---------- CARD UPGRADE ---------- */
+.roadmap-box,
+.doc-hub,
+.bookmark-box,
+.home-info-wide,
+.today-focus,
+.exam-calendar,
+.exam-finder,
+.q-box,
+.portal-cards div,
+.explore-box,
+.doc-grid div{
+  transition:all .35s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.roadmap-box:hover,
+.portal-cards div:hover,
+.doc-grid div:hover,
+.explore-box:hover,
+.q-box:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 12px 30px #0003;
+}
+
+/* ---------- SOFT GLOW LINE ---------- */
+.roadmap-box::before,
+.portal-cards div::before,
+.doc-grid div::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:4px;
+  background:linear-gradient(90deg,#ff9900,#ffb703,#ffd166);
+}
+
+/* ---------- BUTTON PREMIUM ---------- */
+button{
+  transition:.25s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px #0004;
+}
+
+/* ---------- SIDE MENU MOTION ---------- */
+.side-menu button{
+  position:relative;
+  overflow:hidden;
+}
+
+.side-menu button::after{
+  content:"";
+  position:absolute;
+  left:-100%;
+  top:0;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,#fff4,transparent);
+  transition:.4s;
+}
+
+.side-menu button:hover::after{
+  left:100%;
+}
+
+/* ---------- ROADMAP GRID EFFECT ---------- */
+.roadmap-grid div{
+  background:linear-gradient(135deg,#fff,#f8fafc);
+}
+
+.roadmap-grid div:hover{
+  background:linear-gradient(135deg,#ff9900,#ffb703);
+  color:#111;
+  transform:scale(1.05);
+}
+
+/* ---------- MOCK TEST ANIMATION ---------- */
+.correct{
+  animation:pop .25s ease;
+}
+.wrong{
+  animation:shake .25s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(.9)}
+  70%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  30%{transform:translateX(-4px)}
+  60%{transform:translateX(4px)}
+  100%{transform:translateX(0)}
+}
+
+/* ---------- PAGE LOAD ANIMATION ---------- */
+.page{
+  animation:pageIn .35s ease;
+}
+
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ---------- HOME STRIP UPGRADE ---------- */
+.home-strip-top{
+  background:linear-gradient(90deg,#ff9900,#ffb703,#ffd166);
+  font-weight:900;
+  letter-spacing:.4px;
+  animation:glow 3s linear infinite;
+}
+
+@keyframes glow{
+  0%{filter:brightness(1)}
+  50%{filter:brightness(1.2)}
+  100%{filter:brightness(1)}
+}
+
+/* ---------- EXAM FINDER PREMIUM ---------- */
+.exam-finder{
+  box-shadow:0 16px 40px #0005;
+}
+
+.finder-form button{
+  background:linear-gradient(135deg,#ff9900,#ffb703);
+}
+
+/* ---------- STUDENT NOTE GLOW ---------- */
+.student-note{
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 #ff9900}
+  50%{box-shadow:0 0 14px #ff990077}
+  100%{box-shadow:0 0 0 #ff9900}
+}
+
+/* ---------- BACK BUTTON FLOAT ---------- */
+#backBtn{
+  animation:float 2s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+  100%{transform:translateY(0)}
+}
+/* =====================================================
+   🧪 MOCK TEST – PRO UI UPGRADE
+===================================================== */
+
+#mockTest{
+  background:linear-gradient(180deg,#f3f4f6,#eef2f7);
+}
+
+/* ---------- TOP INFO BAR ---------- */
+.mock-top-bar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin:14px 0 18px;
+}
+
+.mock-top-bar div{
+  background:linear-gradient(135deg,#131921,#232f3e);
+  color:white;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:700;
+  box-shadow:0 6px 18px #0003;
+}
+
+/* ---------- PROGRESS BAR ---------- */
+.mock-progress-wrap{
+  background:white;
+  padding:14px 16px;
+  border-radius:14px;
+  box-shadow:0 6px 18px #0002;
+  margin-bottom:20px;
+}
+
+.mock-progress-label{
+  font-weight:800;
+  margin-bottom:8px;
+  color:#b12704;
+}
+
+.mock-progress-bar{
+  width:100%;
+  height:12px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.mock-progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff9900,#ffb703,#ffd166);
+  border-radius:20px;
+  transition:.3s;
+}
+
+/* ---------- QUESTION CARD PREMIUM ---------- */
+.q-box{
+  background:linear-gradient(135deg,#ffffff,#f9fafb);
+  border-radius:18px;
+  box-shadow:0 10px 26px #00000014;
+  padding:18px;
+  border-left:6px solid #ff9900;
+  position:relative;
+}
+
+.q-box::after{
+  content:"";
+  position:absolute;
+  top:0;right:0;
+  width:80px;height:80px;
+  background:radial-gradient(circle,#ff990033,transparent 70%);
+}
+
+/* ---------- OPTION BUTTONS ---------- */
+.q-box button{
+  border-radius:12px;
+  font-size:14.5px;
+}
+
+.q-box button:hover{
+  background:#fff7ed;
+  border-color:#ff9900;
+}
+
+/* ---------- MOCK TEST HEADER LOOK ---------- */
+#mockTest h1{
+  text-align:center;
+  font-size:30px;
+}
+
+#mockTest p{
+  text-align:center;
+  font-size:15px;
+}
+
+/* ---------- FINISH BUTTON ---------- */
+#mockTest > div button{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:white;
+  font-size:16px;
+  border-radius:14px;
+}
+
+/* ---------- DARK MODE SUPPORT ---------- */
+.dark #mockTest{
+  background:#0f1111;
+}
+
+.dark .mock-progress-wrap{
+  background:#1b1f1f;
+}
+
+.dark .q-box{
+  background:#1b1f1f;
+  color:white;
+}
+
+/* ---------- MICRO ANIMATION ---------- */
+.q-box{
+  animation:fadeUp .35s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+/* =========================
+   🧪 MOCK TEST – CLEAN RESET
+========================= */
+
+#mockTest .q-box button{
+  background:#ffffff !important;
+  color:#111827 !important;
+  border:1px solid #e5e7eb !important;
+  box-shadow:0 2px 6px #00000010;
+}
+
+/* hover */
+#mockTest .q-box button:hover{
+  background:#f1f5f9 !important;
+  transform:translateX(4px);
+}
+
+/* correct & wrong only after click */
+#mockTest .q-box button.correct{
+  background:#16a34a !important;
+  color:white !important;
+  border-color:#16a34a !important;
+}
+
+#mockTest .q-box button.wrong{
+  background:#dc2626 !important;
+  color:white !important;
+  border-color:#dc2626 !important;
+}
+/* =========================
+   🎯 MOCK OPTIONS – MODERN SIDE LOOK
+========================= */
+
+#mockTest .q-box{
+  background:linear-gradient(135deg,#ffffff,#f8fafc);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 28px #00000014;
+  animation:fadeUp .4s ease;
+}
+
+#mockTest .q-box p{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:12px;
+  color:#0f172a;
+}
+
+#mockTest .q-box button{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-align:left;
+  padding:12px 14px;
+  border-radius:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+/* option bullet style */
+#mockTest .q-box button::before{
+  content:"➤";
+  font-weight:900;
+  color:#2563eb;
+}
+/* =========================
+   🚀 MOCK HERO ZONE
+========================= */
+
+.mock-hero{
+  margin-bottom:26px;
+  padding:26px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  box-shadow:0 14px 40px #00000055;
+  text-align:center;
+  animation:fadeUp .6s ease;
+}
+
+.mock-hero h2{
+  color:#ff9900;
+  margin-bottom:6px;
+}
+
+.mock-hero p{
+  color:#e5e7eb;
+  font-weight:600;
+}
+
+.mock-stats{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:10px;
+}
+
+.mock-stats div{
+  background:#020617;
+  padding:10px;
+  border-radius:10px;
+  font-weight:800;
+  box-shadow:0 4px 12px #00000055;
+}
+
+/* small animation */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+/* =========================
+   🌐 GLOBAL MODERN FEEL
+========================= */
+
+.page{
+  animation:fadeUp .45s ease;
+}
+
+button{
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px #00000025;
+}
+
+.roadmap-box,
+.portal-cards div,
+.doc-grid div{
+  transition:.3s;
+}
+
+.roadmap-box:hover,
+.portal-cards div:hover,
+.doc-grid div:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 30px #00000030;
+}
+.site-footer{
+  margin-top:60px;
+  background:#0f172a;
+  color:#ff9900;
+  text-align:center;
+  padding:16px;
+  font-weight:800;
+  letter-spacing:.4px;
+}
+/* ==============================
+   ✨ ANIMATED TEXT BOX SYSTEM
+============================== */
+
+/* all main text sections auto-card */
+.page h1,
+.page h2,
+.page p,
+.page > div,
+.page > section{
+  animation:fadeBox .6s ease;
+}
+
+/* reusable animated box */
+.ani-box,
+.roadmap-box,
+.q-box,
+.doc-grid div,
+.portal-cards div,
+.bookmark-box,
+.exam-finder,
+.home-info-wide,
+.today-focus,
+.exam-calendar,
+.quick-tools,
+.explore-box,
+.explore-content{
+  background:linear-gradient(135deg,#ffffff,#f8fafc);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 30px #00000018;
+  border:1px solid #eef2f7;
+  margin-bottom:18px;
+  animation:fadeBox .5s ease;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+  overflow:hidden;
+}
+
+/* hover glow */
+.ani-box:hover,
+.roadmap-box:hover,
+.q-box:hover,
+.doc-grid div:hover,
+.portal-cards div:hover,
+.bookmark-box:hover,
+.exam-finder:hover,
+.home-info-wide:hover,
+.today-focus:hover,
+.exam-calendar:hover,
+.quick-tools:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 18px 40px #00000035;
+}
+
+/* top gradient strip */
+.ani-box::before,
+.roadmap-box::before,
+.q-box::before,
+.doc-grid div::before,
+.portal-cards div::before,
+.bookmark-box::before,
+.exam-finder::before,
+.home-info-wide::before,
+.today-focus::before,
+.exam-calendar::before,
+.quick-tools::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  height:4px;width:100%;
+  background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ef4444);
+}
+
+/* soft entry animation */
+@keyframes fadeBox{
+  from{opacity:0;transform:translateY(16px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+/* =========================================
+   🎯 FIND MY EXAM – PREMIUM SMART TOOL
+========================================= */
+
+.exam-finder{
+  max-width:1000px;
+  margin:70px auto;
+  padding:32px 26px;
+  border-radius:26px;
+  background:linear-gradient(145deg,#020617,#0f172a);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(255,255,255,.05);
+  position:relative;
+  animation:examFade .8s ease;
+}
+
+/* red glowing border */
+.exam-finder::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#dc2626,#7f1d1d,#020617);
+  z-index:-1;
+  filter:blur(14px);
+  opacity:.85;
+}
+
+/* title */
+.exam-finder h2{
+  text-align:center;
+  color:#ffedd5;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin-bottom:6px;
+}
+
+/* subtitle */
+.exam-finder .finder-sub{
+  text-align:center;
+  color:#cbd5e1;
+  font-weight:600;
+  margin-bottom:26px;
+}
+
+/* form grid */
+.exam-finder .finder-form{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:14px;
+  margin-bottom:22px;
+}
+
+/* inputs */
+.exam-finder select,
+.exam-finder input{
+  padding:14px 14px;
+  border-radius:14px;
+  border:2px solid #1e293b;
+  background:#020617;
+  color:#f8fafc;
+  font-size:15px;
+  font-weight:600;
+  transition:.25s;
+  box-shadow:inset 0 0 0 1px #020617;
+}
+
+.exam-finder select:focus,
+.exam-finder input:focus{
+  outline:none;
+  border-color:#dc2626;
+  box-shadow:0 0 0 3px rgba(220,38,38,.35);
+  transform:translateY(-1px);
+}
+
+/* button */
+.exam-finder button{
+  background:linear-gradient(135deg,#dc2626,#7f1d1d);
+  color:white;
+  border:none;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+  letter-spacing:.3px;
+  box-shadow:0 14px 32px rgba(220,38,38,.55);
+  transition:.25s;
+}
+
+.exam-finder button:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 22px 48px rgba(220,38,38,.85);
+}
+
+/* result console */
+.exam-result{
+  margin-top:18px;
+  background:linear-gradient(180deg,#020617,#000);
+  border-left:6px solid #dc2626;
+  padding:18px 18px;
+  border-radius:16px;
+  color:#e5e7eb;
+  font-weight:600;
+  line-height:1.6;
+  box-shadow:0 14px 34px rgba(0,0,0,.7);
+  animation:examFade .5s ease;
+}
+
+.exam-result h3{
+  color:#ffedd5;
+  margin-bottom:8px;
+}
+
+.exam-result li{
+  margin:6px 0;
+  list-style:none;
+  position:relative;
+  padding-left:22px;
+}
+
+.exam-result li::before{
+  content:"🎯";
+  position:absolute;
+  left:0;
+}
+
+/* animation */
+@keyframes examFade{
+  from{opacity:0;transform:translateY(25px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+/* ===============================
+   🌟 GLOBAL PREMIUM TOUCH
+================================ */
+.bookmark-box,
+.home-info-wide,
+.student-quote,
+.today-focus,
+.exam-calendar,
+.quick-tools,
+.exam-roadmap,
+.doc-hub{
+  max-width:1200px;
+  margin:60px auto;
+  padding:28px;
+  border-radius:22px;
+  background:linear-gradient(145deg,#020617,#0f172a);
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.06);
+  animation:fadeUp .7s ease both;
+  position:relative;
+  overflow:hidden;
+}
+
+/* red premium glow line */
+.bookmark-box::before,
+.home-info-wide::before,
+.today-focus::before,
+.exam-roadmap::before,
+.doc-hub::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#dc2626,#fb7185,#dc2626);
+}
+
+/* headings */
+.bookmark-box h2,
+.home-info-wide h2,
+.today-focus h2,
+.exam-calendar h2,
+.quick-tools h2,
+.exam-roadmap h2,
+.doc-hub h2{
+  color:#ffedd5;
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:12px;
+  letter-spacing:.4px;
+}
+
+/* paragraph */
+.home-info-wide p,
+.exam-roadmap p,
+.doc-hub p{
+  color:#cbd5e1;
+  font-weight:500;
+  line-height:1.7;
+}
+
+/* ===============================
+   ⭐ BOOKMARK BOX
+================================ */
+#bookmarks{
+  background:#020617;
+  border:1px dashed #dc2626;
+  padding:14px;
+  border-radius:14px;
+  margin:12px 0;
+  color:#f8fafc;
+  font-weight:600;
+}
+
+.bookmark-actions button{
+  background:linear-gradient(135deg,#dc2626,#7f1d1d);
+  color:white;
+  border:none;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:800;
+  margin:6px;
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 10px 24px rgba(220,38,38,.5);
+}
+.bookmark-actions button:hover{
+  transform:translateY(-3px) scale(1.05);
+}
+
+/* ===============================
+   💬 STUDENT QUOTE
+================================ */
+.student-quote{
+  text-align:center;
+  font-size:26px;
+  font-weight:900;
+  color:#ffe4e6;
+  background:linear-gradient(135deg,#7f1d1d,#020617);
+  border-left:6px solid #dc2626;
+}
+
+/* ===============================
+   🎯 TODAY FOCUS
+================================ */
+.today-focus ul{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.today-focus li{
+  background:#020617;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #1e293b;
+  color:#e5e7eb;
+  font-weight:700;
+  transition:.25s;
+}
+.today-focus li:hover{
+  transform:translateY(-4px);
+  border-color:#dc2626;
+}
+
+/* ===============================
+   📅 EXAM CALENDAR
+================================ */
+.exam-calendar{
+  text-align:center;
+  background:linear-gradient(135deg,#020617,#111827);
+  color:#f8fafc;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+/* ===============================
+   🧮 QUICK TOOLS
+================================ */
+.quick-tools{
+  display:grid;
+  gap:14px;
+  text-align:center;
+}
+.quick-tools button{
+  background:linear-gradient(135deg,#020617,#1f2933);
+  border:1px solid #dc2626;
+  color:#ffe4e6;
+  padding:14px;
+  border-radius:16px;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s;
+}
+.quick-tools button:hover{
+  background:linear-gradient(135deg,#dc2626,#7f1d1d);
+  transform:translateY(-4px) scale(1.04);
+}
+
+/* ===============================
+   🧭 ROADMAP GRID
+================================ */
+.roadmap-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:16px;
+}
+
+.roadmap-grid div{
+  background:linear-gradient(145deg,#020617,#0f172a);
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  color:#f8fafc;
+  font-weight:800;
+  cursor:pointer;
+  border:1px solid #1e293b;
+  transition:.3s;
+  box-shadow:0 14px 30px rgba(0,0,0,.4);
+}
+.roadmap-grid div:hover{
+  transform:translateY(-6px) scale(1.05);
+  border-color:#dc2626;
+  box-shadow:0 22px 50px rgba(220,38,38,.45);
+}
+
+/* ===============================
+   📁 DOCUMENT HUB
+================================ */
+.doc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.doc-grid > div{
+  background:linear-gradient(145deg,#020617,#0b1220);
+  padding:18px;
+  border-radius:18px;
+  border:1px solid #1e293b;
+  transition:.3s;
+}
+.doc-grid > div:hover{
+  transform:translateY(-6px);
+  border-color:#dc2626;
+  box-shadow:0 18px 40px rgba(220,38,38,.35);
+}
+
+.doc-grid h3{
+  color:#ffe4e6;
+  margin-bottom:10px;
+}
+
+.doc-grid li{
+  color:#e5e7eb;
+  font-size:14px;
+  margin:6px 0;
+}
+
+/* ===============================
+   🎬 ANIMATION
+================================ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+body{margin:0;font-family:Segoe UI,Arial;background:#f5f7fb}
+.top-bar{background:#0f172a;padding:12px;text-align:center}
+.top-bar a{color:white;margin:0 10px;text-decoration:none;font-weight:600}
+.top-bar a.active{color:#38bdf8}
+
+.page-title{text-align:center;margin:20px 0}
+
+.card-container{max-width:1100px;margin:auto;padding:10px;display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px}
+
+.card{background:white;padding:15px;border-radius:10px;box-shadow:0 4px 10px #0002}
+.card h3{margin:0 0 6px}
+.card a{color:#2563eb;font-weight:600;text-decoration:none}
+.portal-card{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+/* ===== MAIN PORTAL BUTTONS (Animated Cards) ===== */
+
+.portal-cards{
+  max-width:1100px;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:22px;
+  padding:0 14px;
+}
+
+.portal-card{
+  display:block;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  text-decoration:none;
+  padding:22px 18px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 12px 30px #0004;
+  position:relative;
+  overflow:hidden;
+  transform:translateY(20px);
+  opacity:0;
+  animation:portalIn .8s ease forwards;
+}
+
+/* delay animation automatically */
+.portal-card:nth-child(1){animation-delay:.1s}
+.portal-card:nth-child(2){animation-delay:.25s}
+.portal-card:nth-child(3){animation-delay:.4s}
+.portal-card:nth-child(4){animation-delay:.55s}
+
+.portal-card h3{
+  margin:0 0 6px;
+  font-size:20px;
+  letter-spacing:.3px;
+}
+
+.portal-card p{
+  margin:0;
+  font-size:13px;
+  color:#cbd5e1;
+}
+
+/* hover effect */
+.portal-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 40px #0006;
+}
+
+/* glow moving light */
+.portal-card::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-60%;
+  width:50%;
+  height:200%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:rotate(25deg);
+  transition:.7s;
+}
+
+.portal-card:hover::before{
+  left:120%;
+}
+
+/* different highlight borders */
+.portal-card:nth-child(1){border:1px solid #22c55e}
+.portal-card:nth-child(2){border:1px solid #38bdf8}
+.portal-card:nth-child(3){border:1px solid #a78bfa}
+.portal-card:nth-child(4){border:1px solid #fbbf24}
+
+/* entry animation */
+@keyframes portalIn{
+  from{opacity:0;transform:translateY(25px) scale(.95)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* mobile safe */
+@media(max-width:600px){
+  .portal-card h3{font-size:18px}
+  .portal-card p{font-size:12px}
+}
+.top-tools{
+  max-width:900px;
+  margin:20px auto;
+  text-align:center;
+}
+
+#searchBox{
+  width:90%;
+  max-width:420px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #334155;
+  outline:none;
+  background:#020617;
+  color:white;
+  font-size:15px;
+}
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:250px;
+  height:100vh;
+  background:#020617;
+  color:white;
+  padding:20px 16px;
+  box-shadow:4px 0 20px #0007;
+  transition:.3s;
+  z-index:9999;
+}
+
+.side-menu h2{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.side-menu a{
+  display:block;
+  padding:10px;
+  margin:6px 0;
+  border-radius:8px;
+  cursor:pointer;
+  background:#0f172a;
+}
+
+.side-menu a:hover{
+  background:#1e293b;
+}
+
+.side-menu.show{
+  left:0;
+}
+
+.menu-btn{
+  position:fixed;
+  top:14px;
+  left:14px;
+  background:#0f172a;
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  z-index:10000;
+  box-shadow:0 4px 12px #0006;
+}
+.new-badge{
+  background:#22c55e;
+  color:black;
+  padding:2px 8px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:700;
+  float:right;
+}
+.exam-path-builder{
+  max-width:900px;
+  margin:60px auto;
+  background:#fff;
+  padding:28px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+body.dark .exam-path-builder{
+  background:#0f172a;
+  color:#e5e7eb;
+}
+
+.exam-path-builder h2{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.exam-path-builder .finder-form{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+
+.exam-path-builder button{
+  grid-column:1/-1;
+  padding:12px;
+  font-size:16px;
+  font-weight:700;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+  color:#fff;
+  cursor:pointer;
+}
+/* ===== FIX: EXAM PATH RESULT BOX VISIBILITY ===== */
+
+.playlist-hub .exam-result{
+  background:linear-gradient(135deg,#eef2ff,#e0e7ff);
+  border:1px solid #c7d2fe;
+  border-radius:14px;
+  padding:16px;
+  font-weight:600;
+  color:#1e293b;
+}
+
+body.dark .playlist-hub .exam-result{
+  background:linear-gradient(135deg,#020617,#020617);
+  border-color:#1e293b;
+  color:#e5e7eb;
+}
+
+.subject-title{
+  font-size:13px;
+  font-weight:700;
+  margin:10px 0 6px;
+  color:#38bdf8;
+  cursor:pointer;
+}
+
+.video-grid.hide{
+  display:none;
+}
+.main-header{
+  padding:12px 18px;
+  background:#020617;
+  border-bottom:1px solid #1e293b;
+}
+
+.site-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.site-logo img{
+  height:42px;
+  width:42px;
+}
+
+.site-logo span{
+  font-size:22px;
+  font-weight:800;
+  color:#22d3ee;
+  letter-spacing:.5px;
+}
+.site-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:20px;
+}
+
+.site-logo img{
+  height:34px;
+}
+.top-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  background:#ffffff;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.logo a{
+  font-size:22px;
+  font-weight:600;
+  color:#000;
+  text-decoration:none;
+}
+
+.top-links{
+  display:flex;
+  gap:18px;
+}
+
+.top-links a{
+  font-size:14px;
+  color:#333;
+  text-decoration:none;
+}
+
+.top-links a:hover{
+  color:#2563eb;
+}
+@media (max-width:768px){
+  .top-header{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .top-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+}
+/* =========================================
+   FIX: Exam Path Builder Output Blur / Fade
+   (No overwrite issue)
+========================================= */
+
+#pathOutput{
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
+  padding: 18px 16px !important;
+  border-radius: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.7 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+}
+
+/* Output ke andar headings */
+#pathOutput h1,
+#pathOutput h2,
+#pathOutput h3{
+  color: #0b1220 !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+}
+
+/* Output ke andar text */
+#pathOutput p,
+#pathOutput li,
+#pathOutput span,
+#pathOutput b,
+#pathOutput strong{
+  color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+/* List styling */
+#pathOutput ul{
+  margin-top: 10px !important;
+  padding-left: 18px !important;
+}
+
+#pathOutput li{
+  margin: 6px 0 !important;
+}
+.note-box{
+  margin-top:16px;
+  border:1px solid #000;
+  padding:12px;
+  background:#fffdf3;
+}
+
+.note-box h3{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.note-box p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.apply-wrap{
+  margin-top:18px;
+  text-align:center;
+}
+/* ==============================
+   🌟 SARKARINEXT – PRO FOOTER
+   (Paste at END)
+============================== */
+
+.site-footer-pro{
+  margin-top:70px;
+  background:linear-gradient(180deg,#ffffff,#f3f4f6);
+  border-top:1px solid rgba(0,0,0,.08);
+  padding:40px 16px 18px;
+  color:#0f172a;
+}
+
+.footer-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
+
+.footer-col h4{
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:12px;
+  color:#111827;
+}
+
+.footer-col a{
+  display:block;
+  text-decoration:none;
+  color:#334155;
+  font-weight:600;
+  margin:8px 0;
+  transition:.25s;
+}
+
+.footer-col a:hover{
+  color:#2563eb;
+  transform:translateX(4px);
+}
+
+.footer-brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.footer-brand img{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+
+.footer-brand h3{
+  margin:0;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.footer-brand p{
+  margin:4px 0 0;
+  font-size:13px;
+  color:#475569;
+  font-weight:600;
+  line-height:1.6;
+}
+
+.footer-team{
+  margin-top:8px;
+  font-size:13px;
+  color:#334155;
+  font-weight:600;
+  line-height:1.7;
+}
+
+.footer-social{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.footer-social a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  font-weight:800;
+  color:#0f172a;
+}
+
+.footer-social a:hover{
+  background:#2563eb;
+  border-color:#2563eb;
+  color:white;
+  transform:translateY(-2px);
+}
+
+.footer-bottom{
+  max-width:1200px;
+  margin:26px auto 0;
+  padding-top:14px;
+  border-top:1px solid rgba(0,0,0,.08);
+  text-align:center;
+}
+
+.footer-bottom p{
+  margin:0;
+  font-size:13px;
+  font-weight:700;
+  color:#64748b;
+}
+/* ===== FOOTER FORCE FIX ===== */
+.site-footer-pro{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:999999 !important;
+}
+
+/* agar koi parent hide kar raha ho */
+body, main, section{
+  overflow:visible !important;
+}
+/* ===========================
+   FOOTER (MATCH HOME THEME)
+=========================== */
+
+.site-footer-pro{
+  width:100%;
+  margin-top:50px;
+  background:#0b1220;  /* same premium dark */
+  color:#e5e7eb;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.footer-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 18px;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:22px;
+}
+
+/* Brand row */
+.footer-brand{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.footer-brand img{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#fff;
+  padding:6px;
+}
+
+.footer-brand h3{
+  font-size:18px;
+  margin:0;
+  color:#fff;
+  font-weight:700;
+}
+
+.footer-brand p{
+  margin-top:6px;
+  font-size:13px;
+  line-height:1.5;
+  color:#cbd5e1;
+}
+
+/* Columns */
+.footer-col h4{
+  font-size:15px;
+  margin-bottom:12px;
+  color:#fff;
+  font-weight:700;
+}
+
+.footer-col a{
+  display:block;
+  text-decoration:none;
+  color:#cbd5e1;
+  font-size:13px;
+  margin:8px 0;
+  transition:0.2s;
+}
+
+.footer-col a:hover{
+  color:#fff;
+  transform:translateX(3px);
+}
+
+.footer-team{
+  font-size:13px;
+  line-height:1.6;
+  color:#cbd5e1;
+}
+
+/* Social */
+.footer-social{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.footer-social a{
+  padding:7px 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  font-weight:600;
+  font-size:13px;
+}
+
+.footer-social a:hover{
+  background:rgba(255,255,255,0.10);
+}
+
+/* Bottom */
+.footer-bottom{
+  text-align:center;
+  padding:16px 12px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:13px;
+  color:#94a3b8;
+}
+
+/* ===========================
+   FOOTER RESPONSIVE
+=========================== */
+@media (max-width: 900px){
+  .footer-wrap{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px){
+  .footer-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .footer-brand{
+    align-items:center;
+  }
+}
+/* ==============================
+   HEADER RIGHT NAV BUTTONS
+   (About / Team / Privacy etc.)
+============================== */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* Right nav container */
+.header-links{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Header buttons */
+.header-links a{
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:14px;
+  font-weight:800;
+  font-size:13px;
+  color:#0f172a;
+  background:rgba(255,255,255,0.72);
+  border:1px solid rgba(0,0,0,0.08);
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.header-links a:hover{
+  transform:translateY(-2px);
+  background:#fff;
+  box-shadow:0 10px 22px rgba(0,0,0,0.10);
+}
+
+/* Mobile: header links ko horizontal scroll */
+@media(max-width:720px){
+
+  .header-links{
+    width:100%;
+    margin-left:0;
+    overflow-x:auto;
+    padding-bottom:6px;
+    flex-wrap:nowrap;
+  }
+
+  .header-links::-webkit-scrollbar{
+    height:6px;
+  }
+
+  .header-links::-webkit-scrollbar-thumb{
+    background:rgba(0,0,0,0.18);
+    border-radius:10px;
+  }
+
+  .header-links a{
+    flex:0 0 auto;
+    font-size:13px;
+    padding:9px 12px;
+    border-radius:13px;
+  }
+}
+/* ==============================
+   HEADER RIGHT NAV BUTTONS (ORANGE THEME)
+============================== */
+
+.header-links a{
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:14px;
+  font-weight:800;
+  font-size:13px;
+  color:#fff;
+  background:linear-gradient(135deg,#ff7a18,#ffb300);
+  border:1px solid rgba(255,255,255,0.20);
+  transition:.2s;
+  white-space:nowrap;
+  box-shadow:0 10px 22px rgba(255,122,24,0.25);
+}
+
+.header-links a:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 32px rgba(255,122,24,0.35);
+  opacity:0.96;
+}
+/* ==============================
+   HEADER BUTTONS (AMAZON THEME)
+============================== */
+
+.header-links a{
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:14px;
+  font-weight:900;
+  font-size:13px;
+
+  /* Amazon style */
+  background:#f90;             /* Amazon Orange */
+  color:#111;                  /* Amazon text */
+  border:1px solid #cc7a00;
+
+  transition:.2s;
+  white-space:nowrap;
+  box-shadow:0 10px 22px rgba(255,153,0,0.22);
+
+  /* IMPORTANT: click pe white na ho */
+  -webkit-tap-highlight-color: transparent;
+  outline:none;
+}
+
+/* hover */
+.header-links a:hover{
+  transform:translateY(-2px);
+  background:#ffb300;
+  box-shadow:0 16px 32px rgba(255,153,0,0.30);
+}
+
+/* active (click) */
+.header-links a:active{
+  transform:scale(0.98);
+  background:#ff9900;
+  color:#111;
+}
+
+/* visited fix */
+.header-links a:visited{
+  color:#111;
+}
+
+/* focus fix */
+.header-links a:focus,
+.header-links a:focus-visible{
+  background:#ff9900;
+  color:#111;
+  box-shadow:0 0 0 3px rgba(255,153,0,0.35);
+}
+
+
+
+
+
+
+
+

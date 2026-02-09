@@ -1,0 +1,912 @@
+body{
+  margin:0;
+  font-family:Poppins,Arial,sans-serif;
+  background:#020617;
+  color:white;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+.course-app{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:100vh;
+}
+
+/* ===============================
+   LEFT PANEL
+================================ */
+.course-left{
+  background:#020617;
+  border-right:1px solid #1e293b;
+  padding:14px 12px;
+  display:flex;
+  flex-direction:column;
+}
+
+.course-left h2{
+  margin:4px 0 10px;
+  font-size:18px;
+  text-align:center;
+  color:#38bdf8;
+  font-weight:800;
+}
+
+/* TOP BUTTONS */
+.course-btn{
+  border:1px solid #1e293b;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+  transition:.25s;
+  font-size:13px;
+  font-weight:600;
+  text-align:center;
+  background:#020617;
+}
+.course-btn:hover{
+  border-color:#38bdf8;
+  background:#020617;
+}
+.course-btn.active{
+  border-color:#22d3ee;
+  box-shadow:0 0 0 1px #22d3ee;
+  background:#020617;
+}
+
+/* SUBJECT + TOPIC SCROLL AREA */
+.left-subject-area{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid #1e293b;
+  overflow-y:auto;
+  flex:1;
+}
+
+/* SUBJECT */
+.subject-box{
+  margin-bottom:16px;
+}
+.subject-title{
+  font-size:13px;
+  font-weight:800;
+  margin:10px 0 6px;
+  color:#38bdf8;
+  letter-spacing:.3px;
+}
+
+/* TOPIC LIST */
+.video-grid{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.video-card{
+  background:#020617;
+  border:1px solid #1e293b;
+  padding:9px 10px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  transition:.25s;
+}
+.video-card:hover{
+  border-color:#38bdf8;
+  transform:translateX(4px);
+}
+.video-card.active{
+  border-color:#22d3ee;
+  box-shadow:0 0 0 1px #22d3ee;
+  background:#020617;
+}
+
+/* ===============================
+   RIGHT PANEL
+================================ */
+.course-right{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+
+/* VIDEO PLAYER */
+.player-box{
+  width:100%;
+  max-width:980px;
+  aspect-ratio:16/9;
+  background:black;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 35px #0009;
+}
+.player-box iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* VIDEO TITLE */
+#videoTitle{
+  margin:10px 0 2px;
+  font-size:17px;
+  font-weight:700;
+  color:#e5e7eb;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media(max-width:900px){
+  .course-app{
+    grid-template-columns:1fr;
+  }
+  .course-left{
+    border-right:none;
+    border-bottom:1px solid #1e293b;
+  }
+}
+/* =====================================
+   📱 MOBILE – EDGE TO EDGE VIDEO
+===================================== */
+@media (max-width:900px){
+
+  /* Right panel ka padding hatao */
+  .course-right{
+    padding:0;
+    margin:0;
+  }
+
+  /* Player full screen width */
+  .player-box{
+    width:100vw;
+    max-width:100vw;
+    margin:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+
+  /* iframe ka koi gap nahi */
+  .player-box iframe{
+    display:block;
+    width:100vw;
+    height:56.25vw;   /* 16:9 ratio */
+    margin:0;
+    padding:0;
+  }
+
+  /* Video title chipka hua */
+  #videoTitle{
+    margin:0;
+    padding:8px 12px;
+    font-size:15px;
+  }
+}
+/* ===============================
+   BUTTON BORDER IMPROVEMENTS
+================================ */
+
+/* Course buttons */
+.course-btn{
+  border:1.5px solid #334155;   /* thoda strong */
+}
+
+/* Subject title ko button feel */
+.subject-title{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1.5px solid #334155;
+  background:#020617;
+}
+
+/* Topic buttons */
+.video-card{
+  border:1.5px solid #334155;
+}
+
+/* Hover / Active clarity */
+.course-btn:hover,
+.video-card:hover,
+.subject-title:hover{
+  border-color:#38bdf8;
+}
+
+.course-btn.active,
+.video-card.active{
+  border-color:#22d3ee;
+}
+/* ===============================
+   SUBJECT LIST – VERTICAL + BULLET
+================================ */
+
+/* Subject container ko vertical force */
+.subject-box{
+  display:block;
+  margin-bottom:12px;
+}
+
+/* Subject title ko list-item banao */
+.subject-title{
+  display:list-item;
+  list-style-type:disc;      /* ● bullet */
+  list-style-position:inside;
+  padding:6px 10px;
+  margin:6px 0;
+  border:1.5px solid #334155;
+  border-radius:8px;
+  background:#020617;
+  color:#38bdf8;
+  font-size:13px;
+  font-weight:800;
+}
+
+/* Agar pehle grid laga ho to usko cancel karo */
+#subjectArea{
+  display:block !important;
+}
+/* =====================================
+   🟠 AMAZON STYLE COLOR CONTRAST
+   (Layout untouched)
+===================================== */
+
+body{
+  background:#0f171e;
+  color:#e6e6e6;
+}
+
+/* LEFT PANEL */
+.course-left{
+  background:#0f171e;
+  border-right:1px solid #2a3441;
+}
+
+/* RIGHT PANEL */
+.course-right{
+  background:#0f171e;
+}
+
+/* HEADINGS */
+.course-left h2{
+  color:#ff9900;
+}
+
+/* COURSE BUTTONS */
+.course-btn{
+  background:#161e2a;
+  border:1.5px solid #2a3441;
+  color:#e6e6e6;
+}
+
+.course-btn:hover{
+  border-color:#00a8e1;
+}
+
+.course-btn.active{
+  border-color:#ff9900;
+  box-shadow:0 0 0 1px #ff9900;
+  color:#ffb84d;
+}
+
+/* SUBJECT LIST (AMAZON LIKE) */
+.subject-title{
+  background:#161e2a;
+  border:1.5px solid #2a3441;
+  color:#00a8e1;
+}
+
+.subject-title:hover{
+  border-color:#00a8e1;
+}
+
+/* TOPIC BUTTONS */
+.video-card{
+  background:#161e2a;
+  border:1.5px solid #2a3441;
+  color:#e6e6e6;
+}
+
+.video-card:hover{
+  border-color:#00a8e1;
+}
+
+.video-card.active{
+  border-color:#ff9900;
+  box-shadow:0 0 0 1px #ff9900;
+  color:#ffb84d;
+}
+
+/* VIDEO PLAYER */
+.player-box{
+  background:#000;
+  box-shadow:0 14px 40px #000a;
+}
+
+/* VIDEO TITLE */
+#videoTitle{
+  color:#e6e6e6;
+}
+
+/* SCROLLBAR (OPTIONAL AMAZON FEEL) */
+::-webkit-scrollbar{
+  width:6px;
+}
+::-webkit-scrollbar-track{
+  background:#0f171e;
+}
+::-webkit-scrollbar-thumb{
+  background:#2a3441;
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#00a8e1;
+}
+/* =====================================
+   📱 MOBILE ONLY – VIDEO TOP FIX
+   (DESKTOP SAFE)
+===================================== */
+
+@media (max-width: 900px){
+
+  .course-app{
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* 🎬 VIDEO FIRST */
+  .course-right{
+    order:1;
+  }
+
+  /* 📚 CONTENT BELOW VIDEO */
+  .course-left{
+    order:2;
+  }
+}
+/* =====================================
+   📱 MOBILE – VIDEO STAYS, TEXT SCROLLS
+   (DESKTOP 100% SAFE)
+===================================== */
+
+@media (max-width: 900px){
+
+  /* Mobile layout stack */
+  .course-app{
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* 🎬 VIDEO AREA STICKY */
+  .course-right{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#0f171e;   /* Amazon dark */
+    order:1;
+  }
+
+  /* Edge-to-edge video */
+  .player-box{
+    width:100vw;
+    max-width:100vw;
+    margin:0;
+    border-radius:0;
+  }
+
+  .player-box iframe{
+    display:block;
+    width:100vw;
+    height:56.25vw;   /* 16:9 */
+  }
+
+  /* 📜 CONTENT STARTS UNDER VIDEO */
+  .course-left{
+    order:2;
+    margin-top:0;
+    padding-top:10px;
+  }
+
+  /* Ensure text goes under video while scrolling */
+  .course-left{
+    z-index:1;
+  }
+}
+/* =====================================
+   🎬 VIDEO STAYS, TEXT SCROLLS
+   (DESKTOP + MOBILE SAFE)
+===================================== */
+
+/* DESKTOP + LAPTOP */
+.course-right{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:hidden;     /* video fixed rahe */
+}
+
+/* LEFT SIDE SCROLL ONLY */
+.course-left{
+  height:100vh;
+  overflow-y:auto;
+}
+
+/* MOBILE – same behavior (already app-like) */
+@media (max-width:900px){
+
+  .course-app{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .course-right{
+    position:sticky;
+    top:0;
+    z-index:100;
+    height:auto;
+  }
+
+  .course-left{
+    height:auto;
+    overflow-y:auto;
+  }
+}
+/* DESKTOP ONLY – BRAND OVERLAY */
+@media(min-width:901px){
+
+  .player-box{
+    position:relative;
+  }
+
+  .custom-overlay{
+    position:absolute;
+    bottom:12px;
+    left:12px;
+    background:rgba(0,0,0,.6);
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    color:#fff;
+    pointer-events:none;
+    z-index:5;
+  }
+}
+/* ===============================
+   BLACK & WHITE UI ONLY
+   Layout untouched
+================================ */
+
+/* Body */
+body{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+/* Panels */
+.course-left,
+.course-right{
+  background:#000 !important;
+  border-color:#333 !important;
+}
+
+/* Headings */
+.course-left h2{
+  color:#fff !important;
+}
+
+/* Buttons */
+.course-btn{
+  background:#000 !important;
+  border:1.5px solid #444 !important;
+  color:#fff !important;
+}
+
+.course-btn:hover{
+  border-color:#fff !important;
+}
+
+.course-btn.active{
+  border-color:#fff !important;
+  box-shadow:0 0 0 1px #fff !important;
+}
+
+/* Subject titles */
+.subject-title{
+  background:#000 !important;
+  border:1.5px solid #444 !important;
+  color:#fff !important;
+}
+
+/* Topic cards */
+.video-card{
+  background:#000 !important;
+  border:1.5px solid #444 !important;
+  color:#fff !important;
+}
+
+.video-card:hover{
+  border-color:#fff !important;
+}
+
+.video-card.active{
+  border-color:#fff !important;
+  box-shadow:0 0 0 1px #fff !important;
+}
+
+/* Video title */
+#videoTitle{
+  color:#fff !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb{
+  background:#444;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#fff;
+}
+/* ===============================
+   WHITE UI + BLACK ELEMENTS
+   Layout untouched
+================================ */
+
+/* Body */
+body{
+  background:#ffffff !important;
+  color:#000 !important;
+}
+
+/* Panels */
+.course-left,
+.course-right{
+  background:#ffffff !important;
+  border-color:#e5e7eb !important;
+}
+
+/* Heading */
+.course-left h2{
+  color:#000 !important;
+}
+
+/* Buttons */
+.course-btn{
+  background:#ffffff !important;
+  border:1.5px solid #d1d5db !important;
+  color:#000 !important;
+}
+
+.course-btn:hover{
+  border-color:#000 !important;
+}
+
+.course-btn.active{
+  border-color:#000 !important;
+  box-shadow:0 0 0 1px #000 !important;
+}
+
+/* Subject titles */
+.subject-title{
+  background:#ffffff !important;
+  border:1.5px solid #d1d5db !important;
+  color:#000 !important;
+}
+
+/* Topic cards */
+.video-card{
+  background:#ffffff !important;
+  border:1.5px solid #d1d5db !important;
+  color:#000 !important;
+}
+
+.video-card:hover{
+  border-color:#000 !important;
+}
+
+.video-card.active{
+  border-color:#000 !important;
+  box-shadow:0 0 0 1px #000 !important;
+}
+
+/* Video title */
+#videoTitle{
+  color:#000 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb{
+  background:#cbd5f5;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#000;
+}
+/* ===============================
+   NEW: CHANNEL DROPDOWN UI
+================================ */
+
+.channel-box{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.channel-label{
+  font-size:13px;
+  font-weight:800;
+  color:#000;
+}
+
+.channel-select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1.5px solid #d1d5db;
+  font-size:13px;
+  font-weight:700;
+  outline:none;
+  cursor:pointer;
+  background:#fff;
+  color:#000;
+}
+
+.channel-note{
+  font-size:12px;
+  opacity:0.75;
+  margin-top:4px;
+}
+
+/* mobile friendly */
+@media(max-width:900px){
+  .channel-select{
+    font-size:14px;
+  }
+}
+/* ===== TOP ACTIONS (CONTENT START) ===== */
+.top-actions{
+  display:flex;
+  gap:10px;
+  margin-bottom:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* common */
+.back-btn{
+  border:none;
+  padding:7px 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+/* green */
+.back-btn.channel{
+  background:#16a34a;
+  color:white;
+}
+.back-btn.channel:hover{
+  background:#15803d;
+}
+
+/* blue */
+.back-btn.prep{
+  background:#2563eb;
+  color:white;
+}
+.back-btn.prep:hover{
+  background:#1d4ed8;
+}
+/* =========================================
+   MOBILE RESPONSIVE FIX (ADD AT END)
+   SarkariNext Channels Page
+========================================= */
+
+/* Tablet */
+@media (max-width: 1100px) {
+  #channelGrid{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+
+  body{
+    padding: 14px !important;
+  }
+
+  /* Top header stack */
+  .top-header{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 14px !important;
+  }
+
+  /* Prep text */
+  #prepName{
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: left !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Grid single column */
+  #channelGrid{
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Card size */
+  .box{
+    padding: 16px 14px !important;
+    border-radius: 16px !important;
+    min-height: 80px !important;
+  }
+
+  /* Title */
+  .box h2{
+    font-size: 14.5px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Subtitle */
+  .box p{
+    font-size: 12px !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px){
+
+  body{
+    padding: 12px !important;
+  }
+
+  .box{
+    padding: 14px 12px !important;
+  }
+
+  .box h2{
+    font-size: 14px !important;
+  }
+
+  .box p{
+    font-size: 11px !important;
+  }
+}
+/* =====================================================
+   UNIVERSAL MOBILE RESPONSIVE FIX
+   Paste this at the END of every CSS file
+===================================================== */
+
+/* 1) Prevent horizontal scroll */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+/* 2) Universal container safe padding */
+body{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 3) Images & videos never overflow */
+img, video, iframe{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 4) Long text wrap (no overflow) */
+*{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 5) Buttons + inputs mobile friendly */
+button, input, select, textarea{
+  max-width:100%;
+  font-size:16px; /* iPhone zoom fix */
+}
+
+/* 6) Universal section padding */
+section, .section, .container, .wrap, .main{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding-left:14px;
+  padding-right:14px;
+}
+
+/* 7) Any 2-3 column layout becomes 1 column on phone */
+@media (max-width: 900px){
+  .layout, .grid, .row, .mainGrid, .cardsGrid{
+    display:block !important;
+  }
+
+  .leftPanel, .rightPanel, .centerPanel,
+  .sidebar, .content, .panel{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+
+/* 8) Any grid becomes auto responsive */
+@media (max-width: 700px){
+  .grid, .cards, .cardGrid, .courseGrid{
+    display:grid !important;
+    grid-template-columns: 1fr !important;
+    gap:12px !important;
+  }
+}
+
+/* 9) Tables become scrollable on mobile */
+.tableWrap{
+  width:100%;
+  overflow:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+/* 10) Navbar / Topbar mobile */
+@media (max-width: 700px){
+  nav, .topbar, .navbar{
+    flex-direction:column !important;
+    gap:10px !important;
+    align-items:flex-start !important;
+  }
+
+  .navLinks, .menu, .links{
+    width:100% !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+  }
+}
+
+/* 11) Card padding smaller on phone */
+@media (max-width: 520px){
+  .panel, .card, .box, .item{
+    border-radius:14px !important;
+  }
+
+  .panelHead, .cardHead{
+    padding:12px !important;
+  }
+
+  .panelBody, .cardBody{
+    padding:12px !important;
+  }
+
+  h1{ font-size:20px !important; }
+  h2{ font-size:17px !important; }
+  h3{ font-size:15px !important; }
+  p, li{ font-size:14px !important; line-height:1.6 !important; }
+}
+
+
+
+
+
+
+
+
+
+

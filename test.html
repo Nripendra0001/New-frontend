@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBT Exam Test – nripendra.online</title>
+
+  <link rel="stylesheet" href="./css/test.css" />
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="left">
+      <div class="brand">
+        <div class="logo">SN</div>
+        <div>
+          <h1 id="examTitle">Exam CBT Test</h1>
+          <p id="examMeta">Loading...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="timerBox">
+        <span class="tLabel">Time Left</span>
+        <span class="tTime" id="timer">00:00:00</span>
+      </div>
+
+      <button class="btn danger" id="submitBtnTop">Submit</button>
+    </div>
+  </header>
+
+
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
+
+    <!-- LEFT: Question Palette -->
+    <aside class="panel leftPanel">
+      <div class="panelHead">
+        <h2>Questions</h2>
+        <p class="muted">Click to open</p>
+      </div>
+
+      <div class="legend">
+        <span class="pill answered">Answered</span>
+        <span class="pill review">Review</span>
+        <span class="pill notVisited">Not Visited</span>
+      </div>
+
+      <div class="palette" id="palette"></div>
+    </aside>
+
+
+    <!-- CENTER: Question Area -->
+    <section class="panel centerPanel">
+      <div class="qTop">
+        <div>
+          <h2 id="qNo">Q1</h2>
+          <p class="muted" id="qTopic">Topic: --</p>
+        </div>
+
+        <div class="qActionsMini">
+          <button class="btn ghost" id="clearBtn">Clear</button>
+        </div>
+      </div>
+
+      <div class="qText" id="qText">Loading question...</div>
+
+      <div class="options" id="optionsBox"></div>
+
+      <div class="navRow">
+        <button class="btn ghost" id="prevBtn">← Previous</button>
+
+        <div class="navRight">
+          <button class="btn warning" id="markBtn">Mark for Review</button>
+          <button class="btn" id="saveNextBtn">Save & Next →</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RIGHT: Status Panel -->
+    <aside class="panel rightPanel">
+      <div class="panelHead">
+        <h2>Summary</h2>
+        <p class="muted">Live stats</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="label">Total</span>
+          <span class="value" id="stTotal">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Answered</span>
+          <span class="value" id="stAnswered">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Review</span>
+          <span class="value" id="stReview">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Not Visited</span>
+          <span class="value" id="stNotVisited">0</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <button class="btn danger full" id="submitBtn">Submit Test</button>
+
+      <p class="muted small">
+        ⚠️ Submit के बाद answers change नहीं होंगे.
+      </p>
+    </aside>
+
+  </main>
+
+
+  <script src="./js/test.js"></script>
+</body>
+</html>

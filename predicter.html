@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rank Predictor – nripendra.online</title>
+
+  <link rel="stylesheet" href="./css/predicter.css" />
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">
+      <span class="brand">SarkariNext</span>
+      <span class="tag">Rank Predictor • nripendra.online</span>
+    </div>
+
+    <div class="top-actions">
+      <a href="index.html" class="btn ghost">Home</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- MAIN FORM CARD -->
+    <section class="card hero">
+
+      <div class="hero-top">
+        <div>
+          <h1 class="hero-title">Rank Predictor</h1>
+          <p class="hero-sub">
+            Start your CBT mock and get score + percentile + rank instantly.
+          </p>
+        </div>
+
+        <div class="hero-badge">
+          CBT MODE
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- FORM -->
+      <form id="studentForm" class="form form-grid">
+
+        <div class="field">
+          <label for="stuName">
+            Student Name <span class="req">*</span>
+          </label>
+          <input type="text" id="stuName" required placeholder="Enter full name" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="stuExam">
+            Select Exam <span class="req">*</span>
+          </label>
+          <select id="stuExam" required>
+            <option value="">-- Select Exam --</option>
+
+            <option value="UP Police">UP Police</option>
+            <option value="SSC">SSC</option>
+            <option value="Railway">Railway</option>
+
+            <option value="UPSSSC">UPSSSC</option>
+            <option value="Delhi Police">Delhi Police</option>
+            <option value="Army GD">Army GD</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="stuCat">Category</label>
+          <select id="stuCat">
+            <option value="">-- Optional --</option>
+            <option value="GEN">GEN</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="stuMode">Test Mode</label>
+          <select id="stuMode">
+            <option value="Full CBT">Full CBT</option>
+            <option value="Practice">Practice</option>
+          </select>
+        </div>
+
+        <button class="btn full form-btn" type="submit">
+          Start CBT Paper →
+        </button>
+
+      
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="./js/pridicter.js"></script>
+</body>
+</html>

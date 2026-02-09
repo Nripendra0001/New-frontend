@@ -1,0 +1,505 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, sans-serif;
+}
+
+html, body{
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+}
+
+/* ==========================
+   BACKGROUND (Premium)
+========================== */
+body{
+  background:#070a12;
+  color:#fff;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:999;
+
+  width:100%;
+  padding:16px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background:rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+/* Back button */
+.back-btn{
+  border:none;
+  padding:10px 14px;
+  border-radius:14px;
+  cursor:pointer;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:#fff;
+
+  font-weight:800;
+  font-size:13px;
+
+  transition:0.2s;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,0.18);
+}
+
+/* Brand */
+.brand{
+  text-align:center;
+  line-height:1.1;
+}
+
+.brand h1{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:0.2px;
+}
+
+.brand p{
+  margin-top:4px;
+  font-size:12px;
+  font-weight:600;
+  color:rgba(255,255,255,0.65);
+}
+
+/* Prep pill */
+.prep-pill{
+  padding:10px 14px;
+  border-radius:999px;
+
+  background:linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.10);
+
+  font-size:12px;
+  font-weight:800;
+  color:rgba(255,255,255,0.90);
+  white-space:nowrap;
+}
+
+/* ==========================
+   MAIN AREA
+========================== */
+.main{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 18px 40px;
+}
+
+/* Hero */
+.hero{
+  margin-top:10px;
+  margin-bottom:18px;
+  text-align:left;
+}
+
+.hero h2{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:0.2px;
+}
+
+.hero p{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:600;
+  color:rgba(255,255,255,0.68);
+}
+
+/* ==========================
+   GRID (Full Page Use)
+========================== */
+.grid{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+/* ==========================
+   CHANNEL CARD (PW STYLE)
+========================== */
+.box{
+  width:100%;
+  min-height:110px;
+  padding:16px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.25s ease;
+
+  background:linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 18px 55px rgba(0,0,0,0.55);
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* Soft shine effect */
+.box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 60%);
+  pointer-events:none;
+}
+
+/* Channel title */
+.box h2{
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:0.2px;
+}
+
+/* Subtitle */
+.box p{
+  margin-top:6px;
+  font-size:12px;
+  font-weight:600;
+  color:rgba(255,255,255,0.70);
+}
+
+/* Hover */
+.box:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,0.18);
+  box-shadow:0 24px 70px rgba(0,0,0,0.70);
+}
+
+/* ==========================
+   NOTE
+========================== */
+.note{
+  text-align:center;
+  margin-top:22px;
+  font-size:13px;
+  font-weight:600;
+  color:rgba(255,255,255,0.60);
+}
+
+/* ==========================
+   MOBILE
+========================== */
+@media(max-width:900px){
+
+  .brand h1{
+    font-size:18px;
+  }
+
+  .main{
+    padding:16px 14px 35px;
+  }
+
+  .hero h2{
+    font-size:22px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .box{
+    min-height:100px;
+    border-radius:18px;
+  }
+}
+.card-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.ch-logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  object-fit:cover;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  flex-shrink:0;
+}
+
+.ch-text{
+  flex:1;
+  min-width:0;
+}
+
+.ch-arrow{
+  font-size:22px;
+  font-weight:900;
+  color:rgba(255,255,255,0.55);
+  transition:0.25s;
+}
+
+.box:hover .ch-arrow{
+  transform:translateX(4px);
+  color:#fff;
+}
+.card-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.ch-logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  object-fit:cover;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  flex-shrink:0;
+}
+
+.ch-text{
+  flex:1;
+  min-width:0;
+}
+
+.ch-text h2{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.ch-text p{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.ch-arrow{
+  font-size:22px;
+  font-weight:900;
+  color:rgba(255,255,255,0.55);
+  transition:0.25s;
+}
+
+.box:hover .ch-arrow{
+  transform:translateX(4px);
+  color:#fff;
+}
+/* BACKGROUND */
+body{
+  background:#ffffff;
+  color:#111827;
+}
+
+/* TOPBAR */
+.topbar{
+  background:rgba(255,255,255,0.92);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+/* Back button */
+.back-btn{
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,0.10);
+  color:#111827;
+}
+
+/* Back hover */
+.back-btn:hover{
+  border-color:rgba(0,0,0,0.18);
+}
+
+/* Brand */
+.brand p{
+  color:rgba(17,24,39,0.65);
+}
+
+/* Prep pill */
+.prep-pill{
+  background:linear-gradient(135deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+  border:1px solid rgba(0,0,0,0.08);
+  color:#111827;
+}
+
+/* Hero text */
+.hero p{
+  color:rgba(17,24,39,0.70);
+}
+
+/* Cards */
+.box{
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 18px 55px rgba(0,0,0,0.10);
+}
+
+/* Card shine */
+.box::before{
+  background:radial-gradient(circle at top left, rgba(0,0,0,0.05), transparent 60%);
+}
+
+/* Card subtitle */
+.box p{
+  color:rgba(17,24,39,0.65);
+}
+
+/* Hover */
+.box:hover{
+  border-color:rgba(0,0,0,0.14);
+  box-shadow:0 24px 70px rgba(0,0,0,0.14);
+}
+
+/* Logo */
+.ch-logo{
+  background:#f3f4f6;
+  border:1px solid rgba(0,0,0,0.08);
+}
+
+/* Arrow */
+.ch-arrow{
+  color:rgba(0,0,0,0.35);
+}
+
+.box:hover .ch-arrow{
+  color:#111827;
+}
+
+/* Note */
+.note{
+  color:rgba(17,24,39,0.65);
+}
+/* =====================================================
+   UNIVERSAL MOBILE RESPONSIVE FIX
+   Paste this at the END of every CSS file
+===================================================== */
+
+/* 1) Prevent horizontal scroll */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+/* 2) Universal container safe padding */
+body{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 3) Images & videos never overflow */
+img, video, iframe{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 4) Long text wrap (no overflow) */
+*{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 5) Buttons + inputs mobile friendly */
+button, input, select, textarea{
+  max-width:100%;
+  font-size:16px; /* iPhone zoom fix */
+}
+
+/* 6) Universal section padding */
+section, .section, .container, .wrap, .main{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding-left:14px;
+  padding-right:14px;
+}
+
+/* 7) Any 2-3 column layout becomes 1 column on phone */
+@media (max-width: 900px){
+  .layout, .grid, .row, .mainGrid, .cardsGrid{
+    display:block !important;
+  }
+
+  .leftPanel, .rightPanel, .centerPanel,
+  .sidebar, .content, .panel{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+
+/* 8) Any grid becomes auto responsive */
+@media (max-width: 700px){
+  .grid, .cards, .cardGrid, .courseGrid{
+    display:grid !important;
+    grid-template-columns: 1fr !important;
+    gap:12px !important;
+  }
+}
+
+/* 9) Tables become scrollable on mobile */
+.tableWrap{
+  width:100%;
+  overflow:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+/* 10) Navbar / Topbar mobile */
+@media (max-width: 700px){
+  nav, .topbar, .navbar{
+    flex-direction:column !important;
+    gap:10px !important;
+    align-items:flex-start !important;
+  }
+
+  .navLinks, .menu, .links{
+    width:100% !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+  }
+}
+
+/* 11) Card padding smaller on phone */
+@media (max-width: 520px){
+  .panel, .card, .box, .item{
+    border-radius:14px !important;
+  }
+
+  .panelHead, .cardHead{
+    padding:12px !important;
+  }
+
+  .panelBody, .cardBody{
+    padding:12px !important;
+  }
+
+  h1{ font-size:20px !important; }
+  h2{ font-size:17px !important; }
+  h3{ font-size:15px !important; }
+  p, li{ font-size:14px !important; line-height:1.6 !important; }
+}
+
+
+
+

@@ -1,0 +1,460 @@
+/* =====================================================
+   NTA CBT STYLE – TEST.CSS (ONLY CBT TEST PAGE)
+   Clean White + Blue + NTA Palette + Mobile Perfect
+===================================================== */
+
+:root{
+  --bg:#f3f6fb;
+  --card:#ffffff;
+  --border:#dbe4f0;
+
+  --text:#0f172a;
+  --muted:#64748b;
+
+  --primary:#1d4ed8;
+  --primary2:#2563eb;
+
+  --shadow: 0 10px 25px rgba(15,23,42,0.10);
+  --radius:14px;
+
+  /* NTA Palette Colors */
+  --answered:#22c55e;
+  --review:#f59e0b;
+  --notvisited:#e2e8f0;
+  --active:#1d4ed8;
+  --danger:#ef4444;
+}
+
+html, body{
+  width:100%;
+  height:100%;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body{
+  background: var(--bg);
+}
+
+/* ==========================
+   TOPBAR (NTA STYLE)
+========================== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: #ffffff;
+  border-bottom:2px solid #e6edf7;
+}
+
+.brandBox{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.brandBox .title{
+  font-size:16px;
+  font-weight:900;
+  color:#0f172a;
+}
+
+.brandBox .sub{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.timerBox{
+  padding:10px 14px;
+  border-radius:12px;
+  background: #f1f5ff;
+  border:1px solid #c7d7ff;
+  font-weight:900;
+  color:#0b2c7a;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+.layout{
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding:14px;
+  display:grid;
+  grid-template-columns: 290px 1fr 290px;
+  gap:14px;
+}
+
+/* ==========================
+   PANELS (White Boxes)
+========================== */
+.panel{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+
+.panelHead{
+  padding:12px 14px;
+  border-bottom:1px solid #e7eef9;
+  background:#f8fbff;
+}
+
+.panelHead h2{
+  font-size:13px;
+  font-weight:900;
+  color:#0f172a;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* ==========================
+   LEFT: PALETTE (NTA)
+========================== */
+.palette{
+  padding:14px;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:10px;
+  max-height: calc(100vh - 230px);
+  overflow:auto;
+}
+
+.palette::-webkit-scrollbar{ width:8px; }
+.palette::-webkit-scrollbar-thumb{
+  background:#cbd5e1;
+  border-radius:10px;
+}
+
+/* Question Button */
+.qBtn{
+  height:42px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:900;
+  background: var(--notvisited);
+  border:1px solid #cbd5e1;
+  color:#0f172a;
+  transition:0.15s;
+}
+
+.qBtn:hover{
+  transform: translateY(-1px);
+  box-shadow:0 8px 16px rgba(15,23,42,0.10);
+}
+
+/* Answered */
+.qBtn.answered{
+  background: var(--answered);
+  border-color:#16a34a;
+  color:#fff;
+}
+
+/* Marked For Review */
+.qBtn.review{
+  background: var(--review);
+  border-color:#d97706;
+  color:#fff;
+}
+
+/* Active */
+.qBtn.active{
+  outline:3px solid rgba(29,78,216,0.22);
+  border-color:#3b82f6;
+  background:#dbeafe;
+}
+
+/* ==========================
+   CENTER QUESTION PANEL
+========================== */
+.centerPanel{
+  padding:16px;
+}
+
+.qTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  padding-bottom:12px;
+  border-bottom:1px solid #e7eef9;
+}
+
+#qNo{
+  font-size:16px;
+  font-weight:900;
+  color:#0f172a;
+}
+
+/* Question Text */
+.qText{
+  padding:14px 2px;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.7;
+  color:#0f172a;
+}
+
+/* ==========================
+   OPTIONS (NTA STYLE)
+========================== */
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:6px;
+}
+
+.opt{
+  border:1px solid #dbe4f0;
+  border-radius:12px;
+  padding:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  background:#ffffff;
+  transition:0.15s;
+}
+
+.opt:hover{
+  border-color:#93c5fd;
+  box-shadow:0 10px 18px rgba(15,23,42,0.08);
+  transform: translateY(-1px);
+}
+
+.opt input{
+  width:18px;
+  height:18px;
+  accent-color: var(--primary);
+}
+
+/* ==========================
+   RIGHT: STATS
+========================== */
+.stats{
+  padding:14px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+.stat{
+  border:1px solid #dbe4f0;
+  border-radius:14px;
+  padding:12px;
+  background:#ffffff;
+  box-shadow:0 6px 14px rgba(15,23,42,0.06);
+}
+
+.stat .label{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.stat .value{
+  font-size:18px;
+  font-weight:900;
+  margin-top:4px;
+  color:#0f172a;
+}
+
+/* ==========================
+   BUTTONS (NTA)
+========================== */
+.btn{
+  border:none;
+  cursor:pointer;
+  padding:11px 14px;
+  border-radius:12px;
+  font-weight:900;
+  color:#fff;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  transition:0.15s;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow:0 12px 22px rgba(29,78,216,0.18);
+}
+
+.btn.ghost{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  color:#0f172a;
+}
+
+.btn.warning{
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+.btn.danger{
+  background: linear-gradient(135deg, #ef4444, #fb7185);
+}
+
+.full{ width:100%; }
+
+/* ==========================
+   RESPONSIVE (MOBILE)
+========================== */
+@media(max-width:1100px){
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .palette{
+    grid-template-columns: repeat(8, 1fr);
+    max-height:unset;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .timerBox{
+    width:100%;
+    text-align:center;
+  }
+}
+
+@media(max-width:520px){
+  .palette{
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+/* =====================================================
+   UNIVERSAL MOBILE RESPONSIVE FIX
+   Paste this at the END of every CSS file
+===================================================== */
+
+/* 1) Prevent horizontal scroll */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+/* 2) Universal container safe padding */
+body{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 3) Images & videos never overflow */
+img, video, iframe{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 4) Long text wrap (no overflow) */
+*{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 5) Buttons + inputs mobile friendly */
+button, input, select, textarea{
+  max-width:100%;
+  font-size:16px; /* iPhone zoom fix */
+}
+
+/* 6) Universal section padding */
+section, .section, .container, .wrap, .main{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding-left:14px;
+  padding-right:14px;
+}
+
+/* 7) Any 2-3 column layout becomes 1 column on phone */
+@media (max-width: 900px){
+  .layout, .grid, .row, .mainGrid, .cardsGrid{
+    display:block !important;
+  }
+
+  .leftPanel, .rightPanel, .centerPanel,
+  .sidebar, .content, .panel{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+
+/* 8) Any grid becomes auto responsive */
+@media (max-width: 700px){
+  .grid, .cards, .cardGrid, .courseGrid{
+    display:grid !important;
+    grid-template-columns: 1fr !important;
+    gap:12px !important;
+  }
+}
+
+/* 9) Tables become scrollable on mobile */
+.tableWrap{
+  width:100%;
+  overflow:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+/* 10) Navbar / Topbar mobile */
+@media (max-width: 700px){
+  nav, .topbar, .navbar{
+    flex-direction:column !important;
+    gap:10px !important;
+    align-items:flex-start !important;
+  }
+
+  .navLinks, .menu, .links{
+    width:100% !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+  }
+}
+
+/* 11) Card padding smaller on phone */
+@media (max-width: 520px){
+  .panel, .card, .box, .item{
+    border-radius:14px !important;
+  }
+
+  .panelHead, .cardHead{
+    padding:12px !important;
+  }
+
+  .panelBody, .cardBody{
+    padding:12px !important;
+  }
+
+  h1{ font-size:20px !important; }
+  h2{ font-size:17px !important; }
+  h3{ font-size:15px !important; }
+  p, li{ font-size:14px !important; line-height:1.6 !important; }
+}
