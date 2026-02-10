@@ -1,7 +1,7 @@
-// ✅ Backend API Base
+// ✅ BACKEND API
 const API_BASE = "https://api.nripendra.online";
 
-// ✅ Token helpers
+// ✅ TOKEN SAVE
 function saveToken(token) {
   localStorage.setItem("token", token);
 }
