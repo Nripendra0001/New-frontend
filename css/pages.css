@@ -1,379 +1,294 @@
 /* =====================================================
-   🚀 SARKARINEXT – PAGES.CSS (FINAL LIGHT + ORANGE)
-   For: about.html, team.html, privacy.html, terms.html,
-        disclaimer.html, contact.html
+   SARKARINEXT – PAGES.CSS (About / Team / Privacy etc.)
+   Home Theme Match: Premium Dark + Amazon Orange
 ===================================================== */
+
+:root{
+  --bg:#070a12;
+  --panel:#0b1220;
+  --card:#0f1730;
+
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.70);
+
+  --border:rgba(255,255,255,.10);
+
+  --amazon:#ff9900;
+  --amazon-dark:#e88a00;
+
+  --radius:18px;
+}
 
 /* ---------- RESET ---------- */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Poppins","Segoe UI",Arial,sans-serif;
+  font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
 }
 
-html{
-  scroll-behavior:smooth;
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
 }
 
 body{
-  background:linear-gradient(180deg,#fff7ed,#f6f7fb);
-  color:#0f172a;
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(255,153,0,.12), transparent 60%),
+    radial-gradient(900px 700px at 80% 10%, rgba(0,168,225,.14), transparent 55%),
+    var(--bg);
+  color:var(--text);
 }
 
-/* ---------- TOPBAR ---------- */
+/* =====================================================
+   TOPBAR
+===================================================== */
 .pg-topbar{
   position:sticky;
   top:0;
   z-index:9999;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter: blur(10px);
-  border-bottom:1px solid rgba(0,0,0,0.08);
-  padding:12px 16px;
+
+  width:100%;
+  padding:14px 16px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:14px;
+
+  background:rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border);
 }
 
-/* brand */
+/* Brand */
 .pg-brand{
   display:flex;
   align-items:center;
   gap:10px;
+  min-width:0;
 }
 
 .pg-brand img{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  background:white;
-  border:1px solid rgba(0,0,0,0.10);
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#fff;
   padding:6px;
+  flex:0 0 auto;
+  box-shadow:0 8px 20px rgba(0,0,0,.35);
 }
 
 .pg-brand span{
   font-size:18px;
   font-weight:900;
-  letter-spacing:.2px;
+  color:var(--amazon);
+  letter-spacing:.3px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:60vw;
 }
 
-/* back button (ORANGE) */
+/* Back button */
 .pg-back{
   border:none;
-  background:linear-gradient(135deg,#ff7a18,#ffb300);
-  color:white;
   padding:10px 14px;
   border-radius:14px;
-  font-weight:900;
   cursor:pointer;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  font-weight:900;
+  font-size:13px;
+
   transition:.2s;
-  box-shadow:0 10px 22px rgba(255,122,24,0.25);
+  box-shadow:0 10px 22px rgba(255,153,0,.20);
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pg-back:hover{
   transform:translateY(-2px);
-  box-shadow:0 16px 32px rgba(255,122,24,0.35);
+  box-shadow:0 16px 32px rgba(255,153,0,.30);
 }
 
-/* ---------- WRAP ---------- */
+.pg-back:active{
+  transform:scale(.98);
+}
+
+/* =====================================================
+   PAGE WRAP
+===================================================== */
 .pg-wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:18px 14px 60px;
+  width:min(1100px, 92vw);
+  margin:22px auto 60px;
 }
 
-/* ---------- HERO ---------- */
+/* =====================================================
+   HERO
+===================================================== */
 .pg-hero{
-  background:rgba(255,255,255,0.96);
-  border:1px solid rgba(0,0,0,0.10);
+  padding:26px 22px;
   border-radius:22px;
-  padding:22px 18px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-  margin:18px 0;
-  animation:pgFade .45s ease;
+  margin-bottom:18px;
+
+  background:linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border:1px solid var(--border);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+
   position:relative;
   overflow:hidden;
 }
 
+/* Glow strip */
 .pg-hero::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(255,122,24,0.10), rgba(255,179,0,0.05));
-  pointer-events:none;
+  top:0;left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg, var(--amazon), #ffb300, #ffd166);
 }
 
 .pg-hero h1{
   font-size:30px;
   font-weight:900;
-  letter-spacing:.2px;
   margin-bottom:10px;
-  color:#0b1220;
-  position:relative;
-  z-index:2;
+  letter-spacing:.3px;
+  color:#fff;
 }
 
 .pg-hero p{
-  color:#334155;
-  font-weight:600;
-  line-height:1.75;
-  font-size:14.5px;
-  position:relative;
-  z-index:2;
+  font-size:15px;
+  line-height:1.8;
+  color:rgba(255,255,255,.80);
+  font-weight:500;
 }
 
-/* ---------- CARD ---------- */
+/* =====================================================
+   CARDS
+===================================================== */
 .pg-card{
-  background:rgba(255,255,255,0.96);
-  border:1px solid rgba(0,0,0,0.10);
-  border-radius:22px;
-  padding:22px 18px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
+  padding:22px 20px;
+  border-radius:20px;
   margin:18px 0;
-  animation:pgFade .45s ease;
+
+  background:linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  box-shadow:0 18px 55px rgba(0,0,0,.45);
+
+  position:relative;
+  overflow:hidden;
+  transition:.25s ease;
+}
+
+.pg-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg, #dc2626, var(--amazon), #00a8e1);
+  opacity:.9;
+}
+
+.pg-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(0,0,0,.65);
+  border-color:rgba(255,255,255,.16);
 }
 
 .pg-card h2{
-  font-size:20px;
+  font-size:22px;
   font-weight:900;
   margin-bottom:12px;
-  color:#0f172a;
+  color:#ffedd5;
+  letter-spacing:.2px;
 }
 
-/* ---------- LIST ---------- */
+.pg-card p{
+  font-size:14.5px;
+  line-height:1.8;
+  color:rgba(255,255,255,.78);
+  font-weight:500;
+  margin-bottom:12px;
+}
+
+/* =====================================================
+   LIST
+===================================================== */
 .pg-list{
+  margin-top:10px;
   padding-left:18px;
-  line-height:1.9;
-  font-weight:700;
-  color:#334155;
-  font-size:14px;
 }
 
 .pg-list li{
-  margin:6px 0;
-}
-
-/* ---------- NOTE BOX ---------- */
-.note-box{
-  margin-top:16px;
-  border:1px solid rgba(255,122,24,0.25);
-  padding:14px 14px;
-  background:linear-gradient(135deg,#fff7ed,#ffffff);
-  border-radius:18px;
-}
-
-.note-box h3{
-  font-size:16px;
-  font-weight:900;
-  margin-bottom:6px;
-  color:#0f172a;
-}
-
-.note-box p{
+  margin:10px 0;
   font-size:14px;
   line-height:1.7;
-  color:#334155;
-  font-weight:700;
+  color:rgba(255,255,255,.80);
+  font-weight:600;
 }
 
-/* ---------- TEAM ---------- */
-.team-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
-  gap:16px;
-  margin-top:14px;
-}
-
-.team-card{
-  background:linear-gradient(135deg,#ffffff,#fff7ed);
-  border:1px solid rgba(0,0,0,0.10);
-  border-radius:22px;
-  padding:16px 14px;
-  text-align:center;
-  transition:.25s;
-  box-shadow:0 12px 26px rgba(0,0,0,0.07);
-}
-
-.team-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 45px rgba(0,0,0,0.12);
-}
-
-.team-card img{
-  width:100px;
-  height:100px;
-  border-radius:22px;
-  object-fit:cover;
-  border:2px solid rgba(255,122,24,0.25);
-  margin-bottom:10px;
-  background:#fff;
-}
-
-.team-card h3{
-  font-size:17px;
-  font-weight:900;
-  margin-bottom:4px;
-  color:#0f172a;
-}
-
-.team-role{
-  font-size:13px;
-  font-weight:800;
-  color:#475569;
-  margin-bottom:12px;
-}
-
-/* links */
-.team-links{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.team-links a{
-  text-decoration:none;
-  background:linear-gradient(135deg,#ff7a18,#ffb300);
-  color:white;
-  padding:8px 12px;
-  border-radius:14px;
-  font-weight:900;
-  font-size:13px;
-  transition:.2s;
-  box-shadow:0 10px 22px rgba(255,122,24,0.20);
-}
-
-.team-links a:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 30px rgba(255,122,24,0.30);
-}
-
-/* ---------- CONTACT FORM ---------- */
-.contact-form{
-  display:grid;
-  gap:12px;
-  margin-top:14px;
-}
-
-.contact-form input,
-.contact-form textarea{
-  width:100%;
-  padding:12px 14px;
-  border-radius:18px;
-  border:1px solid rgba(0,0,0,0.10);
-  outline:none;
-  font-weight:700;
-  font-size:14px;
-  background:#ffffff;
-  transition:.2s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus{
-  border-color:#ff7a18;
-  box-shadow:0 0 0 3px rgba(255,122,24,.18);
-}
-
-.contact-form button{
-  border:none;
-  background:linear-gradient(135deg,#ff7a18,#ffb300);
-  color:white;
-  padding:12px 14px;
-  border-radius:18px;
-  font-weight:900;
-  cursor:pointer;
-  font-size:15px;
-  transition:.2s;
-  box-shadow:0 12px 26px rgba(255,122,24,0.22);
-}
-
-.contact-form button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 18px 34px rgba(255,122,24,0.30);
-}
-
-/* ---------- FOOTER ---------- */
+/* =====================================================
+   FOOTER
+===================================================== */
 .pg-footer{
+  width:100%;
   text-align:center;
-  padding:18px 12px;
-  color:#64748b;
-  font-weight:900;
+  padding:16px 12px;
+  margin-top:40px;
+
+  background:rgba(0,0,0,.30);
+  border-top:1px solid rgba(255,255,255,.08);
+
+  color:rgba(255,255,255,.70);
   font-size:13px;
+  font-weight:700;
+  letter-spacing:.2px;
 }
 
-/* ---------- ANIMATION ---------- */
-@keyframes pgFade{
-  from{opacity:0; transform:translateY(16px)}
-  to{opacity:1; transform:translateY(0)}
-}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media(max-width:700px){
 
-/* ---------- MOBILE ---------- */
-@media(max-width:520px){
+  .pg-topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .pg-back{
+    width:100%;
+  }
 
   .pg-hero h1{
     font-size:24px;
   }
 
-  .pg-brand span{
-    font-size:16px;
+  .pg-card h2{
+    font-size:19px;
   }
 
-  .pg-back{
-    padding:9px 12px;
-    border-radius:12px;
-    font-size:13px;
+  .pg-hero,
+  .pg-card{
+    padding:18px 16px;
+    border-radius:18px;
   }
 
-  .team-card img{
-    width:92px;
-    height:92px;
+  .pg-wrap{
+    width:94vw;
   }
 }
-.pg-back{
-  border:none;
-  background:#ff9900;
-  color:#111;
-  padding:10px 14px;
-  border-radius:14px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.2s;
-  border:1px solid #cc7a00;
-  box-shadow:0 10px 22px rgba(255,153,0,0.22);
-  -webkit-tap-highlight-color: transparent;
-}
 
-.pg-back:hover{
-  transform:translateY(-2px);
-  background:#ffb300;
-  box-shadow:0 16px 32px rgba(255,153,0,0.30);
-}
-
-.pg-back:active{
-  transform:scale(0.98);
-  background:#ff9900;
-}
-.team-links a{
-  text-decoration:none;
-  background:#ff9900;
-  color:#111;
-  padding:8px 12px;
-  border-radius:14px;
-  font-weight:900;
-  font-size:13px;
-  transition:.2s;
-  border:1px solid #cc7a00;
-  box-shadow:0 10px 22px rgba(255,153,0,0.18);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.team-links a:hover{
-  transform:translateY(-2px);
-  background:#ffb300;
-  box-shadow:0 16px 30px rgba(255,153,0,0.26);
-}
-
-.team-links a:active{
-  transform:scale(0.98);
-  background:#ff9900;
+/* iPhone zoom fix */
+input, select, textarea, button{
+  font-size:16px;
 }

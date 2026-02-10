@@ -1,6 +1,6 @@
 /* ======================================
    WebRTC Audio Call (3 min)
-   FINAL FIX (Audio + ICE Buffering)
+   100% FINAL WORKING (Audio + Timer + TURN)
    Mentor = Caller | Student = Receiver
 ====================================== */
 
@@ -50,16 +50,17 @@ let roomId = null;
 
 let joined = false;
 let isMentor = false;
-
 let offerSent = false;
 
 let timerInterval = null;
 let secondsLeft = 180;
 let timerStarted = false;
 
-/* 🔥 IMPORTANT BUFFERS */
+/* Buffers */
 let pendingIce = [];
-let pendingOffer = null;
+
+/* Autoplay Unlock */
+let audioUnlocked = false;
 
 /* ---------- Helpers ---------- */
 function setStatus(type, title, sub) {
@@ -128,6 +129,19 @@ function randomId() {
   return "BK" + Date.now();
 }
 
+/* ---------- MUST: Unlock audio ---------- */
+async function unlockAudio() {
+  if (audioUnlocked) return;
+
+  try {
+    remoteAudio.muted = false;
+    remoteAudio.volume = 1;
+    await remoteAudio.play().catch(() => {});
+    audioUnlocked = true;
+    console.log("🔊 Audio unlocked");
+  } catch {}
+}
+
 /* ---------- WebRTC ---------- */
 async function getMic() {
   localStream = await navigator.mediaDevices.getUserMedia({
@@ -143,7 +157,26 @@ async function getMic() {
 
 function createPeerConnection() {
   pc = new RTCPeerConnection({
-    iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+    iceServers: [
+      { urls: "stun:stun.l.google.com:19302" },
+
+      /* 🔥 TURN (must for real internet) */
+      {
+        urls: "turn:openrelay.metered.ca:80",
+        username: "openrelayproject",
+        credential: "openrelayproject",
+      },
+      {
+        urls: "turn:openrelay.metered.ca:443",
+        username: "openrelayproject",
+        credential: "openrelayproject",
+      },
+      {
+        urls: "turn:openrelay.metered.ca:443?transport=tcp",
+        username: "openrelayproject",
+        credential: "openrelayproject",
+      },
+    ],
   });
 
   pc.onicecandidate = (event) => {
@@ -153,14 +186,14 @@ function createPeerConnection() {
   };
 
   pc.ontrack = (event) => {
+    console.log("🎧 Remote audio received");
     const stream = event.streams[0];
     remoteAudio.srcObject = stream;
-
     remoteAudio.muted = false;
     remoteAudio.volume = 1;
 
     remoteAudio.play().catch(() => {
-      setStatus("wait", "Tap Speaker 🔊", "Audio play requires click.");
+      setStatus("wait", "Tap Speaker 🔊", "Audio play requires one click.");
     });
   };
 
@@ -180,14 +213,19 @@ function createPeerConnection() {
 
   pc.onconnectionstatechange = () => {
     console.log("CONN:", pc.connectionState);
-  };
 
-  pc.onsignalingstatechange = () => {
-    console.log("SIGNAL:", pc.signalingState);
+    if (pc.connectionState === "connected") {
+      setStatus("live", "Connected ✅", "Audio call live. Timer started.");
+      startTimer();
+    }
+
+    if (pc.connectionState === "failed" || pc.connectionState === "disconnected") {
+      setStatus("dead", "Disconnected ❌", "Network issue or other side left.");
+    }
   };
 }
 
-/* ---------- Apply buffered ICE ---------- */
+/* ---------- ICE Buffer flush ---------- */
 async function flushIce() {
   if (!pc) return;
   if (!pc.remoteDescription) return;
@@ -200,34 +238,39 @@ async function flushIce() {
   pendingIce = [];
 }
 
-/* ---------- Mentor (Caller) ---------- */
+/* ---------- Mentor ---------- */
 async function mentorMakeOffer() {
   if (offerSent) return;
   offerSent = true;
 
   setStatus("wait", "Calling...", "Getting mic + creating offer...");
 
+  await unlockAudio();
   await getMic();
   createPeerConnection();
 
-  /* 🔥 Stable audio */
   pc.addTransceiver("audio", { direction: "sendrecv" });
 
   localStream.getAudioTracks().forEach((track) => {
     pc.addTrack(track, localStream);
   });
 
-  const offer = await pc.createOffer();
+  const offer = await pc.createOffer({
+    offerToReceiveAudio: true,
+    offerToReceiveVideo: false,
+  });
+
   await pc.setLocalDescription(offer);
 
   socket.emit("offer", { roomId, offer });
   setStatus("wait", "Calling...", "Waiting for student answer...");
 }
 
-/* ---------- Student (Receiver) ---------- */
+/* ---------- Student ---------- */
 async function studentHandleOffer(offer) {
   setStatus("wait", "Incoming Call...", "Getting mic + creating answer...");
 
+  await unlockAudio();
   await getMic();
   createPeerConnection();
 
@@ -246,7 +289,6 @@ async function studentHandleOffer(offer) {
 
   setStatus("wait", "Answer Sent ✅", "Connecting audio...");
 
-  /* 🔥 Now safe to apply ICE */
   await flushIce();
 }
 
@@ -257,7 +299,6 @@ async function mentorHandleAnswer(answer) {
   await pc.setRemoteDescription(new RTCSessionDescription(answer));
   setStatus("wait", "Answer Received ✅", "Finalizing connection...");
 
-  /* 🔥 Now safe to apply ICE */
   await flushIce();
 }
 
@@ -300,7 +341,6 @@ function endCall(msg) {
   timerStarted = false;
 
   pendingIce = [];
-  pendingOffer = null;
 
   setStatus("dead", "Call Ended", "You can close this page.");
 }
@@ -332,7 +372,8 @@ createIdBtn.addEventListener("click", () => {
   toast("Call ID created ✅");
 });
 
-studentStartBtn.addEventListener("click", () => {
+studentStartBtn.addEventListener("click", async () => {
+  await unlockAudio();
   const id = studentCallId.value.trim();
   if (!id) return alert("पहले Create ID दबाओ.");
   joinRoom(id);
@@ -364,7 +405,8 @@ pasteBtn.addEventListener("click", async () => {
   }
 });
 
-mentorJoinBtn.addEventListener("click", () => {
+mentorJoinBtn.addEventListener("click", async () => {
+  await unlockAudio();
   const id = mentorCallId.value.trim();
   if (!id) return alert("Call ID required.");
   joinRoom(id);
@@ -395,18 +437,24 @@ muteBtn.addEventListener("click", () => {
 
 speakerBtn.addEventListener("click", async () => {
   try {
+    await unlockAudio();
     remoteAudio.muted = false;
     remoteAudio.volume = 1;
     await remoteAudio.play();
     toast("Speaker ON 🔊");
   } catch {
-    alert("Audio play करने के लिए audio controls से Play दबाओ.");
+    alert("Audio play करने के लिए Speaker दबाओ.");
   }
 });
 
 /* ---------- Socket Events ---------- */
 socket.on("connect", () => {
   setStatus("", "Ready", "Student: Create ID | Mentor: Paste ID");
+});
+
+socket.on("room-full", () => {
+  setStatus("dead", "Room Full ❌", "Only 2 users allowed.");
+  endCall("Room full. Only 2 users allowed.");
 });
 
 socket.on("room-joined", async (data) => {
@@ -423,11 +471,6 @@ socket.on("room-joined", async (data) => {
       setStatus("wait", "Ready", "Mentor call start karega...");
     }
   }
-
-  if (data.usersCount > 2) {
-    setStatus("dead", "Room Full ❌", "Only 2 users allowed.");
-    endCall("Room full. Only 2 users allowed.");
-  }
 });
 
 socket.on("user-joined", async () => {
@@ -438,9 +481,7 @@ socket.on("user-joined", async () => {
 
 socket.on("offer", async ({ offer }) => {
   if (!isMentor) {
-    pendingOffer = offer;
-    await studentHandleOffer(pendingOffer);
-    pendingOffer = null;
+    await studentHandleOffer(offer);
   }
 });
 
@@ -451,7 +492,6 @@ socket.on("answer", async ({ answer }) => {
 });
 
 socket.on("ice-candidate", async ({ candidate }) => {
-  /* 🔥 Buffer ICE until remoteDescription is ready */
   if (!pc || !pc.remoteDescription) {
     pendingIce.push(candidate);
     return;
@@ -480,3 +520,12 @@ socket.on("call-ended", () => {
     if (id) studentCallId.value = id;
   }
 })();
+
+/* 🔥 unlock on first click anywhere */
+window.addEventListener(
+  "click",
+  () => {
+    unlockAudio();
+  },
+  { once: true }
+);

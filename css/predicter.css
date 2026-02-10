@@ -1,437 +1,318 @@
-/* ==========================================
-   Rank Predictor – Light Premium UI (2026)
-   nripendra.online | SarkariNext
-========================================== */
+/* =====================================================
+   SARKARINEXT – RANK PREDICTOR (HOME THEME MATCH)
+   Premium Dark + Amazon Orange
+===================================================== */
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-html, body{
-  width:100%;
-  height:100%;
-  overflow-x:hidden;
-}
-
-/* ---------- THEME COLORS ---------- */
 :root{
-  --bg:#f6f8fb;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
+  --bg:#070a12;
+  --panel:#0b1220;
+  --card:#0f1730;
 
-  --border:#e5e7eb;
-  --shadow: 0 12px 35px rgba(17, 24, 39, 0.10);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.70);
 
-  --primary:#2563eb;
-  --primary2:#1d4ed8;
-  --success:#10b981;
+  --border:rgba(255,255,255,.10);
+
+  --amazon:#ff9900;
+  --amazon-dark:#e88a00;
+
+  --blue:#00a8e1;
 
   --radius:18px;
 }
 
-/* ---------- BODY ---------- */
-body{
-  background: var(--bg);
-  color: var(--text);
+/* =========================
+   RESET
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
 }
 
-/* ==========================================
-   TOPBAR
-========================================== */
-.topbar{
-  width:100%;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-
-  position: sticky;
-  top:0;
-  z-index:999;
-}
-
-.topbar-logo{
-  display:flex;
-  flex-direction:column;
-  line-height:1.2;
-}
-
-.brand{
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  color: var(--text);
-}
-
-.tag{
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.top-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-/* ==========================================
-   WRAPPER
-========================================== */
-.wrap{
-  width:100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 26px 16px;
-}
-
-/* ==========================================
-   CARD
-========================================== */
-.card{
-  width:100%;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px;
-}
-
-/* ==========================================
-   HERO TOP
-========================================== */
-.hero-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:14px;
-}
-
-.hero-title{
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--text);
-}
-
-.hero-sub{
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* Badge */
-.hero-badge{
-  background: rgba(16, 185, 129, 0.12);
-  color: #047857;
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-/* Divider */
-.divider{
-  width:100%;
-  height:1px;
-  background: var(--border);
-  margin: 18px 0 16px;
-}
-
-/* ==========================================
-   FORM GRID
-========================================== */
-.form{
-  width:100%;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-/* Field */
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-label{
-  font-size: 13px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.req{
-  color: #ef4444;
-  font-weight: 800;
-}
-
-/* Inputs */
-input, select{
-  width:100%;
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: #fbfcff;
-  outline:none;
-
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-
-  transition: 0.2s ease;
-}
-
-/* Focus */
-input:focus, select:focus{
-  border-color: rgba(37, 99, 235, 0.55);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-  background:#ffffff;
-}
-
-/* Placeholder */
-input::placeholder{
-  color:#9ca3af;
-}
-
-/* ==========================================
-   BUTTONS
-========================================== */
-.btn{
-  border:none;
-  outline:none;
-  cursor:pointer;
-  font-weight: 800;
-  border-radius: 14px;
-  transition: 0.2s ease;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-
-/* Primary button */
-.form-btn{
-  background: linear-gradient(135deg, var(--primary), var(--primary2));
-  color:white;
-  padding: 13px 16px;
-  font-size: 15px;
-  box-shadow: 0 14px 25px rgba(37, 99, 235, 0.25);
-}
-
-.form-btn:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 18px 35px rgba(37, 99, 235, 0.30 forces);
-}
-
-.form-btn:active{
-  transform: translateY(0px);
-}
-
-/* Full width */
-.full{
-  grid-column: 1 / -1;
-}
-
-/* Ghost */
-.btn.ghost{
-  background:#ffffff;
-  border:1px solid var(--border);
-  color: var(--text);
-  padding: 10px 14px;
-  font-size: 13px;
-  box-shadow: 0 10px 20px rgba(17, 24, 39, 0.06);
-}
-
-.btn.ghost:hover{
-  border-color: rgba(37, 99, 235, 0.35);
-  box-shadow: 0 12px 26px rgba(17, 24, 39, 0.10);
-}
-
-/* ==========================================
-   FORM FOOT
-========================================== */
-.form-foot{
-  grid-column: 1 / -1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px dashed var(--border);
-  background: #f9fafb;
-}
-
-.lock{
-  font-size: 16px;
-}
-
-.muted{
-  color: var(--muted);
-}
-
-.small{
-  font-size: 12px;
-}
-
-/* ==========================================
-   MOBILE RESPONSIVE
-========================================== */
-@media (max-width: 780px){
-
-  .hero-top{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .hero-title{
-    font-size: 22px;
-  }
-
-  .form-grid{
-    grid-template-columns: 1fr;
-  }
-
-  .card{
-    padding: 18px;
-  }
-
-  .topbar{
-    padding: 12px 14px;
-  }
-
-  .tag{
-    display:none; /* mobile pe clean look */
-  }
-}
-/* =====================================================
-   UNIVERSAL MOBILE RESPONSIVE FIX
-   Paste this at the END of every CSS file
-===================================================== */
-
-/* 1) Prevent horizontal scroll */
-html, body{
+html,body{
   width:100%;
   max-width:100%;
   overflow-x:hidden !important;
 }
 
-/* 2) Universal container safe padding */
 body{
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(255,153,0,.12), transparent 60%),
+    radial-gradient(900px 700px at 80% 10%, rgba(0,168,225,.14), transparent 55%),
+    var(--bg);
+  color:var(--text);
 }
 
-/* 3) Images & videos never overflow */
-img, video, iframe{
-  max-width:100%;
-  height:auto;
-  display:block;
-}
+/* =========================
+   TOPBAR
+========================= */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
 
-/* 4) Long text wrap (no overflow) */
-*{
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* 5) Buttons + inputs mobile friendly */
-button, input, select, textarea{
-  max-width:100%;
-  font-size:16px; /* iPhone zoom fix */
-}
-
-/* 6) Universal section padding */
-section, .section, .container, .wrap, .main{
   width:100%;
-  max-width:1200px;
-  margin:auto;
-  padding-left:14px;
-  padding-right:14px;
+  padding:14px 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background:rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border);
 }
 
-/* 7) Any 2-3 column layout becomes 1 column on phone */
-@media (max-width: 900px){
-  .layout, .grid, .row, .mainGrid, .cardsGrid{
-    display:block !important;
-  }
-
-  .leftPanel, .rightPanel, .centerPanel,
-  .sidebar, .content, .panel{
-    width:100% !important;
-    max-width:100% !important;
-  }
+/* Left brand */
+.topbar-logo{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
 }
 
-/* 8) Any grid becomes auto responsive */
-@media (max-width: 700px){
-  .grid, .cards, .cardGrid, .courseGrid{
-    display:grid !important;
-    grid-template-columns: 1fr !important;
-    gap:12px !important;
-  }
+.topbar-logo .brand{
+  font-size:18px;
+  font-weight:900;
+  color:var(--amazon);
+  letter-spacing:.3px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:70vw;
 }
 
-/* 9) Tables become scrollable on mobile */
-.tableWrap{
+.topbar-logo .tag{
+  font-size:12px;
+  font-weight:700;
+  color:rgba(255,255,255,.65);
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:70vw;
+}
+
+/* Right actions */
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+/* =========================
+   WRAP
+========================= */
+.wrap{
+  width:min(980px, 94vw);
+  margin:18px auto 40px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card{
+  border:1px solid var(--border);
+  background:linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* top glow strip */
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
   width:100%;
-  overflow:auto;
+  height:4px;
+  background:linear-gradient(90deg, var(--amazon), #ffb300, var(--blue));
 }
-table{
+
+/* =========================
+   HERO HEADER
+========================= */
+.hero-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.hero-title{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:.3px;
+  margin:0;
+  color:#fff;
+}
+
+.hero-sub{
+  margin-top:8px;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.6;
+  color:rgba(255,255,255,.72);
+}
+
+/* Badge */
+.hero-badge{
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+
+  background:rgba(255,153,0,.12);
+  border:1px solid rgba(255,153,0,.30);
+  color:#ffedd5;
+
+  box-shadow:0 0 0 3px rgba(255,153,0,.06);
+}
+
+/* Divider */
+.divider{
+  margin:16px 0 16px;
+  height:1px;
   width:100%;
-  border-collapse:collapse;
-  min-width:600px;
+  background:rgba(255,255,255,.10);
 }
 
-/* 10) Navbar / Topbar mobile */
-@media (max-width: 700px){
-  nav, .topbar, .navbar{
-    flex-direction:column !important;
-    gap:10px !important;
-    align-items:flex-start !important;
+/* =========================
+   FORM
+========================= */
+.form{
+  margin-top:4px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+label{
+  font-weight:900;
+  font-size:13px;
+  color: rgba(255,255,255,.88);
+}
+
+.req{
+  color:var(--amazon);
+  font-weight:900;
+}
+
+/* Inputs */
+input, select{
+  width:100%;
+  padding:12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  outline:none;
+  font-size: 14px;
+}
+
+input:focus, select:focus{
+  border-color: rgba(255,153,0,.45);
+  box-shadow:0 0 0 3px rgba(255,153,0,.12);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn{
+  border:none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 900;
+  cursor:pointer;
+  font-size: 14px;
+  transition: transform .08s ease, box-shadow .2s ease;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.btn:active{ transform: scale(.98); }
+
+.btn{
+  background: linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  box-shadow:0 14px 28px rgba(255,153,0,.18);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(255,153,0,.25);
+}
+
+.btn.ghost{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color: var(--text);
+  box-shadow:none;
+}
+
+.btn.ghost:hover{
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+
+.btn.full{
+  grid-column:1/-1;
+}
+
+.form-btn{
+  margin-top:4px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:720px){
+
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
-  .navLinks, .menu, .links{
-    width:100% !important;
-    display:flex !important;
-    flex-wrap:wrap !important;
-    gap:10px !important;
+  .hero-title{
+    font-size:22px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-actions .btn{
+    width:100%;
   }
 }
 
-/* 11) Card padding smaller on phone */
-@media (max-width: 520px){
-  .panel, .card, .box, .item{
-    border-radius:14px !important;
-  }
-
-  .panelHead, .cardHead{
-    padding:12px !important;
-  }
-
-  .panelBody, .cardBody{
-    padding:12px !important;
-  }
-
-  h1{ font-size:20px !important; }
-  h2{ font-size:17px !important; }
-  h3{ font-size:15px !important; }
-  p, li{ font-size:14px !important; line-height:1.6 !important; }
+/* iPhone zoom fix */
+button, input, select{
+  font-size:16px;
 }
