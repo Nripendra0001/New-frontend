@@ -1,0 +1,156 @@
+:root{
+  --bg:#000;
+  --panel:#0b0b0b;
+  --card:#101010;
+  --text:#fff;
+  --muted:rgba(255,255,255,.7);
+  --line:rgba(255,255,255,.12);
+  --brand:#00ff88;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:system-ui, -apple-system, Segoe UI, Roboto; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(0,0,0,.85);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:14px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+
+.logo h1{
+  font-size:16px;
+}
+
+.logo p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.btn{
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#000;
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn.brand{
+  background:var(--brand);
+  border:none;
+  color:#000;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:14px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+}
+
+.card h2{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.kpi{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.kpi strong{
+  font-size:22px;
+}
+
+.kpi small{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.col-6{ grid-column: span 6; }
+.col-12{ grid-column: span 12; }
+.col-4{ grid-column: span 4; }
+
+@media(max-width:900px){
+  .col-6,.col-4{ grid-column: span 12; }
+}
+
+.list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  padding:12px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--line);
+}
+
+.item .title{
+  font-weight:800;
+  margin-bottom:3px;
+}
+
+.item .meta{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.link{
+  color:var(--brand);
+  font-weight:800;
+  text-decoration:none;
+}

@@ -512,3 +512,33 @@ function buildExamPath() {
     </div>
   `;
 }
+// ===============================
+// Home Topbar Auth Buttons (FINAL)
+// ===============================
+(function () {
+  const authButtons = document.getElementById("authButtons");
+  if (!authButtons) return;
+
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    authButtons.innerHTML = `
+      <a class="primary" href="dashboard.html">Dashboard</a>
+      <a href="my-batches.html">My Batches</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    `;
+
+    document.getElementById("logoutBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "index.html";
+    });
+  } else {
+    authButtons.innerHTML = `
+      <a href="login.html">Login</a>
+      <a class="primary" href="signup.html">Signup</a>
+    `;
+  }
+})();
+

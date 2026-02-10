@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | nripendra.online</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="logo">
+      <img src="favicon.png" alt="logo" />
+      <div>
+        <h1 id="hello">Dashboard</h1>
+        <p id="subline">Loading...</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px;">
+      <button class="btn" onclick="window.location.href='my-batches.html'">My Batches</button>
+      <button class="btn brand" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+
+      <div class="card col-12">
+        <h2>Welcome 🎉</h2>
+        <p>
+          ये आपका personalized dashboard है। यहां आपके खरीदे हुए batches, free batches,
+          और आपकी सारी activity show होगी।
+        </p>
+      </div>
+
+      <div class="card col-4">
+        <div class="kpi">
+          <div>
+            <strong id="kpiBatches">0</strong>
+            <small>Total Batches</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-4">
+        <div class="kpi">
+          <div>
+            <strong id="kpiFree">0</strong>
+            <small>Free Batches</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-4">
+        <div class="kpi">
+          <div>
+            <strong id="kpiPaid">0</strong>
+            <small>Paid Batches</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>Your Batches</h2>
+        <p>नीचे आपके batches की list है।</p>
+
+        <div class="list" id="batchList"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
