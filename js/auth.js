@@ -1,19 +1,16 @@
-// ✅ AUTO API BASE (Local + Live)
-window.API_BASE =
-  location.hostname.includes("localhost") || location.hostname.includes("127.0.0.1")
-    ? "http://localhost:3000"
-    : "https://api.nripendra.online";
+// ✅ Backend API Base
+const API_BASE = "https://api.nripendra.online";
 
-// ✅ TOKEN SAVE / GET
-window.saveToken = function (token) {
+// ✅ Token helpers
+function saveToken(token) {
   localStorage.setItem("token", token);
-};
+}
 
-window.getToken = function () {
+function getToken() {
   return localStorage.getItem("token");
-};
+}
 
-window.logout = function () {
+function logout() {
   localStorage.removeItem("token");
   window.location.href = "login.html";
-};
+}
