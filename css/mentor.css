@@ -1,36 +1,60 @@
+/* ======================================
+   MENTOR JOIN / SIMPLE PAGE (OLD DARK)
+   Purane jaisa premium dark UI
+====================================== */
+
 :root{
-  --bg:#f6f8ff;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.12);
+  --bg:#0b1020;
+  --card:#0f1730;
 
-  --amazon:#ffd814;
-  --amazonBorder:#fcd200;
+  --text:#eaf0ff;
+  --muted:rgba(234,240,255,.75);
 
-  --shadow: 0 18px 50px rgba(15,23,42,.12);
+  --border:rgba(255,255,255,.10);
+
+  --amazon:#ff9900;
+  --amazon-dark:#e88a00;
+
+  --shadow: 0 30px 80px rgba(0,0,0,.35);
 }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+body{
   background: var(--bg);
   color: var(--text);
 }
 
+/* =========================
+   WRAP
+========================= */
 .wrap{
   width: min(980px, 94vw);
   margin: 0 auto;
   padding: 18px 0 40px;
 }
 
+/* =========================
+   TOPBAR
+========================= */
 .topbar{
   position: sticky;
   top:0;
-  z-index: 50;
-  background: rgba(246,248,255,.85);
-  backdrop-filter: blur(10px);
+  z-index: 999;
+
+  background: rgba(10,14,30,.92);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 14px 0;
 }
@@ -38,101 +62,139 @@ body{
 .topbar > *{
   width: min(980px, 94vw);
   margin: 0 auto;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
 }
 
+/* Brand */
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
+  min-width:0;
 }
 
 .logo{
-  width:44px;height:44px;
+  width:44px;
+  height:44px;
   border-radius:14px;
-  display:grid;
-  place-items:center;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   font-weight:900;
-  background:#0f172a;
-  color:#fff;
+  font-size:18px;
+  color:#111;
+  background: linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  flex:0 0 auto;
 }
 
 .brand h1{
   margin:0;
   font-size:16px;
   font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:55vw;
 }
+
 .brand p{
   margin:3px 0 0;
   font-size:12px;
   color: var(--muted);
   font-weight:700;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:55vw;
 }
 
+/* Right link */
 .mini-link{
   text-decoration:none;
   font-weight:900;
-  color:#0f172a;
-  background:#fff;
-  border:1px solid var(--border);
+  color:var(--text);
+
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+
   padding:10px 12px;
   border-radius:999px;
 }
 
+/* =========================
+   CARD
+========================= */
 .card{
-  background: var(--card);
+  background: rgba(255,255,255,.04);
   border: 1px solid var(--border);
   border-radius: 22px;
   padding: 18px;
   box-shadow: var(--shadow);
 }
 
+/* Hero */
 .hero h2{
   margin:0;
   font-size:20px;
   font-weight:900;
 }
+
 .hero p{
   margin:8px 0 0;
   color: var(--muted);
   font-weight:700;
   font-size:13px;
+  line-height:1.6;
 }
 
+/* Form */
 .form{
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px dashed var(--border);
+  border-top: 1px solid rgba(255,255,255,.08);
 }
 
 .field{ margin-bottom: 12px; }
+
 label{
   display:block;
   font-weight:900;
   font-size:13px;
   margin-bottom: 6px;
+  color: rgba(234,240,255,.90);
 }
 
 input{
   width:100%;
   padding: 13px 14px;
   border-radius: 14px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,.12);
   outline:none;
   font-weight:800;
   font-size:14px;
-  background:#fff;
+  background: rgba(0,0,0,.18);
+  color: var(--text);
 }
 
+input:focus{
+  border-color: rgba(255,153,0,.35);
+}
+
+/* Row */
 .row{
   display:flex;
   gap:10px;
   align-items:center;
 }
 
+/* Actions */
 .actions{
   display:flex;
   gap:10px;
@@ -140,40 +202,48 @@ input{
   margin-top: 12px;
 }
 
+/* Buttons */
 .btn{
-  border:1px solid var(--amazonBorder);
-  background: var(--amazon);
+  border:none;
+  background: linear-gradient(180deg, var(--amazon), var(--amazon-dark));
   color:#111;
+
   padding: 12px 14px;
-  border-radius: 999px;
+  border-radius: 14px;
+
   font-weight: 900;
   cursor:pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  font-size:14px;
 }
 
-.btn:hover{ opacity:.95; }
+.btn:hover{ filter:brightness(1.05); }
 
 .btn.ghost{
-  background:#fff;
-  border:1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color: var(--text);
 }
 
 .btn.small{
   padding: 10px 12px;
   font-size: 13px;
+  border-radius: 13px;
 }
 
+/* Hint */
 .hint{
   margin: 10px 0 0;
   font-size: 13px;
   color: var(--muted);
   font-weight:700;
+  line-height:1.5;
 }
 
+/* Box */
 .box{
   margin-top: 18px;
   padding-top: 16px;
-  border-top: 1px dashed var(--border);
+  border-top: 1px solid rgba(255,255,255,.08);
 }
 
 .box h3{
@@ -192,19 +262,28 @@ input{
 
 /* Mobile */
 @media (max-width: 640px){
+
   .topbar > *{
     flex-direction:column;
     align-items:flex-start;
   }
+
   .row{
     flex-direction:column;
     align-items:stretch;
   }
+
   .actions .btn{
     width:100%;
   }
+
   .mini-link{
     width:100%;
     text-align:center;
   }
+}
+
+/* iPhone zoom fix */
+button, input{
+  font-size:16px;
 }
