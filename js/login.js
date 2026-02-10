@@ -1,25 +1,24 @@
 const loginBtn = document.getElementById("loginBtn");
 const msg = document.getElementById("msg");
 
-function showMsg(text, type = "ok") {
-  msg.className = "msg show " + (type === "err" ? "err" : "ok");
-  msg.innerText = text;
-}
-
 loginBtn.addEventListener("click", async () => {
+  msg.innerText = "";
+  msg.style.color = "#fff";
+
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    showMsg("Email और Password दोनों भरना जरूरी है!", "err");
+    msg.innerText = "❌ Email और Password भरना जरूरी है";
+    msg.style.color = "orange";
     return;
   }
 
-  loginBtn.innerText = "Logging in...";
   loginBtn.disabled = true;
+  loginBtn.innerText = "Logging in...";
 
   try {
-    const res = await fetch(`${API_BASE}/api/auth/login`, {
+    const res = await fetch(`${window.API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -28,24 +27,28 @@ loginBtn.addEventListener("click", async () => {
     const data = await res.json();
 
     if (!res.ok) {
-      showMsg(data.message || "Login failed", "err");
-      loginBtn.innerText = "Login";
+      msg.innerText = "❌ " + (data.message || "Login failed");
+      msg.style.color = "red";
       loginBtn.disabled = false;
+      loginBtn.innerText = "Login";
       return;
     }
 
-    saveToken(data.token);
-    saveUser(data.user);
+    if (data.token) {
+      window.saveToken(data.token);
+    }
 
-    showMsg("Login successful ✅", "ok");
+    msg.innerText = "✅ Login success! Redirecting...";
+    msg.style.color = "lightgreen";
 
     setTimeout(() => {
       window.location.href = "dashboard.html";
     }, 700);
   } catch (err) {
-    showMsg("Server error! Backend running hai kya?", "err");
+    msg.innerText = "❌ Server error (API not reachable)";
+    msg.style.color = "red";
   }
 
-  loginBtn.innerText = "Login";
   loginBtn.disabled = false;
+  loginBtn.innerText = "Login";
 });
