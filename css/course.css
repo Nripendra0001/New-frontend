@@ -76,7 +76,7 @@ html, body{
   margin:0;
   font-size:18px;
   font-weight:900;
-  color:var(--accent); /* Amazon orange */
+  color:var(--accent);
   letter-spacing:.3px;
 }
 
@@ -110,12 +110,12 @@ html, body{
 }
 
 .course-btn:hover{
-  border-color:rgba(0,168,225,.95); /* Amazon blue hover */
+  border-color:rgba(0,168,225,.95);
   transform:translateY(-1px);
 }
 
 .course-btn.active{
-  border-color:rgba(255,153,0,.95); /* Amazon orange active */
+  border-color:rgba(255,153,0,.95);
   box-shadow:var(--glow);
   color:#ffffff;
 }
@@ -144,15 +144,10 @@ html, body{
   border-radius:14px;
   border:1.5px solid var(--border);
   background:rgba(255,255,255,.03);
-  color:var(--blue); /* Amazon blue */
+  color:var(--blue);
   font-size:13px;
   font-weight:900;
   letter-spacing:.2px;
-}
-
-.subject-title::before{
-  content:"";
-  font-size:14px;
 }
 
 /* TOPIC LIST */
@@ -175,20 +170,13 @@ html, body{
   position:relative;
 }
 
-.video-card::before{
-  content:"";
-  color:rgba(255,255,255,.70);
-  font-weight:900;
-  margin-right:8px;
-}
-
 .video-card:hover{
-  border-color:rgba(0,168,225,.95); /* Amazon blue hover */
+  border-color:rgba(0,168,225,.95);
   transform:translateX(4px);
 }
 
 .video-card.active{
-  border-color:rgba(255,153,0,.95); /* Amazon orange active */
+  border-color:rgba(255,153,0,.95);
   box-shadow:var(--glow);
   color:#ffffff;
 }
@@ -258,70 +246,8 @@ html, body{
 }
 
 /* ===============================
-   RESPONSIVE (MOBILE)
-================================ */
-@media(max-width:900px){
-
-  .course-app{
-    display:flex;
-    flex-direction:column;
-    height:100vh;
-  }
-
-  .course-right{
-    padding:0;
-    position:sticky;
-    top:0;
-    z-index:100;
-  }
-
-  /* Edge-to-edge video */
-  .player-box{
-    width:100vw;
-    height:56.25vw; /* 16:9 */
-    border-radius:0;
-    border:none;
-    box-shadow:none;
-  }
-
-  .player-bottom{
-    border-radius:0;
-    border-left:none;
-    border-right:none;
-  }
-
-  /* Left panel below */
-  .course-left{
-    height:auto;
-    border-right:none;
-    border-top:1px solid var(--border);
-    overflow:visible;
-  }
-
-  .left-subject-area{
-    height:auto;
-    max-height:none;
-  }
-}
-
-/* ===============================
-   SCROLLBAR
-================================ */
-::-webkit-scrollbar{
-  width:7px;
-}
-::-webkit-scrollbar-track{
-  background:transparent;
-}
-::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.12);
-  border-radius:10px;
-}
-::-webkit-scrollbar-thumb:hover{
-  background:rgba(0,168,225,.60);
-}
-/* ================================
-   CART + BUY BUTTONS (NEW)
+   RESPONSIVE (MOBILE) FINAL
+   ✅ Phone me video + title sticky
 ================================ */
 @media(max-width:900px){
 
@@ -338,12 +264,13 @@ html, body{
     top:0;
     z-index:9999;
     background:#000;
+    box-shadow:0 10px 30px rgba(0,0,0,.75);
   }
 
   /* ✅ Full width 16:9 player */
   .player-box{
     width:100vw;
-    height:56.25vw;  /* 16:9 */
+    height:56.25vw; /* 16:9 */
     border-radius:0;
     border:none;
     box-shadow:none;
@@ -369,5 +296,26 @@ html, body{
     border-top:1px solid rgba(255,255,255,.10);
     overflow:visible;
   }
+
+  .left-subject-area{
+    height:auto;
+    max-height:none;
+  }
 }
 
+/* ===============================
+   SCROLLBAR
+================================ */
+::-webkit-scrollbar{
+  width:7px;
+}
+::-webkit-scrollbar-track{
+  background:transparent;
+}
+::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.12);
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(0,168,225,.60);
+}
