@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam History & Cutoff Trends | SarkariNext</title>
+  <link rel="stylesheet" href="./css/exam-history.css" />
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">Sarkari<span>Next</span></div>
+      <div class="tag">Exam History • Vacancy • Cutoff Trends (20 Years)</div>
+    </div>
+
+    <a class="home-btn" href="index.html">🏠 Home</a>
+  </header>
+
+  <!-- MAIN -->
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>📌 Exam History & Cutoff Trend</h1>
+      <p>
+        Exam select करो और 20 साल का पूरा data देखो:
+        <b>कब vacancy ज्यादा थी, कब cutoff ऊपर गया, कब नीचे आया</b>।
+      </p>
+
+      <div class="hero-controls">
+        <div class="field">
+          <label>Exam चुनें</label>
+          <select id="examSelect">
+            <option value="">-- Select Exam --</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <select id="catSelect">
+            <option value="GENERAL">GENERAL</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+          </select>
+        </div>
+
+        <button id="loadBtn" class="primary-btn">📊 Show Report</button>
+      </div>
+    </section>
+
+    <!-- QUICK STATS -->
+    <section class="stats" id="statsBox" style="display:none;">
+      <div class="stat">
+        <h3 id="stPapers">--</h3>
+        <p>Total Papers (20Y)</p>
+      </div>
+      <div class="stat">
+        <h3 id="stVacancy">--</h3>
+        <p>Total Vacancy</p>
+      </div>
+      <div class="stat">
+        <h3 id="stHigh">--</h3>
+        <p>Highest Cutoff</p>
+      </div>
+      <div class="stat">
+        <h3 id="stLow">--</h3>
+        <p>Lowest Cutoff</p>
+      </div>
+    </section>
+
+    <!-- TABLE -->
+    <section class="card" id="tableCard" style="display:none;">
+      <div class="card-head">
+        <h2 id="tableTitle">Exam Report</h2>
+        <div class="legend">
+          <span class="pill up">⬆ Cutoff Up</span>
+          <span class="pill down">⬇ Cutoff Down</span>
+          <span class="pill same">— Same</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Papers</th>
+              <th>Vacancy</th>
+              <th>Paper Level</th>
+              <th>Cutoff</th>
+              <th>Trend</th>
+              <th>Reason (Simple)</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INSIGHT BOX -->
+    <section class="card insight" id="insightCard" style="display:none;">
+      <h2>🔥 Smart Insights</h2>
+      <ul id="insightList"></ul>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© All Rights Reserved | nripendra.online</p>
+    </footer>
+
+  </main>
+
+  <script src="./js/exam-history.js"></script>
+</body>
+</html>
