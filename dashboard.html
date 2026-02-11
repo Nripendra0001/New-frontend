@@ -73,25 +73,33 @@
     </div>
   </div>
 
-  <!-- ✅ Google Auth -->
-  <script type="module" src="./js/google-auth.js"></script>
-
-  <!-- ✅ Dashboard logic -->
+  <!-- ✅ Dashboard JS (optional) -->
   <script src="./js/dashboard.js"></script>
 
-  <!-- ✅ Login Guard + Logout Hook -->
+  <!-- ✅ FINAL Dashboard Logic -->
   <script>
-    // अगर user login नहीं है तो dashboard मत खोलो
+    // ✅ Login Guard
     const email = localStorage.getItem("user_email");
     if (!email) {
       window.location.href = "login.html";
     }
 
-    // logout button
+    // ✅ Fill user data
+    document.getElementById("dashName").innerText =
+      localStorage.getItem("user_name") || "User";
+
+    document.getElementById("dashEmail").innerText =
+      localStorage.getItem("user_email") || "";
+
+    document.getElementById("dashPhoto").src =
+      localStorage.getItem("user_photo") || "favicon.png";
+
+    // ✅ Logout
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("user_name");
       localStorage.removeItem("user_email");
       localStorage.removeItem("user_photo");
+
       window.location.href = "login.html";
     });
   </script>
