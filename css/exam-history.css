@@ -222,6 +222,7 @@ select:focus{
 .pill.up{background:rgba(34,197,94,0.12); color:#86efac}
 .pill.down{background:rgba(239,68,68,0.12); color:#fca5a5}
 .pill.same{background:rgba(148,163,184,0.12); color:#cbd5e1}
+.pill.warn{background:rgba(255,153,0,0.14); color:#ffd7a1}
 
 /* TABLE */
 .table-wrap{
@@ -234,7 +235,7 @@ select:focus{
 .data-table{
   width:100%;
   border-collapse:collapse;
-  min-width:820px;
+  min-width:1150px;
 }
 
 .data-table th{
@@ -273,6 +274,7 @@ select:focus{
 .trend.up{color:#86efac}
 .trend.down{color:#fca5a5}
 .trend.same{color:#cbd5e1}
+.trend.jump{color:#ffd7a1}
 
 /* INSIGHT */
 .insight ul{

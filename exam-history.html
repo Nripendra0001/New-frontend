@@ -13,7 +13,7 @@
   <header class="topbar">
     <div class="brand">
       <div class="logo">Sarkari<span>Next</span></div>
-      <div class="tag">Exam History • Vacancy • Cutoff Trends (20 Years)</div>
+      <div class="tag">Exam History • Vacancy • Applicants • Cutoff Trends (20 Years)</div>
     </div>
 
     <a class="home-btn" href="index.html">🏠 Home</a>
@@ -27,7 +27,7 @@
       <h1>📌 Exam History & Cutoff Trend</h1>
       <p>
         Exam select करो और 20 साल का पूरा data देखो:
-        <b>कब vacancy ज्यादा थी, कब cutoff ऊपर गया, कब नीचे आया</b>।
+        <b>vacancy, applicants, competition ratio, cutoff trend, safe score</b>।
       </p>
 
       <div class="hero-controls">
@@ -56,7 +56,7 @@
     <section class="stats" id="statsBox" style="display:none;">
       <div class="stat">
         <h3 id="stPapers">--</h3>
-        <p>Total Papers (20Y)</p>
+        <p>Total Papers</p>
       </div>
       <div class="stat">
         <h3 id="stVacancy">--</h3>
@@ -77,9 +77,10 @@
       <div class="card-head">
         <h2 id="tableTitle">Exam Report</h2>
         <div class="legend">
-          <span class="pill up">⬆ Cutoff Up</span>
-          <span class="pill down">⬇ Cutoff Down</span>
+          <span class="pill up">⬆ Up</span>
+          <span class="pill down">⬇ Down</span>
           <span class="pill same">— Same</span>
+          <span class="pill warn">⚠ Jump</span>
         </div>
       </div>
 
@@ -90,10 +91,14 @@
               <th>Year</th>
               <th>Papers</th>
               <th>Vacancy</th>
+              <th>Applicants</th>
+              <th>Competition</th>
               <th>Paper Level</th>
               <th>Cutoff</th>
+              <th>Safe Score</th>
               <th>Trend</th>
-              <th>Reason (Simple)</th>
+              <th>Reason</th>
+              <th>Important Changes</th>
             </tr>
           </thead>
           <tbody id="tableBody"></tbody>
