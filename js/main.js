@@ -557,5 +557,22 @@ document.addEventListener("click", function(e){
     menu.classList.remove("show");
   }
 });
+function toggleMenu(){
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("show");
+}
+
+/* Close menu when clicking outside */
+document.addEventListener("click", function(e){
+  const menu = document.getElementById("mobileMenu");
+  const burger = document.querySelector(".hamburger");
+
+  if(!menu || !burger) return;
+
+  if(!menu.contains(e.target) && !burger.contains(e.target)){
+    menu.classList.remove("show");
+  }
+});
+
 
 
