@@ -1,81 +1,45 @@
-requireAuth();
+const API_BASE = "https://api.nripendra.online";
 
-const hello = document.getElementById("hello");
-const subline = document.getElementById("subline");
+// ✅ token agar tum firebase use kar rahe ho to yaha nahi milega
+// isliye abhi sirf demo batches dikhayenge
+// baad me backend integration karenge
 
-const kpiBatches = document.getElementById("kpiBatches");
-const kpiFree = document.getElementById("kpiFree");
-const kpiPaid = document.getElementById("kpiPaid");
+async function loadDashboard() {
+  const list = document.getElementById("batchList");
 
-const batchList = document.getElementById("batchList");
-
-async function fetchMyBatches() {
-  const token = getToken();
-
-  const res = await fetch(`${API_BASE}/api/batches/my`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  return await res.json();
-}
-
-function renderBatches(batches) {
-  batchList.innerHTML = "";
-
-  if (!batches || batches.length === 0) {
-    batchList.innerHTML = `
-      <div class="item">
-        <div class="title">No batch found</div>
-        <div class="meta">आपने अभी कोई batch नहीं लिया है।</div>
-      </div>
-    `;
-    return;
-  }
-
-  batches.forEach((b) => {
-    batchList.innerHTML += `
-      <div class="item">
-        <div class="title">${b.title || "Untitled Batch"}</div>
-        <div class="meta">
-          Type: <b>${b.isFree ? "FREE" : "PAID"}</b> •
-          Access: <b>${b.accessStatus || "ACTIVE"}</b>
-        </div>
-      </div>
-    `;
-  });
-}
-
-(async () => {
-  // profile
-  const user = await fetchMyProfile();
-  if (user) {
-    hello.innerText = `Hello, ${user.name} 👋`;
-    subline.innerText = `Email: ${user.email}`;
-  } else {
-    subline.innerText = "Profile load नहीं हो पाया";
-  }
-
-  // batches
   try {
-    const data = await fetchMyBatches();
+    // ✅ TEMP: demo batches
+    const batches = [
+      { title: "UP Police 2026 (Free)", type: "free" },
+      { title: "SSC GD 2026 (Free)", type: "free" },
+      { title: "Railway NTPC 2026 (Paid)", type: "paid" }
+    ];
 
-    const batches = data.batches || [];
+    // KPI
+    document.getElementById("kpiBatches").innerText = batches.length;
+    document.getElementById("kpiFree").innerText = batches.filter(b => b.type === "free").length;
+    document.getElementById("kpiPaid").innerText = batches.filter(b => b.type === "paid").length;
 
-    const total = batches.length;
-    const free = batches.filter((x) => x.isFree).length;
-    const paid = total - free;
+    // Render list
+    list.innerHTML = "";
 
-    kpiBatches.innerText = total;
-    kpiFree.innerText = free;
-    kpiPaid.innerText = paid;
+    batches.forEach((b) => {
+      const div = document.createElement("div");
+      div.className = "batch-item";
+      div.innerHTML = `
+        <div>
+          <div style="font-weight:800">${b.title}</div>
+          <div style="opacity:.7;font-size:13px">${b.type.toUpperCase()} Batch</div>
+        </div>
+        <button class="open-btn">Open</button>
+      `;
+      list.appendChild(div);
+    });
 
-    renderBatches(batches);
-  } catch (e) {
-    batchList.innerHTML = `
-      <div class="item">
-        <div class="title">Server Error</div>
-        <div class="meta">Backend response नहीं आया।</div>
-      </div>
-    `;
+  } catch (err) {
+    console.log(err);
+    list.innerHTML = `<div style="color:red;font-weight:700;">Failed to load dashboard</div>`;
   }
-})();
+}
+
+loadDashboard();
