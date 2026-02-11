@@ -1,35 +1,26 @@
 /* =========================================
-   SarkariNext Course UI (FINAL PRO)
+   SarkariNext Course UI (FINAL FINAL)
    OLED PURE BLACK + AMAZON THEME
-   (Orange + Blue, Green Removed)
+   ✅ Mobile: Video + Title Sticky on Top
 ========================================= */
 
 :root{
-  /* ===== OLED BLACK + AMAZON ACCENT ===== */
-
-  /* Backgrounds */
   --bg:#000000;
   --panel:#000000;
   --card:#050505;
 
-  /* Borders */
   --border:rgba(255,255,255,.10);
 
-  /* Text */
   --text:#ffffff;
   --muted:rgba(255,255,255,.65);
 
-  /* Brand Colors (AMAZON) */
-  --accent:#ff9900;   /* Amazon Orange */
-  --blue:#00a8e1;     /* Amazon Blue */
+  --accent:#ff9900;
+  --blue:#00a8e1;
 
-  /* Glow */
   --glow: 0 0 0 3px rgba(255,153,0,.25);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
 
 html, body{
   height:100%;
@@ -42,7 +33,7 @@ html, body{
 }
 
 /* ===============================
-   MAIN LAYOUT
+   MAIN LAYOUT (DESKTOP)
 ================================ */
 .course-app{
   display:grid;
@@ -117,7 +108,6 @@ html, body{
 .course-btn.active{
   border-color:rgba(255,153,0,.95);
   box-shadow:var(--glow);
-  color:#ffffff;
 }
 
 /* SUBJECT + TOPIC AREA */
@@ -130,11 +120,8 @@ html, body{
 }
 
 /* SUBJECT */
-.subject-box{
-  margin-bottom:16px;
-}
+.subject-box{ margin-bottom:16px; }
 
-/* Subject title */
 .subject-title{
   display:flex;
   align-items:center;
@@ -147,7 +134,6 @@ html, body{
   color:var(--blue);
   font-size:13px;
   font-weight:900;
-  letter-spacing:.2px;
 }
 
 /* TOPIC LIST */
@@ -167,7 +153,6 @@ html, body{
   font-weight:800;
   transition:.25s;
   color:var(--text);
-  position:relative;
 }
 
 .video-card:hover{
@@ -178,7 +163,6 @@ html, body{
 .video-card.active{
   border-color:rgba(255,153,0,.95);
   box-shadow:var(--glow);
-  color:#ffffff;
 }
 
 /* ===============================
@@ -193,7 +177,6 @@ html, body{
   padding:16px;
   display:flex;
   flex-direction:column;
-  align-items:stretch;
 }
 
 /* Wrap */
@@ -235,7 +218,6 @@ html, body{
   margin:0;
   font-size:15px;
   font-weight:900;
-  color:var(--text);
 }
 
 .player-hint{
@@ -245,73 +227,78 @@ html, body{
   color:var(--muted);
 }
 
-/* ===============================
-   RESPONSIVE (MOBILE) FINAL
-   ✅ Phone me video + title sticky
-================================ */
+/* =================================================
+   ✅ MOBILE FINAL FIX (100% Working)
+   - Video always on TOP
+   - Sticky works (no overflow blockers)
+================================================= */
 @media(max-width:900px){
 
+  /* ✅ IMPORTANT: remove 100vh layout issues */
   .course-app{
-    display:flex;
-    flex-direction:column;
-    height:auto;
+    display:flex !important;
+    flex-direction:column !important;
+    height:auto !important;
   }
 
-  /* ✅ YouTube style: video always on top */
+  /* ✅ Force video section on TOP */
   .course-right{
-    padding:0;
-    position:sticky;
-    top:0;
-    z-index:9999;
-    background:#000;
+    order:1 !important;
+    padding:0 !important;
+
+    position:sticky !important;
+    top:0 !important;
+    z-index:999999 !important;
+
+    background:#000 !important;
     box-shadow:0 10px 30px rgba(0,0,0,.75);
   }
 
-  /* ✅ Full width 16:9 player */
+  /* ✅ Video full width */
   .player-box{
-    width:100vw;
-    height:56.25vw; /* 16:9 */
-    border-radius:0;
-    border:none;
-    box-shadow:none;
+    width:100vw !important;
+    height:56.25vw !important; /* 16:9 */
+    border-radius:0 !important;
+    border:none !important;
+    box-shadow:none !important;
   }
 
-  /* ✅ Title bar like YouTube */
+  /* ✅ Title bar */
   .player-bottom{
-    border-radius:0;
-    border-left:none;
-    border-right:none;
-    border-top:1px solid rgba(255,255,255,.08);
-    background:#000;
+    border-radius:0 !important;
+    border-left:none !important;
+    border-right:none !important;
+    border-top:1px solid rgba(255,255,255,.08) !important;
+    background:#000 !important;
   }
 
   #videoTitle{
-    font-size:14px;
+    font-size:14px !important;
   }
 
-  /* Left panel below */
+  /* ✅ Left panel goes BELOW */
   .course-left{
-    height:auto;
-    border-right:none;
-    border-top:1px solid rgba(255,255,255,.10);
-    overflow:visible;
+    order:2 !important;
+    height:auto !important;
+    border-right:none !important;
+    border-top:1px solid rgba(255,255,255,.10) !important;
+
+    /* ✅ MOST IMPORTANT: sticky ko break karne wala overflow हटाया */
+    overflow:visible !important;
   }
 
   .left-subject-area{
-    height:auto;
-    max-height:none;
+    height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
   }
 }
 
 /* ===============================
    SCROLLBAR
 ================================ */
-::-webkit-scrollbar{
-  width:7px;
-}
-::-webkit-scrollbar-track{
-  background:transparent;
-}
+::-webkit-scrollbar{ width:7px; }
+::-webkit-scrollbar-track{ background:transparent; }
 ::-webkit-scrollbar-thumb{
   background:rgba(255,255,255,.12);
   border-radius:10px;
