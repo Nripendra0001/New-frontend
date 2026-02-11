@@ -2125,6 +2125,175 @@ html, body{
     flex-wrap:wrap;
   }
 }
+/* =========================================
+   ROADMAP PAGES – FINAL TIMELINE STYLE
+   (Paste at END of Style.css)
+========================================= */
+
+.roadmap-steps{
+  list-style: none;
+  padding: 0;
+  margin: 22px auto 0;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+/* Left vertical line */
+.roadmap-steps::before{
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.20);
+}
+
+/* Each step */
+.roadmap-steps li{
+  position: relative;
+  padding: 16px 16px 16px 58px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* Step hover animation */
+.roadmap-steps li:hover{
+  transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.22);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.10);
+}
+
+/* Step circle */
+.roadmap-steps li::before{
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0f172a;
+  box-shadow: 0 0 0 6px rgba(15, 23, 42, 0.12);
+}
+
+/* Step number (auto style) */
+.roadmap-steps li::after{
+  content: counter(step);
+  counter-increment: step;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+/* Reset counter */
+.roadmap-steps{
+  counter-reset: step;
+}
+
+/* Roadmap heading styling */
+.page h1{
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.page p{
+  text-align: center;
+  max-width: 850px;
+  margin: 10px auto 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Student note (already in your HTML) */
+.student-note{
+  max-width: 900px;
+  margin: 18px auto 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+/* Back button */
+.back-btn{
+  display: inline-block;
+  margin: 22px auto 0;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #0f172a;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.back-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 650px){
+
+  .page h1{
+    font-size: 21px;
+    padding: 0 10px;
+  }
+
+  .roadmap-steps{
+    padding: 0 12px;
+  }
+
+  .roadmap-steps::before{
+    left: 16px;
+  }
+
+  .roadmap-steps li{
+    padding: 14px 14px 14px 52px;
+    font-size: 14px;
+  }
+
+  .roadmap-steps li::before{
+    left: 9px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .roadmap-steps li::after{
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+  }
+}
 
 
 
