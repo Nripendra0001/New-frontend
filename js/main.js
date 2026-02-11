@@ -546,17 +546,7 @@ function toggleMenu(){
   menu.classList.toggle("show");
 }
 
-/* ✅ Close menu when user clicks outside */
-document.addEventListener("click", function(e){
-  const menu = document.getElementById("mobileMenu");
-  const burger = document.querySelector(".hamburger");
 
-  if(!menu || !burger) return;
-
-  if(!menu.contains(e.target) && !burger.contains(e.target)){
-    menu.classList.remove("show");
-  }
-});
 document.getElementById("footerYear").innerText = new Date().getFullYear();
 
 

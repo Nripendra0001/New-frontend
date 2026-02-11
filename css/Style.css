@@ -2375,78 +2375,7 @@ footer{ position:fixed; bottom:0;
    HAMBURGER MENU (MOBILE)
 ================================ */
 
-.hamburger{
-  display:none;
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  cursor:pointer;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:6px;
-}
 
-.hamburger span{
-  width:22px;
-  height:2px;
-  background:#fff;
-  border-radius:5px;
-  transition:.25s;
-}
-
-/* Mobile menu hidden by default */
-@media(max-width:900px){
-
-  .hamburger{
-    display:flex;
-  }
-
-  /* Desktop links hide */
-  .header-links{
-    display:none;
-    position:absolute;
-    top:68px;
-    right:12px;
-    width:220px;
-    background:#000;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:16px;
-    padding:10px;
-    box-shadow:0 18px 55px rgba(0,0,0,.70);
-    z-index:999999;
-    flex-direction:column;
-    gap:6px;
-  }
-
-  /* Open menu */
-  .header-links.show{
-    display:flex;
-  }
-
-  .header-links a{
-    display:block;
-    padding:12px 12px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:800;
-    font-size:13px;
-    color:#fff;
-    background:rgba(255,255,255,.03);
-    border:1px solid rgba(255,255,255,.08);
-  }
-
-  .header-links a:hover{
-    border-color:rgba(0,168,225,.85);
-  }
-
-  /* Make topbar relative so absolute menu works */
-  .topbar{
-    position:relative;
-  }
-}
 /* ===============================
    FOOTER LINKS (FINAL)
 ================================ */
@@ -2530,6 +2459,40 @@ footer{ position:fixed; bottom:0;
 .doc-hub{
   margin-bottom:16px !important;
 }
+/* ===============================
+   FORCE DESKTOP HEADER ON MOBILE
+=============================== */
+
+@media(max-width:900px){
+
+  /* hamburger पूरी तरह off */
+  .hamburger{
+    display:none !important;
+  }
+
+  /* header links हमेशा visible */
+  .header-links{
+    display:flex !important;
+    position:static !important;
+    width:auto !important;
+    background:transparent !important;
+    box-shadow:none !important;
+    border:none !important;
+    padding:0 !important;
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+    gap:8px !important;
+    margin-left:auto !important;
+  }
+
+  .header-links a{
+    padding:8px 10px !important;
+    font-size:12px !important;
+    border-radius:12px !important;
+  }
+
+}
+
 
 
 
