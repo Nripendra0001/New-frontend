@@ -1,4 +1,5 @@
-const API = "https://nripendra-backend.onrender.com";
+const API = "https://nripendra-backend-1.onrender.com";
+
 
 document.getElementById("loginBtn").addEventListener("click", login);
 

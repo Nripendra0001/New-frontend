@@ -1,4 +1,5 @@
-const API = "https://nripendra-backend.onrender.com";
+const API = "https://nripendra-backend-1.onrender.com";
+
 
 const token = localStorage.getItem("sn_mentorToken");
 const mentorType = localStorage.getItem("sn_mentorType");
