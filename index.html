@@ -118,38 +118,29 @@
 <!-- ================= TOP BAR ================= -->
 <header class="topbar">
 
-  <!-- ✅ Row 1: Logo + Hamburger -->
-  <div class="topbar-row topbar-row-1">
-    <div class="site-logo">
-      <img src="./favicon.png" alt="SarkariNext Logo" />
-      <span>SarkariNext</span>
-    </div>
-
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <div class="site-logo">
+    <img src="./favicon.png" alt="SarkariNext Logo" />
+    <span>SarkariNext</span>
   </div>
 
-  <!-- ✅ Row 2: Live Bar -->
-  <div class="topbar-row topbar-row-2">
-    <div class="live-bar">
-      🔴 Live: UP Police 2026 Form Open • SSC GD Exam Soon • Railway NTPC Update • IBPS PO Notice • Super TET News
-    </div>
+  <div class="mode-btn" onclick="toggleDark()"></div>
+
+  <div class="live-bar">
+    🔴 Live: UP Police 2026 Form Open • SSC GD Exam Soon • Railway NTPC Update • IBPS PO Notice • Super TET News
   </div>
 
-  <!-- ✅ Glass Dropdown Menu (Overlay) -->
-  <nav class="header-links" id="mobileMenu">
-    <a href="./about.html">About</a>
-    <a href="./team.html">Team</a>
-    <a href="./privacy.html">Privacy</a>
-    <a href="./terms.html">Terms</a>
-    <a href="./disclaimer.html">Disclaimer</a>
-    <a href="./contact.html">Contact</a>
-  </nav>
+  <!-- ✅ HAMBURGER BUTTON (MOBILE) -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Header Links -->
+ 
 
 </header>
+
 
 
 <!-- ================= MAIN ================= -->
@@ -865,6 +856,25 @@
 
     <button class="footer-back-btn" onclick="goBack()">← Back</button>
   </section>
+
+  <footer class="site-footer">
+
+  <div class="footer-links">
+    <a href="./about.html">About</a>
+    <a href="./team.html">Team</a>
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="./disclaimer.html">Disclaimer</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+
+  <div class="footer-copy">
+    © <span id="footerYear"></span> nripendra.online • All Rights Reserved
+  </div>
+
+
+
+
 </footer>
 
 
