@@ -1,56 +1,52 @@
-const signupBtn = document.getElementById("signupBtn");
-const msg = document.getElementById("msg");
+// js/signup.js (FINAL)
 
-signupBtn.addEventListener("click", async () => {
-  msg.innerText = "";
-  msg.style.color = "#fff";
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("signupBtn");
+  if (!btn) return;
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+  btn.dataset.text = btn.innerText;
 
-  if (!name || !email || !password) {
-    msg.innerText = "❌ सभी fields भरना जरूरी है";
-    msg.style.color = "orange";
-    return;
-  }
+  btn.addEventListener("click", async () => {
+    const name = document.getElementById("name")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const password = document.getElementById("password")?.value.trim();
 
-  signupBtn.disabled = true;
-  signupBtn.innerText = "Creating...";
-
-  try {
-    const res = await fetch(`${window.API_BASE}/api/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      msg.innerText = "❌ " + (data.message || "Signup failed");
-      msg.style.color = "red";
-      signupBtn.disabled = false;
-      signupBtn.innerText = "Create Account";
+    if (!name || !email || !password) {
+      showMsg("msg", "❌ Please fill all fields");
       return;
     }
 
-    // ✅ Save token
-    if (data.token) {
-      window.saveToken(data.token);
+    try {
+      setLoading(btn, true);
+      showMsg("msg", "Creating account...", "success");
+
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        showMsg("msg", "❌ " + (data.message || "Signup failed"));
+        setLoading(btn, false);
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userEmail", email);
+
+      showMsg("msg", "✅ Account created successfully!", "success");
+
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 900);
+
+    } catch (err) {
+      showMsg("msg", "❌ Network error: API not reachable");
+    } finally {
+      setLoading(btn, false);
     }
-
-    msg.innerText = "✅ Account created! Redirecting...";
-    msg.style.color = "lightgreen";
-
-    setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 800);
-  } catch (err) {
-    msg.innerText = "❌ Server error (API not reachable)";
-    msg.style.color = "red";
-  }
-
-  signupBtn.disabled = false;
-  signupBtn.innerText = "Create Account";
+  });
 });

@@ -1,16 +1,19 @@
-// ✅ BACKEND API
+// js/auth.js (FINAL)
+
 const API_BASE = "https://api.nripendra.online";
 
-// ✅ TOKEN SAVE
-function saveToken(token) {
-  localStorage.setItem("token", token);
+function showMsg(id, text, type = "error") {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.style.display = "block";
+  el.innerText = text;
+
+  el.style.color = type === "success" ? "#16a34a" : "#ef4444";
 }
 
-function getToken() {
-  return localStorage.getItem("token");
-}
-
-function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "login.html";
+function setLoading(btn, isLoading) {
+  if (!btn) return;
+  btn.disabled = isLoading;
+  btn.innerText = isLoading ? "Please wait..." : btn.dataset.text;
 }

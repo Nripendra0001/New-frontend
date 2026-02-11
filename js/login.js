@@ -1,58 +1,51 @@
+// js/login.js (FINAL)
+
 document.addEventListener("DOMContentLoaded", () => {
-  const loginBtn = document.getElementById("loginBtn");
-  const msg = document.getElementById("msg");
+  const btn = document.getElementById("loginBtn");
+  if (!btn) return;
 
-  loginBtn.onclick = async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+  btn.dataset.text = btn.innerText;
 
-    msg.innerText = "";
+  btn.addEventListener("click", async () => {
+    const email = document.getElementById("email")?.value.trim();
+    const password = document.getElementById("password")?.value.trim();
 
     if (!email || !password) {
-      msg.innerText = "⚠ Email aur Password dono bharna जरूरी है";
-      msg.style.color = "red";
+      showMsg("msg", "❌ Email aur password dono bharna hai");
       return;
     }
 
-    loginBtn.innerText = "Logging in...";
-    loginBtn.disabled = true;
-
     try {
-      const response = await fetch(API_BASE + "/api/auth/login", {
+      setLoading(btn, true);
+      showMsg("msg", "Logging in...", "success");
+
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
-        msg.innerText = data.message || "❌ Login failed";
-        msg.style.color = "red";
-        loginBtn.innerText = "Login";
-        loginBtn.disabled = false;
+      if (!res.ok) {
+        showMsg("msg", "❌ " + (data.message || "Invalid login"));
+        setLoading(btn, false);
         return;
       }
 
-      // ✅ TOKEN SAVE
-      saveToken(data.token);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userEmail", email);
 
-      msg.innerText = "✅ Login Success! Redirecting...";
-      msg.style.color = "green";
+      showMsg("msg", "✅ Login success!", "success");
 
       setTimeout(() => {
         window.location.href = "dashboard.html";
-      }, 800);
+      }, 900);
 
     } catch (err) {
-      console.log(err);
-      msg.innerText = "❌ API Error / Backend unreachable";
-      msg.style.color = "red";
+      showMsg("msg", "❌ Network error: API not reachable");
+    } finally {
+      setLoading(btn, false);
     }
-
-    loginBtn.innerText = "Login";
-    loginBtn.disabled = false;
-  };
+  });
 });

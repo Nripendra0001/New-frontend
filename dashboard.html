@@ -9,21 +9,20 @@
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="logo">
-      <img src="favicon.png" alt="logo" />
+  <!-- TOP USER BAR -->
+  <div class="dash-top">
+    <div class="dash-user">
+      <img id="dashPhoto" src="favicon.png" alt="User" />
       <div>
-        <h1 id="hello">Dashboard</h1>
-        <p id="subline">Loading...</p>
+        <div id="dashName">Loading...</div>
+        <div id="dashEmail"></div>
       </div>
     </div>
 
-    <div style="display:flex; gap:10px;">
-      <button class="btn" onclick="window.location.href='my-batches.html'">My Batches</button>
-      <button class="btn brand" onclick="logout()">Logout</button>
-    </div>
+    <button id="logoutBtn" class="dash-logout">Logout</button>
   </div>
 
+  <!-- MAIN DASH -->
   <div class="container">
     <div class="grid">
 
@@ -66,19 +65,19 @@
         <h2>Your Batches</h2>
         <p>नीचे आपके batches की list है।</p>
 
-        <div class="list" id="batchList"></div>
+        <div class="list" id="batchList">
+          <div style="opacity:.7">Loading...</div>
+        </div>
       </div>
 
     </div>
   </div>
-<script src="js/auth.js"></script>
-<script>
-  if (!localStorage.getItem("token")) {
-    window.location.href = "login.html";
-  }
-</script>
 
-  <script src="js/auth.js"></script>
-  <script src="js/dashboard.js"></script>
+  <!-- ✅ ONLY ONE SCRIPT -->
+  <script type="module" src="./js/google-auth.js"></script>
+
+  <!-- (Optional) Dashboard data file -->
+  <script src="./js/dashboard.js"></script>
+
 </body>
 </html>
