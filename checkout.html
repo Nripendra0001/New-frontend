@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | SarkariNext</title>
+  <link rel="icon" href="favicon.png" />
+  <style>
+    body{font-family:Poppins,system-ui;background:#f6f7fb;margin:0;padding:0}
+    .wrap{max-width:850px;margin:auto;padding:22px}
+    .card{background:#fff;border-radius:18px;padding:18px;border:1px solid rgba(0,0,0,.08)}
+    h1{margin:0 0 6px}
+    .sub{opacity:.7;font-weight:700;margin-bottom:16px}
+    .item{display:flex;justify-content:space-between;gap:10px;padding:12px;border:1px solid rgba(0,0,0,.08);border-radius:14px;margin-bottom:10px}
+    .btn{padding:14px 16px;border:none;border-radius:16px;background:#0f172a;color:#fff;font-weight:900;cursor:pointer;width:100%}
+    .back{margin-top:12px;text-align:center}
+    .back a{font-weight:800;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="card">
+      <h1>🧾 Checkout</h1>
+      <div class="sub">यह demo checkout है (Payment integration बाद में)</div>
+
+      <div id="items"></div>
+
+      <div style="display:flex;justify-content:space-between;font-weight:900;font-size:18px;margin:16px 0;">
+        <span>Total</span>
+        <span id="total">₹0</span>
+      </div>
+
+      <button class="btn" onclick="fakePay()">Pay Now (Demo)</button>
+
+      <div class="back">
+        <a href="course.html">← Back to Courses</a>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  function getCart(){
+    return JSON.parse(localStorage.getItem("sn_cart") || "[]");
+  }
+
+  const cart = getCart();
+  const box = document.getElementById("items");
+  const totalEl = document.getElementById("total");
+
+  if(cart.length === 0){
+    box.innerHTML = "<div style='opacity:.7;font-weight:800;'>Cart empty है 😅</div>";
+  } else {
+    let total = 0;
+    cart.forEach(c=>{
+      total += Number(c.price);
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `<strong>${c.title}</strong><span>₹${c.price}</span>`;
+      box.appendChild(div);
+    });
+    totalEl.innerText = "₹" + total;
+  }
+
+  function fakePay(){
+    alert("✅ Payment Success (Demo)\nअब आगे real payment Razorpay से जोड़ देंगे 🔥");
+    localStorage.removeItem("sn_cart");
+    window.location.href = "dashboard.html";
+  }
+</script>
+</body>
+</html>

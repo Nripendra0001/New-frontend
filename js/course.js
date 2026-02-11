@@ -5240,3 +5240,220 @@ function playVideo(id, el, title) {
 
   videoTitle.innerText = title;
 }
+// =======================================
+// CART + BUY SYSTEM (FREE ₹0) - FINAL
+// =======================================
+
+let selectedCourse = null;
+
+// DOM
+const cartDrawer = document.getElementById("cartDrawer");
+const cartOverlay = document.getElementById("cartOverlay");
+const openCartBtn = document.getElementById("openCartBtn");
+const closeCartBtn = document.getElementById("closeCartBtn");
+
+const cartItemsBox = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+
+const addToCartBtn = document.getElementById("addToCartBtn");
+const buyNowBtn = document.getElementById("buyNowBtn");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const courseMsg = document.getElementById("courseMsg");
+
+const videoTitleEl = document.getElementById("videoTitle");
+
+// -----------------------------
+// Storage Helpers
+// -----------------------------
+function getCart() {
+  return JSON.parse(localStorage.getItem("sn_cart") || "[]");
+}
+function saveCart(arr) {
+  localStorage.setItem("sn_cart", JSON.stringify(arr));
+}
+
+function getPurchased() {
+  return JSON.parse(localStorage.getItem("sn_purchased") || "[]");
+}
+function savePurchased(arr) {
+  localStorage.setItem("sn_purchased", JSON.stringify(arr));
+}
+
+// -----------------------------
+// Cart UI
+// -----------------------------
+function openCart() {
+  cartDrawer.classList.add("open");
+  cartOverlay.classList.add("show");
+}
+function closeCart() {
+  cartDrawer.classList.remove("open");
+  cartOverlay.classList.remove("show");
+}
+
+function renderCart() {
+  const cart = getCart();
+  cartCount.innerText = cart.length;
+
+  // ₹0 Always
+  cartTotal.innerText = "₹0";
+
+  if (cart.length === 0) {
+    cartItemsBox.innerHTML = `<div style="opacity:.7;padding:10px;">Cart is empty</div>`;
+    return;
+  }
+
+  cartItemsBox.innerHTML = cart
+    .map(
+      (c, i) => `
+      <div class="cart-item">
+        <div>
+          <div style="font-weight:700;">${c.title}</div>
+          <div style="font-size:13px;opacity:.7;">FREE (₹0)</div>
+        </div>
+        <button onclick="removeFromCart(${i})" style="border:none;background:#111;color:#fff;padding:8px 10px;border-radius:10px;cursor:pointer;">
+          Remove
+        </button>
+      </div>
+    `
+    )
+    .join("");
+}
+
+window.removeFromCart = function (index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+};
+
+// -----------------------------
+// Selected Course (Important)
+// -----------------------------
+function setSelectedCourse(title) {
+  selectedCourse = {
+    title: title,
+    price: 0,
+  };
+
+  courseMsg.innerHTML = "";
+  buyNowBtn.disabled = false;
+  addToCartBtn.disabled = false;
+
+  // अगर already purchased है
+  const purchased = getPurchased();
+  if (purchased.includes(title)) {
+    buyNowBtn.innerText = "✅ Purchased (FREE)";
+    buyNowBtn.disabled = true;
+    addToCartBtn.disabled = true;
+    courseMsg.innerHTML = "✅ ये course पहले से unlocked है";
+  } else {
+    buyNowBtn.innerText = "⚡ Buy This Course";
+  }
+}
+
+// -----------------------------
+// Add To Cart
+// -----------------------------
+function addToCart() {
+  if (!selectedCourse) {
+    courseMsg.innerHTML = "⚠️ पहले कोई topic/course select करो";
+    return;
+  }
+
+  const cart = getCart();
+
+  // Already in cart?
+  if (cart.find((x) => x.title === selectedCourse.title)) {
+    courseMsg.innerHTML = "🛒 ये course cart में already है";
+    return;
+  }
+
+  cart.push(selectedCourse);
+  saveCart(cart);
+
+  courseMsg.innerHTML = "✅ Added to cart (₹0)";
+  renderCart();
+}
+
+// -----------------------------
+// Buy Now (Instant Purchase)
+// -----------------------------
+function buyNow() {
+  if (!selectedCourse) {
+    courseMsg.innerHTML = "⚠️ पहले कोई topic/course select करो";
+    return;
+  }
+
+  let purchased = getPurchased();
+
+  if (!purchased.includes(selectedCourse.title)) {
+    purchased.push(selectedCourse.title);
+    savePurchased(purchased);
+  }
+
+  // cart से भी हटाओ अगर है
+  let cart = getCart();
+  cart = cart.filter((x) => x.title !== selectedCourse.title);
+  saveCart(cart);
+
+  buyNowBtn.innerText = "✅ Purchased (FREE)";
+  buyNowBtn.disabled = true;
+  addToCartBtn.disabled = true;
+
+  courseMsg.innerHTML = "🎉 Course Unlocked! अब Dashboard में दिखेगा ✅";
+
+  renderCart();
+}
+
+// -----------------------------
+// Checkout (Buy All from Cart)
+// -----------------------------
+function checkoutCart() {
+  const cart = getCart();
+  if (cart.length === 0) {
+    alert("Cart empty है भाई 😄");
+    return;
+  }
+
+  let purchased = getPurchased();
+
+  cart.forEach((c) => {
+    if (!purchased.includes(c.title)) purchased.push(c.title);
+  });
+
+  savePurchased(purchased);
+  saveCart([]);
+
+  renderCart();
+  closeCart();
+
+  courseMsg.innerHTML = "🎉 Cart के सारे courses FREE में unlock हो गए ✅";
+}
+
+// -----------------------------
+// Events
+// -----------------------------
+if (openCartBtn) openCartBtn.addEventListener("click", () => { renderCart(); openCart(); });
+if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
+if (cartOverlay) cartOverlay.addEventListener("click", closeCart);
+
+if (addToCartBtn) addToCartBtn.addEventListener("click", addToCart);
+if (buyNowBtn) buyNowBtn.addEventListener("click", buyNow);
+if (checkoutBtn) checkoutBtn.addEventListener("click", checkoutCart);
+
+// -----------------------------
+// Auto Detect Selected Course
+// -----------------------------
+// जैसे ही videoTitle change होगा, हम उसे selectedCourse मान लेंगे
+const observer = new MutationObserver(() => {
+  const t = (videoTitleEl.innerText || "").trim();
+  if (t && t !== "Select a topic to start learning") {
+    setSelectedCourse(t);
+  }
+});
+observer.observe(videoTitleEl, { childList: true, subtree: true });
+
+// initial
+renderCart();

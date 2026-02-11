@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <button id="logoutBtn" class="dash-logout">Logout</button>
+    <button onclick="logoutUser()" class="dash-logout">Logout</button>
   </div>
 
   <!-- MAIN DASH -->
@@ -37,7 +37,7 @@
       <div class="card col-4">
         <div class="kpi">
           <div>
-            <strong id="kpiBatches">0</strong>
+            <strong id="kpiBatches">3</strong>
             <small>Total Batches</small>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <div class="card col-4">
         <div class="kpi">
           <div>
-            <strong id="kpiFree">0</strong>
+            <strong id="kpiFree">2</strong>
             <small>Free Batches</small>
           </div>
         </div>
@@ -55,7 +55,7 @@
       <div class="card col-4">
         <div class="kpi">
           <div>
-            <strong id="kpiPaid">0</strong>
+            <strong id="kpiPaid">1</strong>
             <small>Paid Batches</small>
           </div>
         </div>
@@ -65,26 +65,22 @@
         <h2>Your Batches</h2>
         <p>नीचे आपके batches की list है।</p>
 
-        <div class="list" id="batchList">
-          <div style="opacity:.7">Loading...</div>
-        </div>
+        <div class="list" id="batchList"></div>
       </div>
 
     </div>
   </div>
 
-  <!-- ✅ Dashboard JS (optional) -->
-  <script src="./js/dashboard.js"></script>
+  <!-- ✅ Firebase Auth -->
+  <script type="module" src="./js/google-auth.js"></script>
 
-  <!-- ✅ FINAL Dashboard Logic -->
+  <!-- ✅ Dashboard UI Fill -->
   <script>
-    // ✅ Login Guard
     const email = localStorage.getItem("user_email");
     if (!email) {
       window.location.href = "login.html";
     }
 
-    // ✅ Fill user data
     document.getElementById("dashName").innerText =
       localStorage.getItem("user_name") || "User";
 
@@ -94,13 +90,27 @@
     document.getElementById("dashPhoto").src =
       localStorage.getItem("user_photo") || "favicon.png";
 
-    // ✅ Logout
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("user_name");
-      localStorage.removeItem("user_email");
-      localStorage.removeItem("user_photo");
+    // Dummy batches
+    const batches = [
+      { title: "UP Police 2026 (Free)", type: "Free" },
+      { title: "SSC GD 2026 (Free)", type: "Free" },
+      { title: "Premium Mentor Batch", type: "Paid" },
+    ];
 
-      window.location.href = "login.html";
+    const list = document.getElementById("batchList");
+    list.innerHTML = "";
+
+    batches.forEach((b) => {
+      const div = document.createElement("div");
+      div.className = "batch-item";
+      div.innerHTML = `
+        <div>
+          <strong>${b.title}</strong>
+          <div style="opacity:.7;font-size:13px;">Type: ${b.type}</div>
+        </div>
+        <button class="open-btn" onclick="alert('Coming Soon 🚀')">Open</button>
+      `;
+      list.appendChild(div);
     });
   </script>
 
