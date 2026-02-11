@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SarkariNext | Mentor Login</title>
+
+  <link rel="icon" type="image/png" href="./favicon.png" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,system-ui,Arial}
+    body{background:#0b1220;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:18px}
+
+    .box{
+      width:100%;max-width:440px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;padding:22px;
+      backdrop-filter: blur(10px);
+    }
+
+    h2{font-size:22px;font-weight:900;text-align:center}
+    p{margin-top:8px;text-align:center;font-weight:700;opacity:.85}
+
+    input{
+      width:100%;margin-top:12px;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:#fff;outline:none;font-weight:800
+    }
+
+    button{
+      width:100%;margin-top:14px;
+      padding:12px 14px;border-radius:14px;
+      border:none;background:#fff;color:#0f172a;
+      font-weight:900;cursor:pointer;
+      transition:.2s ease
+    }
+    button:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(0,0,0,.35)}
+
+    #status{margin-top:12px;text-align:center;font-weight:800}
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🔐 Mentor Dashboard Login</h2>
+  <p>Only for mentors (password protected)</p>
+
+  <input id="user" placeholder="Username" value="mentor" />
+  <input id="pass" type="password" placeholder="Password" />
+
+  <button onclick="login()">Login</button>
+  <div id="status"></div>
+</div>
+
+<script>
+  const API = "https://nripendra-backend.onrender.com";
+
+  async function login() {
+    const username = document.getElementById("user").value.trim();
+    const password = document.getElementById("pass").value.trim();
+
+    const res = await fetch(API + "/api/chat/mentor-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      document.getElementById("status").innerText = data.msg || "Login failed";
+      return;
+    }
+
+    localStorage.setItem("sn_mentorToken", data.token);
+    window.location.href = "./mentor-dashboard.html";
+  }
+</script>
+
+</body>
+</html>
