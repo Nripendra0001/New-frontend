@@ -323,4 +323,51 @@ html, body{
 /* ================================
    CART + BUY BUTTONS (NEW)
 ================================ */
+@media(max-width:900px){
+
+  .course-app{
+    display:flex;
+    flex-direction:column;
+    height:auto;
+  }
+
+  /* ✅ YouTube style: video always on top */
+  .course-right{
+    padding:0;
+    position:sticky;
+    top:0;
+    z-index:9999;
+    background:#000;
+  }
+
+  /* ✅ Full width 16:9 player */
+  .player-box{
+    width:100vw;
+    height:56.25vw;  /* 16:9 */
+    border-radius:0;
+    border:none;
+    box-shadow:none;
+  }
+
+  /* ✅ Title bar like YouTube */
+  .player-bottom{
+    border-radius:0;
+    border-left:none;
+    border-right:none;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:#000;
+  }
+
+  #videoTitle{
+    font-size:14px;
+  }
+
+  /* Left panel below */
+  .course-left{
+    height:auto;
+    border-right:none;
+    border-top:1px solid rgba(255,255,255,.10);
+    overflow:visible;
+  }
+}
 
