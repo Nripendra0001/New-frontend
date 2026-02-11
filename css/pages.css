@@ -4,7 +4,9 @@
 ===================================================== */
 
 :root{
-  --bg:#f6f8ff;
+  /* ✅ Light Amazon Cream BG */
+  --bg:#fff7d6;
+
   --card:#ffffff;
   --text:#0f172a;
   --muted:#475569;
@@ -293,11 +295,6 @@ body{
   color:#0f172a;
 }
 
-/* Team grid */
-/* =========================
-   TEAM PAGE (PERFECT CLEAN)
-========================= */
-
 /* =========================
    TEAM PAGE (COMPACT + ANIMATED)
 ========================= */
@@ -333,7 +330,7 @@ body{
 
 /* Photo frame (smaller + animated) */
 .team-photo{
-  width:120px;         /* 🔥 smaller */
+  width:120px;
   height:120px;
   border-radius:16px;
   overflow:hidden;
@@ -352,7 +349,7 @@ body{
 .team-card:hover .team-photo{
   transform:scale(1.05);
   box-shadow:0 16px 35px rgba(15,23,42,.18);
-  border-color:rgba(252,208,0,.85); /* Amazon glow */
+  border-color:rgba(252,208,0,.85);
 }
 
 /* Photo */
@@ -367,7 +364,7 @@ body{
 /* Name */
 .team-card h3{
   margin-top:4px;
-  font-size:16px;      /* 🔥 smaller */
+  font-size:16px;
   font-weight:900;
   color:#0f172a;
 }
@@ -394,7 +391,9 @@ body{
   gap:8px;
   flex-wrap:wrap;
   justify-content:center;
-  margin-top:6px;
+
+  /* ✅ GitHub/LinkedIn ka margin photo se kam */
+  margin-top:2px;
 }
 
 .team-links a{
@@ -431,8 +430,6 @@ body{
     border-radius:14px;
   }
 }
-
-
 
 /* CTA Note card */
 .pg-note{
