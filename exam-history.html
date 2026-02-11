@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam History & Cutoff Trends | SarkariNext</title>
+  <title>Exam Analytics Dashboard | SarkariNext</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/exam-history.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -18,21 +18,20 @@
   <header class="topbar">
     <div class="brand">
       <div class="logo">Sarkari<span>Next</span></div>
-      <div class="tag">Exam History • Vacancy • Applicants • Cutoff Trends (20 Years)</div>
+      <div class="tag">Exam Analytics Dashboard • Cutoff • Vacancy • Applicants</div>
     </div>
 
     <a class="home-btn" href="index.html">🏠 Home</a>
   </header>
 
-  <!-- MAIN -->
   <main class="wrap">
 
-    <!-- HERO -->
+    <!-- CONTROLS -->
     <section class="hero">
-      <h1>📌 Exam History & Cutoff Trend</h1>
+      <h1>📊 Exam Analytics Dashboard</h1>
       <p>
-        Exam select करो और 20 साल का पूरा data देखो:
-        <b>vacancy, applicants, competition ratio, cutoff trend, safe score</b>।
+        Exam select करो और PowerBI style dashboard में पूरा analysis देखो:
+        <b>Cutoff trend, Vacancy, Applicants, Competition ratio, Safe score</b>
       </p>
 
       <div class="hero-controls">
@@ -53,68 +52,132 @@
           </select>
         </div>
 
-        <button id="loadBtn" class="primary-btn">📊 Show Report</button>
+        <button id="loadBtn" class="primary-btn">🚀 Load Dashboard</button>
       </div>
     </section>
 
-    <!-- QUICK STATS -->
-    <section class="stats" id="statsBox" style="display:none;">
-      <div class="stat">
-        <h3 id="stPapers">--</h3>
+    <!-- KPI CARDS -->
+    <section class="kpi-grid" id="kpiGrid" style="display:none;">
+      <div class="kpi">
+        <h3 id="kpiPapers">—</h3>
         <p>Total Papers</p>
       </div>
-      <div class="stat">
-        <h3 id="stVacancy">--</h3>
+      <div class="kpi">
+        <h3 id="kpiVacancy">—</h3>
         <p>Total Vacancy</p>
       </div>
-      <div class="stat">
-        <h3 id="stHigh">--</h3>
+      <div class="kpi">
+        <h3 id="kpiHigh">—</h3>
         <p>Highest Cutoff</p>
       </div>
-      <div class="stat">
-        <h3 id="stLow">--</h3>
+      <div class="kpi">
+        <h3 id="kpiLow">—</h3>
         <p>Lowest Cutoff</p>
+      </div>
+      <div class="kpi">
+        <h3 id="kpiStability">—</h3>
+        <p>Stability Score</p>
+      </div>
+      <div class="kpi">
+        <h3 id="kpiSafe">—</h3>
+        <p>Safe Score (Avg)</p>
       </div>
     </section>
 
-    <!-- TABLE -->
-    <section class="card" id="tableCard" style="display:none;">
-      <div class="card-head">
-        <h2 id="tableTitle">Exam Report</h2>
-        <div class="legend">
-          <span class="pill up">⬆ Up</span>
-          <span class="pill down">⬇ Down</span>
-          <span class="pill same">— Same</span>
-          <span class="pill warn">⚠ Jump</span>
+    <!-- DASHBOARD GRID -->
+    <section class="dash-grid" id="dashGrid" style="display:none;">
+
+      <!-- CHART 1 -->
+      <div class="card col-8">
+        <div class="card-head">
+          <h2>📈 Cutoff Trend (20 Years)</h2>
+          <span class="hint">Category wise</span>
+        </div>
+        <canvas id="cutoffChart"></canvas>
+      </div>
+
+      <!-- CHART 2 -->
+      <div class="card col-4">
+        <div class="card-head">
+          <h2>🎯 Vacancy vs Applicants</h2>
+          <span class="hint">Competition view</span>
+        </div>
+        <canvas id="vaChart"></canvas>
+      </div>
+
+      <!-- TABLE 1 -->
+      <div class="card col-6">
+        <div class="card-head">
+          <h2>📌 Year Summary</h2>
+          <span class="hint">Simple table</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Vacancy</th>
+                <th>Applicants</th>
+                <th>Cutoff</th>
+              </tr>
+            </thead>
+            <tbody id="summaryTable"></tbody>
+          </table>
         </div>
       </div>
 
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Papers</th>
-              <th>Vacancy</th>
-              <th>Applicants</th>
-              <th>Competition</th>
-              <th>Paper Level</th>
-              <th>Cutoff</th>
-              <th>Safe Score</th>
-              <th>Trend</th>
-              <th>Reason</th>
-              <th>Important Changes</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody"></tbody>
-        </table>
-      </div>
-    </section>
+      <!-- TABLE 2 -->
+      <div class="card col-6">
+        <div class="card-head">
+          <h2>🧠 Trend + Reason</h2>
+          <span class="hint">Up/Down analysis</span>
+        </div>
 
-    <!-- INSIGHT BOX -->
-    <section class="card insight" id="insightCard" style="display:none;">
-      <h2>🔥 Smart Insights</h2>
-      <ul id="insightList"></ul>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Trend</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="trendTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 3 -->
+      <div class="card col-12">
+        <div class="card-head">
+          <h2>⚡ Important Changes Timeline</h2>
+          <span class="hint">Pattern / Rule changes</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Paper Level</th>
+                <th>Changes</th>
+              </tr>
+            </thead>
+            <tbody id="changeTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INSIGHTS -->
+      <div class="card col-12">
+        <div class="card-head">
+          <h2>🔥 Smart Insights</h2>
+          <span class="hint">Auto analysis</span>
+        </div>
+        <ul class="insight-list" id="insightList"></ul>
+      </div>
+
     </section>
 
     <!-- FOOTER -->

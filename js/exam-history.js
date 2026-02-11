@@ -1,6 +1,6 @@
 /* ==========================================
-   SARKARINEXT – Exam History (Frontend Only)
-   FINAL (Applicants + Changes + Ratio + Safe)
+   SARKARINEXT – Exam Analytics Dashboard
+   FINAL (PowerBI Style, Frontend Only)
 ========================================== */
 
 const EXAMS = {
@@ -45,20 +45,25 @@ const examSelect = document.getElementById("examSelect");
 const catSelect = document.getElementById("catSelect");
 const loadBtn = document.getElementById("loadBtn");
 
-const statsBox = document.getElementById("statsBox");
-const tableCard = document.getElementById("tableCard");
-const insightCard = document.getElementById("insightCard");
+const kpiGrid = document.getElementById("kpiGrid");
+const dashGrid = document.getElementById("dashGrid");
 
-const stPapers = document.getElementById("stPapers");
-const stVacancy = document.getElementById("stVacancy");
-const stHigh = document.getElementById("stHigh");
-const stLow = document.getElementById("stLow");
+const kpiPapers = document.getElementById("kpiPapers");
+const kpiVacancy = document.getElementById("kpiVacancy");
+const kpiHigh = document.getElementById("kpiHigh");
+const kpiLow = document.getElementById("kpiLow");
+const kpiStability = document.getElementById("kpiStability");
+const kpiSafe = document.getElementById("kpiSafe");
 
-const tableBody = document.getElementById("tableBody");
-const tableTitle = document.getElementById("tableTitle");
+const summaryTable = document.getElementById("summaryTable");
+const trendTable = document.getElementById("trendTable");
+const changeTable = document.getElementById("changeTable");
 const insightList = document.getElementById("insightList");
 
-/* INIT */
+let cutoffChartRef = null;
+let vaChartRef = null;
+
+/* INIT DROPDOWN */
 function initExamDropdown(){
   Object.keys(EXAMS).forEach(examName=>{
     const opt = document.createElement("option");
@@ -75,27 +80,46 @@ function formatNum(n){
   return n.toLocaleString("en-IN");
 }
 
-function getLevelBadge(level){
-  if(level === "EASY") return `<span class="badge easy">EASY</span>`;
-  if(level === "MEDIUM") return `<span class="badge medium">MEDIUM</span>`;
-  if(level === "TOUGH") return `<span class="badge tough">TOUGH</span>`;
-  return `<span class="badge">—</span>`;
+function safeScore(cut){
+  if(!cut || cut === 0) return 0;
+  return Math.min(cut + 8, 100);
 }
 
 function competitionRatio(applicants, vacancy){
-  if(!applicants || !vacancy) return "—";
-  const ratio = applicants / vacancy;
-  return `${ratio.toFixed(1)} / seat`;
+  if(!applicants || !vacancy) return 0;
+  return applicants / vacancy;
 }
 
-function safeScore(cut){
-  if(!cut || cut === 0) return "—";
-  return Math.min(cut + 8, 100);
+function getStability(validCutoffs){
+  if(validCutoffs.length < 3) return "Medium";
+
+  let diffs = [];
+  for(let i=1;i<validCutoffs.length;i++){
+    diffs.push(Math.abs(validCutoffs[i] - validCutoffs[i-1]));
+  }
+  const avg = diffs.reduce((a,b)=>a+b,0) / diffs.length;
+
+  if(avg <= 3) return "High (Stable)";
+  if(avg <= 6) return "Medium";
+  return "Low (Unstable)";
+}
+
+function getTrend(curr, prev){
+  if(curr === 0 || prev === 0) return {t:"—", cls:""};
+  if(curr > prev){
+    if(curr - prev >= 8) return {t:"⚠ Jump Up", cls:"warn"};
+    return {t:"⬆ Up", cls:"up"};
+  }
+  if(curr < prev){
+    if(prev - curr >= 8) return {t:"⚠ Jump Down", cls:"warn"};
+    return {t:"⬇ Down", cls:"down"};
+  }
+  return {t:"— Same", cls:"same"};
 }
 
 function simpleReason(curr, prev, vacancy, level, applicants){
   if(curr === 0) return "Exam नहीं हुआ / Data नहीं";
-  if(!prev || prev === 0) return "New/Return year";
+  if(prev === 0) return "New/Return year";
 
   if(curr > prev){
     if(level === "EASY") return "Paper आसान था";
@@ -113,24 +137,66 @@ function simpleReason(curr, prev, vacancy, level, applicants){
   return "Stable year";
 }
 
-/* STABILITY SCORE */
-function getStability(validCutoffs){
-  if(validCutoffs.length < 3) return "Medium";
+/* CHARTS */
+function renderCharts(years, cat){
+  const labels = years.map(x=>x.year).reverse();
 
-  let diffs = [];
-  for(let i=1;i<validCutoffs.length;i++){
-    diffs.push(Math.abs(validCutoffs[i] - validCutoffs[i-1]));
-  }
+  const cutoffData = years.map(x=>x.cutoff[cat] || 0).reverse();
+  const vacancyData = years.map(x=>x.vacancy || 0).reverse();
+  const applicantData = years.map(x=>x.applicants || 0).reverse();
 
-  const avg = diffs.reduce((a,b)=>a+b,0) / diffs.length;
+  // Destroy old charts
+  if(cutoffChartRef) cutoffChartRef.destroy();
+  if(vaChartRef) vaChartRef.destroy();
 
-  if(avg <= 3) return "High (Stable)";
-  if(avg <= 6) return "Medium";
-  return "Low (Unstable)";
+  // Cutoff Line
+  cutoffChartRef = new Chart(document.getElementById("cutoffChart"), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label: `Cutoff (${cat})`,
+        data: cutoffData,
+        tension: 0.35
+      }]
+    },
+    options: {
+      responsive:true,
+      plugins:{
+        legend:{labels:{color:"#fff"}},
+      },
+      scales:{
+        x:{ticks:{color:"#aaa"}},
+        y:{ticks:{color:"#aaa"}}
+      }
+    }
+  });
+
+  // Vacancy vs Applicants Bar
+  vaChartRef = new Chart(document.getElementById("vaChart"), {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        { label:"Vacancy", data: vacancyData },
+        { label:"Applicants", data: applicantData }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins:{
+        legend:{labels:{color:"#fff"}},
+      },
+      scales:{
+        x:{ticks:{color:"#aaa"}},
+        y:{ticks:{color:"#aaa"}}
+      }
+    }
+  });
 }
 
 /* MAIN RENDER */
-function render(){
+function renderDashboard(){
   const examName = examSelect.value;
   const cat = catSelect.value;
 
@@ -141,127 +207,98 @@ function render(){
 
   const years = EXAMS[examName].years;
 
-  tableTitle.textContent = `${examName} • Full Trend Report (${cat})`;
+  kpiGrid.style.display = "grid";
+  dashGrid.style.display = "grid";
 
-  // Stats calc
   const validYears = years.filter(y => y.cutoff[cat] > 0);
 
-  const totalPapers = years.reduce((a,b)=>a + (b.papers || 0), 0);
-  const totalVacancy = years.reduce((a,b)=>a + (b.vacancy || 0), 0);
+  const totalPapers = years.reduce((a,b)=>a+(b.papers||0),0);
+  const totalVacancy = years.reduce((a,b)=>a+(b.vacancy||0),0);
 
-  const cutoffs = validYears.map(y => y.cutoff[cat]);
+  const cutoffs = validYears.map(y=>y.cutoff[cat]);
   const highest = cutoffs.length ? Math.max(...cutoffs) : 0;
-  const lowest  = cutoffs.length ? Math.min(...cutoffs) : 0;
+  const lowest = cutoffs.length ? Math.min(...cutoffs) : 0;
 
-  stPapers.textContent = totalPapers || "—";
-  stVacancy.textContent = formatNum(totalVacancy);
-  stHigh.textContent = highest ? `${highest}` : "—";
-  stLow.textContent = lowest ? `${lowest}` : "—";
+  const safeAvg = cutoffs.length
+    ? Math.round(cutoffs.reduce((a,b)=>a+safeScore(b),0)/cutoffs.length)
+    : 0;
 
-  statsBox.style.display = "grid";
-  tableCard.style.display = "block";
-  insightCard.style.display = "block";
+  const stability = getStability(cutoffs);
 
-  // Table render
-  tableBody.innerHTML = "";
+  // KPI
+  kpiPapers.textContent = totalPapers || "—";
+  kpiVacancy.textContent = formatNum(totalVacancy);
+  kpiHigh.textContent = highest || "—";
+  kpiLow.textContent = lowest || "—";
+  kpiStability.textContent = stability;
+  kpiSafe.textContent = safeAvg ? safeAvg : "—";
+
+  // Tables
+  summaryTable.innerHTML = "";
+  trendTable.innerHTML = "";
+  changeTable.innerHTML = "";
+  insightList.innerHTML = "";
 
   let prevCut = 0;
-  let validCutList = [];
 
-  years.forEach((row)=>{
+  years.forEach(row=>{
     const cut = row.cutoff[cat] || 0;
-    const ratioTxt = competitionRatio(row.applicants, row.vacancy);
-    const safe = safeScore(cut);
 
-    let trend = "same";
-    let trendTxt = "—";
-
-    let jump = false;
-
-    if(cut === 0){
-      trend = "same";
-      trendTxt = "—";
-    }else if(prevCut === 0){
-      trend = "same";
-      trendTxt = "—";
-    }else if(cut > prevCut){
-      trend = "up";
-      trendTxt = "⬆ Up";
-      if(cut - prevCut >= 8) jump = true;
-    }else if(cut < prevCut){
-      trend = "down";
-      trendTxt = "⬇ Down";
-      if(prevCut - cut >= 8) jump = true;
-    }else{
-      trend = "same";
-      trendTxt = "— Same";
-    }
-
-    const reason = simpleReason(cut, prevCut, row.vacancy, row.level, row.applicants);
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
+    // Summary table
+    const tr1 = document.createElement("tr");
+    tr1.innerHTML = `
       <td>${row.year}</td>
-      <td>${row.papers ? row.papers : "—"}</td>
       <td>${formatNum(row.vacancy)}</td>
       <td>${formatNum(row.applicants)}</td>
-      <td>${ratioTxt}</td>
-      <td>${getLevelBadge(row.level)}</td>
       <td>${cut ? cut : "—"}</td>
-      <td>${safe}</td>
-      <td class="trend ${jump ? "jump" : trend}">
-        ${jump ? "⚠ Jump" : trendTxt}
-      </td>
-      <td>${reason}</td>
-      <td>${row.changes ? row.changes : "—"}</td>
     `;
+    summaryTable.appendChild(tr1);
 
-    tableBody.appendChild(tr);
+    // Trend table
+    const trend = getTrend(cut, prevCut);
+    const reason = simpleReason(cut, prevCut, row.vacancy, row.level, row.applicants);
 
-    if(cut > 0){
-      prevCut = cut;
-      validCutList.push(cut);
-    }
+    const tr2 = document.createElement("tr");
+    tr2.innerHTML = `
+      <td>${row.year}</td>
+      <td><b>${trend.t}</b></td>
+      <td>${reason}</td>
+    `;
+    trendTable.appendChild(tr2);
+
+    // Changes table
+    const tr3 = document.createElement("tr");
+    tr3.innerHTML = `
+      <td>${row.year}</td>
+      <td>${row.level}</td>
+      <td>${row.changes || "—"}</td>
+    `;
+    changeTable.appendChild(tr3);
+
+    if(cut > 0) prevCut = cut;
   });
 
   // Insights
-  insightList.innerHTML = "";
-
   const insightArr = [];
 
-  insightArr.push(`Total papers: <b>${totalPapers}</b>`);
-  insightArr.push(`Total vacancy: <b>${formatNum(totalVacancy)}</b>`);
-  if(highest) insightArr.push(`Highest cutoff (${cat}): <b>${highest}</b>`);
-  if(lowest) insightArr.push(`Lowest cutoff (${cat}): <b>${lowest}</b>`);
+  // Competition ratio avg
+  const ratios = validYears
+    .map(y=>competitionRatio(y.applicants,y.vacancy))
+    .filter(x=>x>0);
 
-  // Trend count
-  let upCount = 0, downCount = 0;
-  for(let i=1;i<validYears.length;i++){
-    const a = validYears[i-1].cutoff[cat];
-    const b = validYears[i].cutoff[cat];
-    if(b > a) upCount++;
-    if(b < a) downCount++;
-  }
+  const avgRatio = ratios.length ? (ratios.reduce((a,b)=>a+b,0)/ratios.length).toFixed(1) : 0;
 
-  insightArr.push(`Cutoff Up years: <b>${upCount}</b>`);
-  insightArr.push(`Cutoff Down years: <b>${downCount}</b>`);
+  insightArr.push(`Average competition: <b>${avgRatio ? avgRatio : "—"}</b> applicants per seat`);
+  insightArr.push(`Safe score suggestion: <b>Cutoff + 8</b> (target planning)`);
 
-  // Stability
-  const stability = getStability(validCutList);
-  insightArr.push(`Stability Score: <b>${stability}</b>`);
-
-  // Toughest & easiest years (based on cutoff)
+  // Toughest & easiest years
   const sorted = [...validYears].sort((a,b)=>a.cutoff[cat]-b.cutoff[cat]);
-  const toughest = sorted.slice(0,3).map(x=>x.year).join(", ");
-  const easiest = sorted.slice(-3).reverse().map(x=>x.year).join(", ");
-
   if(sorted.length >= 3){
-    insightArr.push(`🔥 Toughest years (low cutoff): <b>${toughest}</b>`);
-    insightArr.push(`😄 Easiest years (high cutoff): <b>${easiest}</b>`);
+    insightArr.push(`🔥 Toughest years (low cutoff): <b>${sorted.slice(0,3).map(x=>x.year).join(", ")}</b>`);
+    insightArr.push(`😄 Easiest years (high cutoff): <b>${sorted.slice(-3).reverse().map(x=>x.year).join(", ")}</b>`);
   }
 
   insightArr.push(`Rule: Vacancy कम + Paper आसान + Applicants ज्यादा = Cutoff ऊपर 🔥`);
-  insightArr.push(`Safe Score = Cutoff + 8 (target planning के लिए)`);
 
   insightArr.forEach(x=>{
     const li = document.createElement("li");
@@ -269,8 +306,12 @@ function render(){
     insightList.appendChild(li);
   });
 
-  tableCard.scrollIntoView({behavior:"smooth", block:"start"});
+  // Charts
+  renderCharts(years, cat);
+
+  // Scroll
+  dashGrid.scrollIntoView({behavior:"smooth", block:"start"});
 }
 
-/* EVENTS */
-loadBtn.addEventListener("click", render);
+/* EVENT */
+loadBtn.addEventListener("click", renderDashboard);
