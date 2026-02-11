@@ -2492,6 +2492,30 @@ footer{ position:fixed; bottom:0;
   }
 
 }
+/* ===============================
+   MOBILE FIX: Live bar overlap stop
+=============================== */
+@media(max-width:900px){
+
+  .topbar{
+    height:auto !important;
+    padding:12px 14px 40px !important; /* नीचे जगह दे दी live-bar के लिए */
+    flex-wrap:wrap !important;
+  }
+
+  .live-bar{
+    position:absolute !important;
+    bottom:0 !important;
+    left:0 !important;
+    right:0 !important;
+    margin:0 !important;
+  }
+
+  #mainContent{
+    padding-top:120px !important; /* content नीचे चला जाएगा */
+  }
+}
+
 
 
 
