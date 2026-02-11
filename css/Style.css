@@ -2483,7 +2483,7 @@ footer{ position:fixed; bottom:0;
 ================================ */
 .site-footer{
   width:100%;
-  margin-top:40px;
+  margin-top:16px;
   padding:22px 14px;
   background:#050505;
   border-top:1px solid rgba(255,255,255,.10);
