@@ -1002,7 +1002,7 @@ button:hover{
 }
 
 .exam-result li::before{
-  content:"🎯";
+  content:"";
   position:absolute;
   left:0;
 }

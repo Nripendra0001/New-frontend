@@ -227,7 +227,7 @@ function findExams() {
 
   if (age > 42) {
     exams.push(
-      "⚠ Age relaxation based recruitments",
+      "Age relaxation based recruitments",
       "Contract based government projects",
       "Teaching & academic recruitments",
       "University & research posts"
