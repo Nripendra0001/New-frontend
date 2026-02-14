@@ -345,9 +345,4 @@ select:focus{
 ::-webkit-scrollbar-thumb:hover{
   background:rgba(255,153,0,.35);
 }
-.logo::after{
-  content:"SarkariNext";
-  font-weight:900;
-  color:#e8eefc; /* ya #ff7a18 */
-}
 
