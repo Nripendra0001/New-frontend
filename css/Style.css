@@ -2732,8 +2732,8 @@ footer{ position:fixed; bottom:0;
   }
 }
 /* ==========================================
-   HOME BLOGS – BEST CLEAN + CLICKABLE
-   (Orange + Blue + OLED, No Mess)
+   HOME BLOGS – FINAL (DARK + CLICKABLE)
+   Orange + Blue + OLED
 ========================================== */
 
 .home-blogs{
@@ -2742,11 +2742,27 @@ footer{ position:fixed; bottom:0;
   border-radius:22px;
   border:1px solid rgba(255,255,255,.10);
   background: linear-gradient(135deg,
-    rgba(255,122,24,.10),
-    rgba(77,163,255,.07),
-    rgba(255,255,255,.02)
+    rgba(0,0,0,.95),
+    rgba(8,8,10,.92),
+    rgba(15,15,18,.90)
   );
-  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Glow */
+.home-blogs::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at top left,
+    rgba(255,122,24,.10),
+    rgba(77,163,255,.08),
+    rgba(0,0,0,0) 60%
+  );
+  pointer-events:none;
+  opacity:.9;
 }
 
 /* Head */
@@ -2755,6 +2771,8 @@ footer{ position:fixed; bottom:0;
   align-items:flex-end;
   justify-content:space-between;
   gap:14px;
+  position:relative;
+  z-index:2;
 }
 
 .home-blogs-head h2{
@@ -2784,6 +2802,8 @@ footer{ position:fixed; bottom:0;
   color:#fff;
   transition:.22s ease;
   white-space:nowrap;
+  position:relative;
+  z-index:2;
 }
 
 .blog-viewall-btn:hover{
@@ -2798,6 +2818,8 @@ footer{ position:fixed; bottom:0;
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap:14px;
+  position:relative;
+  z-index:2;
 }
 
 /* Card */
@@ -2805,7 +2827,7 @@ footer{ position:fixed; bottom:0;
   padding:16px;
   border-radius:18px;
   border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);
+  background: rgba(255,255,255,.03);
   box-shadow: 0 12px 28px rgba(0,0,0,.25);
   transition:.22s ease;
   position:relative;
@@ -2813,13 +2835,13 @@ footer{ position:fixed; bottom:0;
   cursor:pointer;
 }
 
-/* Soft highlight (lighter, not dulling text) */
+/* Soft highlight */
 .home-blog-card::before{
   content:"";
   position:absolute;
   inset:0;
   background: radial-gradient(circle at top left,
-    rgba(255,122,24,.20),
+    rgba(255,122,24,.18),
     rgba(77,163,255,.12),
     rgba(0,0,0,0) 60%
   );
@@ -2873,7 +2895,7 @@ footer{ position:fixed; bottom:0;
   color:#fff;
 }
 
-/* Desc (now more readable) */
+/* Desc */
 .home-blog-card p{
   margin:8px 0 0;
   opacity:.88;
@@ -2883,14 +2905,14 @@ footer{ position:fixed; bottom:0;
   z-index:2;
   color: rgba(255,255,255,.82);
 
-  /* Max 3 lines - clean */
+  /* max 3 lines */
   display:-webkit-box;
   -webkit-line-clamp:3;
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
 
-/* Read More (button feel) */
+/* Read More Button */
 .home-blog-card a{
   display:inline-flex;
   align-items:center;
@@ -2925,7 +2947,7 @@ footer{ position:fixed; bottom:0;
   opacity:.75;
   text-align:center;
   grid-column: 1 / -1;
-  background: rgba(0,0,0,.25);
+  background: rgba(255,255,255,.03);
 }
 
 /* Responsive */
