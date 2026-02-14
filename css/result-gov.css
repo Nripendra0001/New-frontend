@@ -398,5 +398,11 @@ table{
 .markRow b{
   font-weight:700;
 }
+.logo::after{
+  content:"SarkariNext";
+  font-weight:900;
+  color:#e8eefc; /* ya #ff7a18 */
+}
+
 
 

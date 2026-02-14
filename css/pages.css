@@ -522,3 +522,9 @@ body{
 input, select, textarea, button{
   font-size:16px;
 }
+.logo::after{
+  content:"SarkariNext";
+  font-weight:900;
+  color:#e8eefc; /* ya #ff7a18 */
+}
+
