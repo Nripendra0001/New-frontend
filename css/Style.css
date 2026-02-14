@@ -2780,13 +2780,14 @@ footer{ position:fixed; bottom:0;
   font-size:24px;
   font-weight:900;
   letter-spacing:.2px;
+  color:#ffffff; /* ✅ FIXED WHITE */
 }
 
 .home-blogs-head p{
   margin:6px 0 0;
-  opacity:.82;
+  opacity:.88;
   font-weight:600;
-  color: rgba(255,255,255,.82);
+  color: rgba(255,255,255,.88);
   line-height:1.5;
   max-width:520px;
 }
