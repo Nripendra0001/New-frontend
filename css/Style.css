@@ -2886,7 +2886,8 @@ footer{ position:fixed; bottom:0;
   }
 }
 /* ==============================
-   HOME BLOGS (PRO CLICKABLE)
+   HOME BLOGS (SCOPED SAFE)
+   Only works inside .home-blogs
 ============================== */
 
 .home-blogs{
@@ -2896,7 +2897,7 @@ footer{ position:fixed; bottom:0;
   padding:32px 16px;
 }
 
-.home-blogs-head{
+.home-blogs .home-blogs-head{
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
@@ -2904,22 +2905,21 @@ footer{ position:fixed; bottom:0;
   margin-bottom:18px;
 }
 
-.home-blogs-head h2{
+.home-blogs .home-blogs-head h2{
   margin:0;
   font-size:26px;
   font-weight:900;
   letter-spacing:.2px;
 }
 
-.home-blogs-head p{
+.home-blogs .home-blogs-head p{
   margin:6px 0 0;
   font-size:14px;
   opacity:.78;
   line-height:1.5;
 }
 
-/* View All Button */
-.blog-viewall-btn{
+.home-blogs .blog-viewall-btn{
   text-decoration:none;
   padding:10px 14px;
   border-radius:14px;
@@ -2932,21 +2932,19 @@ footer{ position:fixed; bottom:0;
   white-space:nowrap;
 }
 
-.blog-viewall-btn:hover{
+.home-blogs .blog-viewall-btn:hover{
   transform:translateY(-2px);
   border:1px solid rgba(255,165,0,.40);
   box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
 
-/* Grid */
-.home-blogs-grid{
+.home-blogs #homeBlogsGrid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:16px;
 }
 
-/* Loading */
-.home-blog-loading{
+.home-blogs .home-blog-loading{
   grid-column:1 / -1;
   padding:18px 14px;
   border-radius:16px;
@@ -2956,7 +2954,7 @@ footer{ position:fixed; bottom:0;
 }
 
 /* Blog Card */
-.home-blog-card{
+.home-blogs .home-blog-card{
   display:flex;
   flex-direction:column;
   text-decoration:none;
@@ -2968,14 +2966,13 @@ footer{ position:fixed; bottom:0;
   position:relative;
 }
 
-.home-blog-card:hover{
+.home-blogs .home-blog-card:hover{
   transform:translateY(-6px);
   border:1px solid rgba(255,165,0,.35);
   box-shadow:0 14px 40px rgba(0,0,0,.55);
 }
 
-/* Thumbnail */
-.home-blog-thumb{
+.home-blogs .home-blog-thumb{
   position:relative;
   width:100%;
   height:170px;
@@ -2983,7 +2980,7 @@ footer{ position:fixed; bottom:0;
   background:#111;
 }
 
-.home-blog-thumb img{
+.home-blogs .home-blog-thumb img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -2991,12 +2988,11 @@ footer{ position:fixed; bottom:0;
   transition:.35s ease;
 }
 
-.home-blog-card:hover .home-blog-thumb img{
+.home-blogs .home-blog-card:hover .home-blog-thumb img{
   transform:scale(1.08);
 }
 
-/* Category Tag */
-.home-blog-tag{
+.home-blogs .home-blog-tag{
   position:absolute;
   top:12px;
   left:12px;
@@ -3009,15 +3005,14 @@ footer{ position:fixed; bottom:0;
   color:#000;
 }
 
-/* Content */
-.home-blog-content{
+.home-blogs .home-blog-content{
   padding:14px 14px 16px;
   display:flex;
   flex-direction:column;
   gap:10px;
 }
 
-.home-blog-title{
+.home-blogs .home-blog-title{
   margin:0;
   font-size:15px;
   font-weight:900;
@@ -3025,7 +3020,7 @@ footer{ position:fixed; bottom:0;
   color:#fff;
 }
 
-.home-blog-desc{
+.home-blogs .home-blog-desc{
   margin:0;
   font-size:13px;
   line-height:1.5;
@@ -3033,8 +3028,7 @@ footer{ position:fixed; bottom:0;
   color:#ddd;
 }
 
-/* Meta Row */
-.home-blog-meta{
+.home-blogs .home-blog-meta{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -3043,14 +3037,7 @@ footer{ position:fixed; bottom:0;
   opacity:.78;
 }
 
-.home-blog-meta span{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-/* Read Button */
-.home-blog-read{
+.home-blogs .home-blog-read{
   margin-top:2px;
   width:100%;
   border:none;
@@ -3064,16 +3051,13 @@ footer{ position:fixed; bottom:0;
   transition:.25s ease;
 }
 
-.home-blog-card:hover .home-blog-read{
+.home-blogs .home-blog-card:hover .home-blog-read{
   transform:translateY(-1px);
 }
 
-/* ==============================
-   RESPONSIVE
-============================== */
-
+/* Responsive */
 @media(max-width: 900px){
-  .home-blogs-grid{
+  .home-blogs #homeBlogsGrid{
     grid-template-columns:repeat(2, 1fr);
   }
 }
@@ -3083,16 +3067,16 @@ footer{ position:fixed; bottom:0;
     padding:26px 12px;
   }
 
-  .home-blogs-head{
+  .home-blogs .home-blogs-head{
     flex-direction:column;
     align-items:flex-start;
   }
 
-  .home-blogs-grid{
+  .home-blogs #homeBlogsGrid{
     grid-template-columns:1fr;
   }
 
-  .home-blog-thumb{
+  .home-blogs .home-blog-thumb{
     height:160px;
   }
 }
