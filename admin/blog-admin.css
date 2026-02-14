@@ -1,0 +1,121 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: system-ui, Arial;
+  background:#05060a;
+  color:#e8eefc;
+}
+
+.container{width:min(1100px,92%);margin:auto;}
+
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.75);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+}
+.topbar .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+.topbar h1{font-size:18px;}
+.topbar button{
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  color:#fff;
+  cursor:pointer;
+}
+
+.card{
+  margin-top:18px;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.card h2{margin-bottom:12px;}
+
+input, textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  color:#fff;
+  outline:none;
+}
+
+textarea{
+  min-height:110px;
+  margin-top:10px;
+  resize:vertical;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:10px;
+}
+
+.btnRow{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+button{
+  padding:12px 14px;
+  border-radius:14px;
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+  background:#ff7a18;
+  color:#000;
+}
+
+button.ghost{
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.hidden{display:none;}
+
+.list{margin-top:12px;display:flex;flex-direction:column;gap:10px;}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+}
+
+.mini{
+  margin-top:4px;
+  font-size:12px;
+  opacity:.75;
+}
+
+.actions{display:flex;gap:8px;}
+.small{
+  padding:10px 12px;
+  border-radius:12px;
+  font-size:13px;
+}
+.danger{
+  background:#ff3b3b;
+  color:#fff;
+}
+
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr;}
+}

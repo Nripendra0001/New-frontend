@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Admin • SarkariNext</title>
+  <link rel="stylesheet" href="blog-admin.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container">
+      <h1>🛠️ Blog Admin Panel</h1>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- LOGIN -->
+    <section id="loginBox" class="card">
+      <h2>Mentor Login</h2>
+      <input id="username" placeholder="username" value="mentor" />
+      <input id="password" placeholder="password" type="password" value="mentor@123" />
+      <button id="loginBtn">Login</button>
+      <p id="loginMsg"></p>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="adminBox" class="hidden">
+
+      <section class="card">
+        <h2>Create / Update Blog</h2>
+
+        <div class="grid">
+          <input id="title" placeholder="Blog Title" />
+          <input id="slug" placeholder="Slug (auto)" />
+          <input id="category" placeholder="Category (SSC, Railway...)" />
+          <input id="date" placeholder="Date (14 Feb 2026)" />
+        </div>
+
+        <textarea id="excerpt" placeholder="Excerpt (short summary)"></textarea>
+        <textarea id="content" placeholder="HTML Content (use <h2>, <p>, <ul>...)"></textarea>
+
+        <div class="btnRow">
+          <button id="createBtn">Publish Blog</button>
+          <button id="updateBtn">Update Blog</button>
+          <button id="clearBtn" class="ghost">Clear</button>
+        </div>
+
+        <p id="msg"></p>
+      </section>
+
+      <section class="card">
+        <h2>All Blogs</h2>
+        <div id="blogsList" class="list"></div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="blog-admin.js"></script>
+</body>
+</html>
