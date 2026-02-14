@@ -549,6 +549,53 @@ function toggleMenu(){
 
 document.getElementById("footerYear").innerText = new Date().getFullYear();
 
+/* ===============================
+   HOME – LOAD LATEST BLOGS
+================================ */
+(async function loadHomeBlogs(){
+  const grid = document.getElementById("homeBlogsGrid");
+  if(!grid) return;
+
+  const API_BASE = "https://api.nripendra.online";
+
+  try{
+    const res = await fetch(API_BASE + "/api/blogs");
+    const data = await res.json();
+
+    if(!data.ok) throw new Error("Blog API error");
+
+    const blogs = (data.blogs || []).slice(0, 6);
+
+    if(blogs.length === 0){
+      grid.innerHTML = `<div class="home-blog-loading">No blogs published yet.</div>`;
+      return;
+    }
+
+    grid.innerHTML = "";
+
+    blogs.forEach((b) => {
+      const card = document.createElement("div");
+      card.className = "home-blog-card";
+
+      card.innerHTML = `
+        <div class="home-blog-top">
+          <span class="home-blog-tag">${(b.category || "General")}</span>
+          <span class="home-blog-views">👁️ ${Number(b.views || 0)}</span>
+        </div>
+
+        <h3>${b.title || ""}</h3>
+        <p>${b.excerpt || ""}</p>
+
+        <a href="/blog/post.html?slug=${encodeURIComponent(b.slug)}">Read Full →</a>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  }catch(e){
+    grid.innerHTML = `<div class="home-blog-loading">❌ Blogs load nahi ho rahe.</div>`;
+  }
+})();
 
 
 
