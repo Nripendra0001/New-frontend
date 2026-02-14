@@ -2885,6 +2885,22 @@ footer{ position:fixed; bottom:0;
     height:26px;
   }
 }
+/* ===============================
+   SYLLABUS HUB BUTTON (HOME)
+================================ */
+.syllabus-btn{
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: #0b1220 !important;
+  font-weight: 900;
+  border: none;
+  box-shadow: 0 10px 22px rgba(255, 122, 24, .20);
+}
+
+.syllabus-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(255, 122, 24, .30);
+}
+
 
 
 

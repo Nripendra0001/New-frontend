@@ -140,8 +140,6 @@
 
 </header>
 
-
-
 <!-- ================= MAIN ================= -->
 <main id="mainContent">
 
@@ -456,35 +454,39 @@
     </div>
 
     <div class="quick-tools">
-      <h2>🧮 Quick Student Tools</h2>
+  <h2>🧮 Quick Student Tools</h2>
 
-      <button onclick="openPage('syllabusHub')">📘 Syllabus Hub</button>
-      <button onclick="openPage('progressPage')">📊 My Progress</button>
-      <button onclick="window.location.href='prepare.html'">🎓 Courses</button>
-      <button onclick="window.location.href='predicter.html'">📊 Rank Predictor</button>
-      <button onclick="window.location.href='exam-history.html'">📈 Cutoff Trend (20 Years)</button>
+  <button onclick="openPage('progressPage')">📊 My Progress</button>
 
+  <button onclick="window.location.href='prepare.html'">
+    🎓 Courses
+  </button>
 
-      <!-- ✅ NEW PREMIUM BUTTON -->
+  <!-- ✅ NEW BUTTON (Courses ke neeche) -->
+  <button class="syllabus-btn" onclick="window.location.href='syllabus.html'">
+    📘 Syllabus Hub (All Exams)
+  </button>
 
-
-    </div>
-    <!-- ================= LATEST BLOGS (NEW) ================= -->
-<div class="home-blogs">
-  <div class="home-blogs-head">
-    <div>
-      <h2>📰 Latest Blogs</h2>
-      <p>Daily government exam strategy, syllabus, updates & smart tips.</p>
-    </div>
-
-    <a class="blog-viewall-btn" href="/blog/index.html">View All →</a>
-  </div>
-
-  <div id="homeBlogsGrid" class="home-blogs-grid">
-    <div class="home-blog-loading">Loading latest blogs...</div>
-  </div>
+  <button onclick="window.location.href='predicter.html'">📊 Rank Predictor</button>
+  <button onclick="window.location.href='exam-history.html'">📈 Cutoff Trend (20 Years)</button>
 </div>
 
+
+    <!-- ================= LATEST BLOGS (NEW) ================= -->
+    <div class="home-blogs">
+      <div class="home-blogs-head">
+        <div>
+          <h2>📰 Latest Blogs</h2>
+          <p>Daily government exam strategy, syllabus, updates & smart tips.</p>
+        </div>
+
+        <a class="blog-viewall-btn" href="/blog/index.html">View All →</a>
+      </div>
+
+      <div id="homeBlogsGrid" class="home-blogs-grid">
+        <div class="home-blog-loading">Loading latest blogs...</div>
+      </div>
+    </div>
 
     <!-- ================= ROADMAP ================= -->
     <div class="exam-roadmap">
@@ -611,105 +613,6 @@
 
     </div>
 
-  </section>
-
-  <!-- ================= SYLLABUS HUB ================= -->
-  <section id="syllabusHub" class="page hide">
-    <h1>SarkariNext – Premium Government Exam Syllabus Hub</h1>
-    <p>
-      Official pattern based, topic-wise, deep detailed syllabus for serious aspirants.
-      Yahan tumhe exam-wise exact subjects + important topics milenge.
-    </p>
-
-    <div class="student-note" style="margin:16px 0">
-      Tip: Syllabus ke hisaab se hi notebook banao. Random padhai = slow progress.
-    </div>
-
-    <div class="doc-hub" style="margin-top:18px">
-      <h2>📘 Exam-wise Syllabus (Official Pattern)</h2>
-
-      <div class="doc-grid">
-
-        <div>
-          <h3>🚓 UP Police Constable – Syllabus</h3>
-          <ul>
-            <li><b>General Knowledge:</b> Current Affairs, History, Polity, Geography, Economy</li>
-            <li><b>General Hindi:</b> Grammar, Sandhi, Samas, Muhavare, Vakya Shuddhi</li>
-            <li><b>Numerical & Mental Ability:</b> Percentage, Profit-Loss, Ratio, SI/CI, Time & Work</li>
-            <li><b>Mental Aptitude / IQ:</b> Series, Coding-Decoding, Direction, Blood Relation</li>
-            <li><b>Reasoning:</b> Analogy, Classification, Puzzle, Statement-Conclusion</li>
-            <li><b>Physical:</b> Running, Height, Chest, Medical Standards</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>📑 SSC Exams (CGL/CHSL/GD) – Syllabus</h3>
-          <ul>
-            <li><b>Reasoning:</b> Series, Analogy, Venn, Syllogism, Puzzle, Matrix</li>
-            <li><b>Maths:</b> Arithmetic + Algebra + Geometry + Mensuration</li>
-            <li><b>English:</b> Grammar, Vocabulary, Cloze Test, Comprehension</li>
-            <li><b>General Awareness:</b> Static GK + Current Affairs</li>
-            <li><b>Science:</b> Physics, Chemistry, Biology (GD / CHSL me common)</li>
-            <li><b>Computer:</b> Basics, MS Office, Internet (CGL/CHSL)</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>🚆 Railway (NTPC / Group D / ALP) – Syllabus</h3>
-          <ul>
-            <li><b>Mathematics:</b> Number System, Simplification, SI/CI, Time-Speed, DI</li>
-            <li><b>Reasoning:</b> Puzzle, Series, Analogy, Direction, Sitting Arrangement</li>
-            <li><b>General Awareness:</b> Current Affairs + Static GK</li>
-            <li><b>General Science:</b> Class 9–10 Physics, Chemistry, Biology</li>
-            <li><b>Technical (ALP/JE):</b> ITI/Diploma level core topics</li>
-            <li><b>Typing/Skill:</b> (NTPC specific posts)</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>🏦 Banking (IBPS/SBI/RRB) – Syllabus</h3>
-          <ul>
-            <li><b>Quant:</b> Simplification, Approximation, DI, Ratio, Time & Work, Profit-Loss</li>
-            <li><b>Reasoning:</b> Seating, Puzzle, Syllogism, Inequality, Blood Relation</li>
-            <li><b>English:</b> RC, Cloze, Para Jumble, Error, Fillers</li>
-            <li><b>Banking Awareness:</b> RBI, Banking Terms, Schemes, Budget, Economy</li>
-            <li><b>Computer:</b> Basic Hardware, Software, Internet, MS Office</li>
-            <li><b>Current Affairs:</b> Last 6 months (very important)</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>📚 Teaching (CTET/UPTET/Super TET) – Syllabus</h3>
-          <ul>
-            <li><b>Child Development:</b> Learning theories, pedagogy, psychology</li>
-            <li><b>Language:</b> Hindi + English (grammar, comprehension)</li>
-            <li><b>Maths:</b> Basic concepts + pedagogy</li>
-            <li><b>EVS / Science:</b> NCERT based + teaching methods</li>
-            <li><b>Social Studies:</b> History, Geography, Civics</li>
-            <li><b>UP Specific:</b> Super TET me UP GK + Current Affairs</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>🪖 Defence (NDA/CDS/AFCAT) – Syllabus</h3>
-          <ul>
-            <li><b>Maths:</b> Algebra, Trigonometry, Calculus basics, Mensuration</li>
-            <li><b>GAT:</b> English + GK + Science + Current Affairs</li>
-            <li><b>History:</b> Modern India + Freedom struggle</li>
-            <li><b>Polity:</b> Constitution, Parliament, Rights & Duties</li>
-            <li><b>Geography:</b> Physical + India + World</li>
-            <li><b>SSB:</b> Personality, Communication, Psychology, Group Tasks</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="student-note" style="margin-top:22px">
-        SarkariNext Rule: Syllabus = Map, Mock Test = Compass, Consistency = Fuel.
-      </div>
-
-      <button class="back-btn" onclick="goBack()">← Back</button>
-    </div>
   </section>
 
   <!-- ================= PROGRESS PAGE ================= -->
@@ -850,10 +753,6 @@
     <div class="student-note">Tip: Discipline + fitness + personality.</div>
     <button class="back-btn" onclick="goBack()">← Back</button>
   </section>
-  
-
-  <!-- ================= ABOUT ================= -->
-
 
 </main>
 
@@ -876,29 +775,25 @@
 
   <footer class="site-footer">
 
-  <div class="footer-links">
-    <a href="./about.html">About</a>
-    <a href="./team.html">Team</a>
-    <a href="./privacy.html">Privacy</a>
-    <a href="./terms.html">Terms</a>
-    <a href="./disclaimer.html">Disclaimer</a>
-    <a href="./contact.html">Contact</a>
-  </div>
+    <div class="footer-links">
+      <a href="./about.html">About</a>
+      <a href="./team.html">Team</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./terms.html">Terms</a>
+      <a href="./disclaimer.html">Disclaimer</a>
+      <a href="./contact.html">Contact</a>
+    </div>
 
-  <div class="footer-copy">
-    © <span id="footerYear"></span> nripendra.online • All Rights Reserved
-  </div>
+    <div class="footer-copy">
+      © <span id="footerYear"></span> nripendra.online • All Rights Reserved
+    </div>
 
-
-
+  </footer>
 
 </footer>
-
 
 <!-- Main JS -->
 <script src="./js/main.js"></script>
 
 </body>
 </html>
-
-<!-- deploy test -->

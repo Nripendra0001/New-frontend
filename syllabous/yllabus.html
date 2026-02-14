@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Syllabus Hub • SarkariNext</title>
+  <meta name="description" content="SarkariNext Syllabus Hub – Exam wise syllabus, topics, and preparation roadmap for UP Police, SSC, Railway, Banking, Teaching, Defence." />
+
+  <link rel="icon" type="image/png" href="./favicon.png" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./css/Style.css?v=5" />
+  <link rel="stylesheet" href="./css/syllabus.css?v=1" />
+
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="topbar">
+
+    <div class="site-logo" onclick="window.location.href='index.html'" style="cursor:pointer">
+      <img src="./favicon.png" alt="SarkariNext Logo" />
+      <span class="logoText">
+        Sarkari<span class="logoNext">Next</span>
+      </span>
+    </div>
+
+    <div class="mode-btn" onclick="toggleDark()"></div>
+
+    <div class="live-bar">
+      Official Syllabus + Topic Weightage + Smart Preparation Plan (Exam Wise)
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="syllabus-wrap">
+
+    <div class="syllabus-hero">
+      <h1>SarkariNext – Government Exam Syllabus Hub</h1>
+      <p>
+        Yahan tumhe exam-wise official pattern ke hisaab se syllabus, topic list, aur smart preparation roadmap milega.
+        Ye page specially serious students ke liye banaya gaya hai.
+      </p>
+
+      <div class="syllabus-actions">
+        <input id="syllabusSearch" type="text" placeholder="Search exam (SSC, Railway, UP Police...)" />
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
+
+    <!-- ================= GRID ================= -->
+    <div id="syllabusGrid" class="syllabus-grid">
+      <!-- JS will render -->
+    </div>
+
+    <div class="syllabus-footer-note">
+      <b>Note:</b> SarkariNext ka rule simple hai: Syllabus ko map samjho, mock test ko compass.
+      Consistency = selection.
+    </div>
+
+    <div class="syllabus-back">
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+  </main>
+
+  <!-- Main JS -->
+  <script src="./js/main.js"></script>
+
+  <!-- Syllabus JS -->
+  <script src="./js/syllabus.js?v=1"></script>
+
+</body>
+</html>
