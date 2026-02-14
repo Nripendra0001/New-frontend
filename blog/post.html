@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Post • SarkariNext</title>
+  <meta name="description" content="SarkariNext Blog Post" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container">
+      <a class="logo" href="/index.html">Sarkari<span>Next</span></a>
+
+      <nav class="nav">
+        <a href="/index.html">Home</a>
+        <a class="active" href="/blog/index.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <a class="back" href="index.html">← Back to Blogs</a>
+
+    <article id="post" class="post"></article>
+
+    <section class="more">
+      <h3>More Blogs</h3>
+      <div id="moreGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> SarkariNext • Blog</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").innerText = new Date().getFullYear();
+  </script>
+
+  <script src="blog.js"></script>
+</body>
+</html>

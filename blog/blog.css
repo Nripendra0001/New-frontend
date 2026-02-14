@@ -1,0 +1,246 @@
+:root{
+  --bg:#0b1220;
+  --card:#111a2e;
+  --border:rgba(255,255,255,.08);
+  --text:#e8eefc;
+  --muted:rgba(232,238,252,.72);
+  --brand:#ff7a18;
+  --brand2:#4da3ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: radial-gradient(circle at top, #111a2e 0%, #070b14 55%, #05060a 100%);
+  color: var(--text);
+  min-height:100vh;
+}
+
+.container{
+  width:min(1100px, 92%);
+  margin:auto;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter: blur(12px);
+  background: rgba(5,8,16,.70);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+
+.logo{
+  font-weight:800;
+  font-size:20px;
+  text-decoration:none;
+  color:var(--text);
+  letter-spacing:.2px;
+}
+.logo span{color:var(--brand);}
+
+.nav a{
+  text-decoration:none;
+  color:var(--muted);
+  margin-left:16px;
+  font-weight:600;
+}
+.nav a.active, .nav a:hover{
+  color:var(--text);
+}
+
+.hero{
+  padding:26px 0 18px;
+}
+.hero h1{
+  font-size:34px;
+  letter-spacing:-.5px;
+}
+.hero p{
+  margin-top:8px;
+  color:var(--muted);
+}
+
+.filters{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.filters input, .filters select{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color:var(--text);
+  outline:none;
+}
+.filters input{flex:1; min-width:240px;}
+.filters select{min-width:180px;}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  padding-bottom:30px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.30);
+  transition: transform .18s ease, border .18s ease;
+}
+.card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,122,24,.30);
+}
+
+.cardTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.tag{
+  font-size:12px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(255,122,24,.12);
+  border: 1px solid rgba(255,122,24,.18);
+  color: #ffb27c;
+}
+
+.date{
+  font-size:12px;
+  color: var(--muted);
+}
+
+.title{
+  font-size:18px;
+  margin:6px 0 10px;
+  line-height:1.25;
+}
+
+.excerpt{
+  color: var(--muted);
+  line-height:1.55;
+  font-size:14px;
+}
+
+.read{
+  text-decoration:none;
+  font-weight:800;
+  color: var(--brand2);
+}
+
+.back{
+  display:inline-block;
+  margin:18px 0 14px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.post{
+  padding:18px;
+  border-radius:18px;
+  background: rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+
+.post h1{
+  font-size:32px;
+  margin-top:12px;
+  line-height:1.2;
+}
+
+.post .content{
+  margin-top:16px;
+  color: rgba(232,238,252,.90);
+  line-height:1.75;
+  font-size:15px;
+}
+
+.post .content h2, .post .content h3{
+  margin-top:18px;
+  margin-bottom:10px;
+}
+
+.post .content ul{
+  padding-left:18px;
+  margin-top:8px;
+}
+
+.more{
+  margin-top:26px;
+}
+.more h3{
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.footer{
+  border-top:1px solid var(--border);
+  padding:18px 0;
+  color:var(--muted);
+  text-align:center;
+}
+
+.empty{
+  padding:22px;
+  border-radius:16px;
+  border:1px dashed var(--border);
+  color:var(--muted);
+  text-align:center;
+}
+
+.views{
+  margin-left:auto;
+  font-size:12px;
+  color: rgba(232,238,252,.85);
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+
+.cardBottom{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.viewsSmall{
+  font-size:12px;
+  font-weight:800;
+  color: rgba(232,238,252,.75);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.02);
+}
+
+@media (max-width: 900px){
+  .grid{grid-template-columns: repeat(2, 1fr);}
+}
+@media (max-width: 560px){
+  .grid{grid-template-columns: 1fr;}
+  .hero h1{font-size:26px;}
+  .post h1{font-size:24px;}
+}
