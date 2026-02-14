@@ -2844,6 +2844,48 @@ footer{ position:fixed; bottom:0;
     height:26px;
   }
 }
+/* ===============================
+   HEADER LOGO TEXT (FINAL)
+================================ */
+
+.site-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.site-logo img{
+  width:30px;
+  height:30px;
+  border-radius:8px;
+}
+
+.site-logo .logoText{
+  font-family: "Poppins", system-ui, Arial;
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+  color: #ffffff; /* Sarkari white */
+}
+
+.site-logo .logoNext{
+  color:#ff7a18; /* Next orange */
+  font-weight:900;
+}
+
+/* Mobile */
+@media(max-width:560px){
+  .site-logo .logoText{
+    font-size: 26px;
+    letter-spacing: -0.4px;
+  }
+  .site-logo img{
+    width:26px;
+    height:26px;
+  }
+}
+
 
 
 
