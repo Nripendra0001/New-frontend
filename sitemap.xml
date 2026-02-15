@@ -1,10 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- ===== HOME ===== -->
   <url>
     <loc>https://nripendra.online/</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <priority>1.00</priority>
+  </url>
+
+  <!-- ===== MAIN PAGES ===== -->
+  <url>
+    <loc>https://nripendra.online/latest_job.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/admit.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/result.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/answere_key.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/exam-history.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/job_detail.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/view.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/prepare.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/course.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/channels.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- ===== PREDICTOR ===== -->
+  <url>
+    <loc>https://nripendra.online/predicter.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/predicy-result.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- ===== BLOG ===== -->
+  <url>
+    <loc>https://nripendra.online/blog/</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/blog/post.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- ===== ABOUT / CONTACT ===== -->
+  <url>
+    <loc>https://nripendra.online/about.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/contact.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.60</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/team.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- ===== LEGAL ===== -->
+  <url>
+    <loc>https://nripendra.online/privacy.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.40</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/terms.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.40</priority>
+  </url>
+
+  <url>
+    <loc>https://nripendra.online/disclaimer.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>0.40</priority>
   </url>
 
 </urlset>
