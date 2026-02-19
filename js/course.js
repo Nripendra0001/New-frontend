@@ -5285,7 +5285,7 @@ function showTopics(subject) {
 
   const back = document.createElement("div");
   back.className = "subject-title";
-  back.innerText = "⬅ Back to subjects";
+  back.innerText = " Back to subjects";
   back.onclick = () => loadSubjects();
   subjectArea.appendChild(back);
 
@@ -5302,7 +5302,7 @@ function showTopics(subject) {
   list.forEach((v) => {
     const card = document.createElement("div");
     card.className = "video-card";
-    card.innerHTML = `▶ <b>${v.title}</b>`;
+    card.innerHTML = ` <b>${v.title}</b>`;
     card.onclick = () => playVideo(v.id, card, v.title);
     videos.appendChild(card);
   });

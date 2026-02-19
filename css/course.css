@@ -1,23 +1,45 @@
 /* =========================================
-   SarkariNext Course UI (FINAL FINAL)
-   OLED PURE BLACK + AMAZON THEME
-   ✅ Mobile: Video + Title Sticky on Top
+   SarkariNext Course UI (PREMIUM LIGHT FINAL)
+   WHITE + SOFT GRAY + ROYAL PURPLE/BLUE
+   ✅ PW-level clean look
+   ✅ Premium buttons + hover shine
+   ✅ Smooth cards + depth
+   ✅ Mobile sticky video on top
 ========================================= */
 
 :root{
-  --bg:#000000;
-  --panel:#000000;
-  --card:#050505;
+  /* Light base */
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --card:#ffffff;
 
-  --border:rgba(255,255,255,.10);
+  --text:#0b1220;
+  --muted:rgba(11,18,32,.62);
 
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.65);
+  --border:rgba(11,18,32,.10);
+  --border2:rgba(11,18,32,.14);
 
-  --accent:#ff9900;
-  --blue:#00a8e1;
+  /* Premium accents */
+  --royal:#5b21b6;        /* deep royal purple */
+  --royal2:#7c3aed;       /* purple highlight */
+  --blue:#2563eb;         /* premium blue */
+  --cyan:#06b6d4;         /* tiny accent */
 
-  --glow: 0 0 0 3px rgba(255,153,0,.25);
+  /* Glow */
+  --glow-royal: 0 0 0 3px rgba(124,58,237,.16);
+  --glow-blue: 0 0 0 3px rgba(37,99,235,.14);
+
+  /* Shadows (premium) */
+  --shadow-xl: 0 30px 90px rgba(11,18,32,.18);
+  --shadow-lg: 0 18px 55px rgba(11,18,32,.14);
+  --shadow-md: 0 10px 28px rgba(11,18,32,.10);
+  --shadow-sm: 0 8px 18px rgba(11,18,32,.08);
+
+  --radius-xl: 22px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+
+  --ease:cubic-bezier(.18,.9,.2,1);
 }
 
 *{ box-sizing:border-box; }
@@ -27,9 +49,13 @@ html, body{
   margin:0;
   padding:0;
   overflow-x:hidden;
-  font-family:Poppins,Arial,sans-serif;
-  background:var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Poppins, Arial, sans-serif;
   color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 10% -10%, rgba(124,58,237,.10), transparent 55%),
+    radial-gradient(900px 600px at 90% 10%, rgba(37,99,235,.10), transparent 60%),
+    radial-gradient(900px 600px at 20% 110%, rgba(6,182,212,.06), transparent 55%),
+    var(--bg);
 }
 
 /* ===============================
@@ -37,7 +63,7 @@ html, body{
 ================================ */
 .course-app{
   display:grid;
-  grid-template-columns:280px 1fr;
+  grid-template-columns:320px 1fr;
   height:100vh;
 }
 
@@ -45,9 +71,10 @@ html, body{
    LEFT PANEL
 ================================ */
 .course-left{
-  background:linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
-  border-right:1px solid var(--border);
-  padding:14px 12px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.85) 0%, rgba(255,255,255,.60) 100%);
+  border-right:1px solid rgba(11,18,32,.10);
+  padding:16px 14px;
   display:flex;
   flex-direction:column;
   height:100vh;
@@ -56,113 +83,271 @@ html, body{
 
 /* Brand box */
 .brand-box{
-  padding:14px 12px;
-  border-radius:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  box-shadow:0 10px 25px rgba(0,0,0,.55);
+  padding:16px 14px;
+  border-radius:22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70));
+  border:1px solid rgba(11,18,32,.10);
+  box-shadow:var(--shadow-md);
+  position:relative;
+  overflow:hidden;
 }
+
+.brand-box::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(700px 260px at 10% 10%, rgba(124,58,237,.12), transparent 60%),
+    radial-gradient(700px 260px at 90% 90%, rgba(37,99,235,.10), transparent 60%);
+  filter: blur(14px);
+  opacity:1;
+  z-index:0;
+}
+
+.brand-box *{ position:relative; z-index:1; }
 
 .brand-box h2{
   margin:0;
   font-size:18px;
-  font-weight:900;
-  color:var(--accent);
-  letter-spacing:.3px;
+  font-weight:950;
+  letter-spacing:.2px;
+  background:linear-gradient(90deg, var(--royal), var(--blue));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .brand-box p{
-  margin:6px 0 0;
+  margin:7px 0 0;
   font-size:12px;
   color:var(--muted);
-  font-weight:600;
+  font-weight:700;
+  line-height:1.35;
 }
 
 /* Top buttons */
 .left-actions{
-  margin-top:12px;
+  margin-top:14px;
   display:flex;
   flex-direction:column;
   gap:10px;
 }
 
+/* ===============================
+   PREMIUM BUTTONS (LIGHT)
+================================ */
 .course-btn{
+  position:relative;
   width:100%;
-  background:rgba(255,255,255,.03);
-  border:1.5px solid var(--border);
-  color:var(--text);
-  padding:11px 12px;
-  border-radius:14px;
-  cursor:pointer;
-  transition:.25s;
+  padding:12px 12px;
+  border-radius:18px;
+
   font-size:13px;
-  font-weight:800;
+  font-weight:900;
+  letter-spacing:.12px;
   text-align:left;
+
+  color:rgba(11,18,32,.92);
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.65)),
+    radial-gradient(700px 240px at 10% 0%, rgba(124,58,237,.10), transparent 55%),
+    radial-gradient(700px 240px at 90% 100%, rgba(37,99,235,.08), transparent 55%);
+
+  border:1px solid rgba(11,18,32,.10);
+  box-shadow:var(--shadow-sm);
+
+  cursor:pointer;
+  transition:.28s var(--ease);
+  overflow:hidden;
+  transform:translateZ(0);
+}
+
+/* Shine */
+.course-btn::before{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:-60%;
+  width:60%;
+  height:160%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+  transform:skewX(-18deg);
+  opacity:0;
+  transition:.55s var(--ease);
+}
+
+/* Active left bar */
+.course-btn::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:0px;
+  height:64%;
+  border-radius:999px;
+  background:linear-gradient(180deg, var(--royal2), var(--blue));
+  transition:.28s var(--ease);
+  opacity:0;
 }
 
 .course-btn:hover{
-  border-color:rgba(0,168,225,.95);
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+  border-color:rgba(124,58,237,.25);
+  box-shadow:var(--shadow-md);
+}
+
+.course-btn:hover::before{
+  left:120%;
+  opacity:1;
 }
 
 .course-btn.active{
-  border-color:rgba(255,153,0,.95);
-  box-shadow:var(--glow);
+  border-color:rgba(124,58,237,.35);
+  box-shadow:var(--glow-royal), var(--shadow-lg);
+}
+
+.course-btn.active::after{
+  width:5px;
+  opacity:1;
+}
+
+.course-btn:active{
+  transform:scale(.985);
 }
 
 /* SUBJECT + TOPIC AREA */
 .left-subject-area{
   margin-top:14px;
   padding-top:14px;
-  border-top:1px solid var(--border);
+  border-top:1px solid rgba(11,18,32,.10);
   overflow-y:auto;
   flex:1;
+  padding-right:6px;
 }
 
 /* SUBJECT */
-.subject-box{ margin-bottom:16px; }
+.subject-box{ margin-bottom:18px; }
 
+/* Subject title */
 .subject-title{
   display:flex;
   align-items:center;
-  gap:8px;
-  padding:10px 10px;
+  gap:10px;
+  padding:11px 12px;
   margin:10px 0 10px;
-  border-radius:14px;
-  border:1.5px solid var(--border);
-  background:rgba(255,255,255,.03);
-  color:var(--blue);
+  border-radius:18px;
+
+  border:1px solid rgba(11,18,32,.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70)),
+    radial-gradient(650px 240px at 15% 0%, rgba(124,58,237,.08), transparent 60%);
+
+  color:rgba(11,18,32,.92);
   font-size:13px;
-  font-weight:900;
+  font-weight:950;
+  letter-spacing:.15px;
+
+  box-shadow:var(--shadow-sm);
+  position:relative;
+  overflow:hidden;
+}
+
+.subject-title::after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  top:-50px;
+  width:190px;
+  height:190px;
+  background:radial-gradient(circle, rgba(37,99,235,.10), transparent 60%);
+  filter: blur(12px);
+  opacity:1;
 }
 
 /* TOPIC LIST */
 .video-grid{
   display:flex;
   flex-direction:column;
-  gap:9px;
+  gap:10px;
 }
 
+/* Topic cards */
 .video-card{
-  background:rgba(255,255,255,.03);
-  border:1.5px solid var(--border);
-  padding:11px 10px;
-  border-radius:14px;
+  position:relative;
+  padding:12px 12px;
+  border-radius:18px;
+
+  font-size:12.7px;
+  font-weight:850;
+  letter-spacing:.1px;
+
+  color:rgba(11,18,32,.90);
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70)),
+    radial-gradient(650px 240px at 10% 0%, rgba(124,58,237,.08), transparent 60%),
+    radial-gradient(650px 240px at 90% 100%, rgba(37,99,235,.06), transparent 60%);
+
+  border:1px solid rgba(11,18,32,.10);
+  box-shadow:var(--shadow-sm);
+
   cursor:pointer;
-  font-size:12.5px;
-  font-weight:800;
-  transition:.25s;
-  color:var(--text);
+  transition:.28s var(--ease);
+  overflow:hidden;
+  transform:translateZ(0);
+}
+
+/* Shine */
+.video-card::before{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:-60%;
+  width:60%;
+  height:160%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.60), transparent);
+  transform:skewX(-18deg);
+  opacity:0;
+  transition:.55s var(--ease);
+}
+
+/* Active left bar */
+.video-card::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:0px;
+  height:64%;
+  border-radius:999px;
+  background:linear-gradient(180deg, var(--royal2), var(--blue));
+  transition:.28s var(--ease);
+  opacity:0;
 }
 
 .video-card:hover{
-  border-color:rgba(0,168,225,.95);
-  transform:translateX(4px);
+  transform:translateX(7px);
+  border-color:rgba(37,99,235,.20);
+  box-shadow:var(--shadow-md);
+}
+
+.video-card:hover::before{
+  left:120%;
+  opacity:1;
 }
 
 .video-card.active{
-  border-color:rgba(255,153,0,.95);
-  box-shadow:var(--glow);
+  border-color:rgba(124,58,237,.35);
+  box-shadow:var(--glow-royal), var(--shadow-lg);
+}
+
+.video-card.active::after{
+  width:5px;
+  opacity:1;
 }
 
 /* ===============================
@@ -170,22 +355,17 @@ html, body{
 ================================ */
 .course-right{
   width:100%;
-  background:
-    radial-gradient(circle at top, rgba(0,168,225,.10), transparent 45%),
-    radial-gradient(circle at bottom, rgba(255,153,0,.10), transparent 50%),
-    var(--bg);
-  padding:16px;
+  padding:18px;
   display:flex;
   flex-direction:column;
 }
 
-/* Wrap */
 .player-wrap{
   width:100%;
   height:100%;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:14px;
 }
 
 /* VIDEO PLAYER BIG */
@@ -195,8 +375,24 @@ html, body{
   background:#000;
   overflow:hidden;
   border-radius:22px;
-  border:1px solid var(--border);
-  box-shadow:0 18px 55px rgba(0,0,0,.75);
+  border:1px solid rgba(11,18,32,.10);
+  box-shadow:var(--shadow-xl);
+  position:relative;
+}
+
+/* Premium border glow */
+.player-box::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:22px;
+  background:
+    radial-gradient(900px 420px at 20% 10%, rgba(124,58,237,.16), transparent 60%),
+    radial-gradient(900px 420px at 90% 90%, rgba(37,99,235,.12), transparent 60%);
+  filter: blur(18px);
+  opacity:1;
+  z-index:0;
+  pointer-events:none;
 }
 
 .player-box iframe{
@@ -204,44 +400,62 @@ html, body{
   height:100%;
   border:none;
   display:block;
+  position:relative;
+  z-index:1;
 }
 
 /* Bottom info */
 .player-bottom{
-  padding:12px 14px;
-  border-radius:18px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
+  padding:13px 15px;
+  border-radius:22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70)),
+    radial-gradient(650px 240px at 15% 0%, rgba(124,58,237,.08), transparent 60%);
+
+  border:1px solid rgba(11,18,32,.10);
+  box-shadow:var(--shadow-lg);
 }
 
 #videoTitle{
   margin:0;
   font-size:15px;
-  font-weight:900;
+  font-weight:950;
+  letter-spacing:.15px;
 }
 
 .player-hint{
-  margin-top:6px;
+  margin-top:7px;
   font-size:12px;
-  font-weight:700;
+  font-weight:750;
   color:var(--muted);
+  line-height:1.4;
+}
+
+/* ===============================
+   PREMIUM SCROLLBAR
+================================ */
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-track{ background:transparent; }
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, rgba(124,58,237,.30), rgba(37,99,235,.28));
+  border-radius:12px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg, rgba(124,58,237,.45), rgba(37,99,235,.40));
 }
 
 /* =================================================
-   ✅ MOBILE FINAL FIX (100% Working)
-   - Video always on TOP
-   - Sticky works (no overflow blockers)
+   ✅ MOBILE FINAL FIX
 ================================================= */
 @media(max-width:900px){
 
-  /* ✅ IMPORTANT: remove 100vh layout issues */
   .course-app{
     display:flex !important;
     flex-direction:column !important;
     height:auto !important;
   }
 
-  /* ✅ Force video section on TOP */
+  /* Video on TOP + sticky */
   .course-right{
     order:1 !important;
     padding:0 !important;
@@ -250,41 +464,41 @@ html, body{
     top:0 !important;
     z-index:999999 !important;
 
-    background:#000 !important;
-    box-shadow:0 10px 30px rgba(0,0,0,.75);
+    background:rgba(246,247,251,.92) !important;
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid rgba(11,18,32,.10);
+    box-shadow:0 18px 50px rgba(11,18,32,.18);
   }
 
-  /* ✅ Video full width */
   .player-box{
     width:100vw !important;
-    height:56.25vw !important; /* 16:9 */
+    height:56.25vw !important;
     border-radius:0 !important;
     border:none !important;
     box-shadow:none !important;
   }
 
-  /* ✅ Title bar */
+  .player-box::after{ display:none !important; }
+
   .player-bottom{
     border-radius:0 !important;
     border-left:none !important;
     border-right:none !important;
-    border-top:1px solid rgba(255,255,255,.08) !important;
-    background:#000 !important;
+    border-top:1px solid rgba(11,18,32,.10) !important;
+    background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.80)) !important;
+    box-shadow:none !important;
   }
 
-  #videoTitle{
-    font-size:14px !important;
-  }
+  #videoTitle{ font-size:14px !important; }
 
-  /* ✅ Left panel goes BELOW */
+  /* Left panel below */
   .course-left{
     order:2 !important;
     height:auto !important;
     border-right:none !important;
-    border-top:1px solid rgba(255,255,255,.10) !important;
-
-    /* ✅ MOST IMPORTANT: sticky ko break karne wala overflow हटाया */
+    border-top:1px solid rgba(11,18,32,.10) !important;
     overflow:visible !important;
+    padding:14px 12px !important;
   }
 
   .left-subject-area{
@@ -294,16 +508,12 @@ html, body{
   }
 }
 
-/* ===============================
-   SCROLLBAR
-================================ */
-::-webkit-scrollbar{ width:7px; }
-::-webkit-scrollbar-track{ background:transparent; }
-::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.12);
-  border-radius:10px;
-}
-::-webkit-scrollbar-thumb:hover{
-  background:rgba(0,168,225,.60);
+/* Focus */
+button:focus, .video-card:focus{
+  outline:none;
 }
 
+.course-btn:active,
+.video-card:active{
+  transform:scale(.98);
+}
