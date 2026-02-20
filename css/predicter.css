@@ -289,4 +289,27 @@ input:focus, select:focus{
 button, input, select{
   font-size:16px;
 }
+/* =========================
+   DROPDOWN OPTIONS FIX
+========================= */
+select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+}
+
+/* Dropdown list options */
+select option{
+  background: #0f1730;   /* dark background */
+  color: #eaf0ff;        /* white text */
+}
+
+/* For better highlight on hover/selected (supported browsers) */
+select option:checked{
+  background: #ff9900;
+  color: #111;
+}
+
 
