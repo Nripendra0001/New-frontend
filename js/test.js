@@ -59,7 +59,7 @@ const bank = {
     GK: { easy: 7, medium: 8, hard: 3 },
     Math: { easy: 5, medium: 5, hard: 2 },
     Reasoning: { easy: 5, medium: 5, hard: 2 },
-    English: { easy: 3, medium: 2, hard: 3 }
+  
   },
 
   "SSC": {
@@ -499,127 +499,10 @@ bank.Reasoning.hard.push(
 
 
 
-// English
-bank.English.easy.push(
-  { q:"Synonym of FAST?", options:["Quick","Slow","Weak","Cold"], ans:0 },
-  { q:"Synonym of FAST?", options:["Quick","Slow","Weak","Cold"], ans:0 },
-  { q:"Synonym of HAPPY?", options:["Sad","Joyful","Angry","Weak"], ans:1 },
-  { q:"Synonym of SMALL?", options:["Tiny","Huge","Big","Large"], ans:0 },
-  { q:"Synonym of BEGIN?", options:["Start","Stop","End","Close"], ans:0 },
-  { q:"Synonym of HELP?", options:["Assist","Hurt","Break","Stop"], ans:0 },
-
-  { q:"Antonym of BIG?", options:["Large","Huge","Small","Heavy"], ans:2 },
-  { q:"Antonym of HOT?", options:["Cold","Warm","Heat","Cool"], ans:0 },
-  { q:"Antonym of UP?", options:["Down","Left","Right","Top"], ans:0 },
-  { q:"Antonym of DAY?", options:["Night","Sun","Light","Time"], ans:0 },
-  { q:"Antonym of CLEAN?", options:["Dirty","Fresh","Pure","Clear"], ans:0 },
-
-  { q:"Fill: I ___ a book.", options:["read","reads","reading","readed"], ans:0 },
-  { q:"Fill: He ___ tea.", options:["drink","drinks","drinking","drank"], ans:1 },
-  { q:"Fill: We ___ friends.", options:["is","are","was","be"], ans:1 },
-  { q:"Fill: She ___ to school.", options:["go","goes","going","gone"], ans:1 },
-  { q:"Fill: They ___ playing.", options:["is","are","was","be"], ans:1 },
-
-  { q:"Plural of Child?", options:["Childs","Children","Childrens","Childes"], ans:1 },
-  { q:"Plural of Man?", options:["Mans","Mens","Men","Manes"], ans:2 },
-  { q:"Plural of Woman?", options:["Womans","Women","Womens","Womanes"], ans:1 },
-  { q:"Plural of Foot?", options:["Foots","Feets","Feet","Fets"], ans:2 },
-  { q:"Plural of Tooth?", options:["Tooths","Teeth","Toothes","Toothes"], ans:1 },
-
-  { q:"Opposite of TRUE?", options:["False","Right","Sure","Pure"], ans:0 },
-  { q:"Opposite of OLD?", options:["New","Young","Fresh","All"], ans:1 },
-  { q:"Opposite of OPEN?", options:["Close","Shut","Both","None"], ans:2 },
-  { q:"Opposite of LIGHT?", options:["Bright","Dark","White","Clear"], ans:1 },
-  { q:"Opposite of RICH?", options:["Poor","Strong","Big","Happy"], ans:0 },
-
-  { q:"One word: A place where books are kept", options:["Library","School","Office","Bank"], ans:0 },
-  { q:"One word: A person who teaches", options:["Teacher","Doctor","Driver","Painter"], ans:0 },
-  { q:"One word: A person who writes poems", options:["Poet","Singer","Dancer","Player"], ans:0 },
-  { q:"One word: A person who drives a car", options:["Driver","Pilot","Cook","Guard"], ans:0 },
-  { q:"One word: A person who works in a hospital", options:["Doctor","Teacher","Farmer","Singer"], ans:0 }
-);
 
 
 
-bank.English.medium.push(
-  { q:"Fill: He ___ to school daily.", options:["go","goes","going","gone"], ans:1 },
-  { q:"Fill: He ___ to school daily.", options:["go","goes","going","gone"], ans:1 },
-  { q:"Choose correct: I have ___ my work.", options:["done","do","did","doing"], ans:0 },
-  { q:"Choose correct: She is ___ honest girl.", options:["a","an","the","no"], ans:1 },
-  { q:"Fill: The sun ___ in the east.", options:["rise","rises","rising","rose"], ans:1 },
-  { q:"Fill: They ___ watching TV.", options:["is","are","was","be"], ans:1 },
 
-  { q:"Correct: I ___ a letter yesterday.", options:["write","writes","wrote","written"], ans:2 },
-  { q:"Correct: She ___ not come.", options:["do","does","did","done"], ans:1 },
-  { q:"Correct: We ___ late today.", options:["is","are","was","be"], ans:1 },
-  { q:"Correct: He ___ been to Delhi.", options:["has","have","had","having"], ans:0 },
-  { q:"Correct: They ___ finished the work.", options:["has","have","had","having"], ans:1 },
-
-  { q:"Synonym of BEAUTIFUL?", options:["Pretty","Ugly","Bad","Poor"], ans:0 },
-  { q:"Synonym of END?", options:["Finish","Start","Begin","Open"], ans:0 },
-  { q:"Synonym of DANGER?", options:["Risk","Safe","Good","Peace"], ans:0 },
-  { q:"Synonym of ANGRY?", options:["Mad","Glad","Happy","Soft"], ans:0 },
-  { q:"Synonym of BRAVE?", options:["Courageous","Coward","Weak","Lazy"], ans:0 },
-
-  { q:"Antonym of SUCCESS?", options:["Win","Fail","Gain","Profit"], ans:1 },
-  { q:"Antonym of STRONG?", options:["Power","Weak","Hard","Tough"], ans:1 },
-  { q:"Antonym of ARRIVE?", options:["Come","Reach","Depart","Go"], ans:2 },
-  { q:"Antonym of LAZY?", options:["Active","Slow","Weak","Late"], ans:0 },
-  { q:"Antonym of ALWAYS?", options:["Never","Often","Daily","Soon"], ans:0 },
-
-  { q:"Correct: Neither of the boys ___ guilty.", options:["are","is","were","be"], ans:1 },
-  { q:"Correct: Each of the students ___ present.", options:["are","is","were","be"], ans:1 },
-  { q:"Correct: One of the boys ___ absent.", options:["are","is","were","be"], ans:1 },
-  { q:"Correct: The teacher along with students ___ coming.", options:["are","is","were","be"], ans:1 },
-  { q:"Correct: A number of students ___ absent.", options:["are","is","was","be"], ans:0 },
-
-  { q:"Choose correct: He is good ___ Maths.", options:["in","at","on","for"], ans:1 },
-  { q:"Choose correct: She is fond ___ music.", options:["in","at","of","for"], ans:2 },
-  { q:"Choose correct: I am afraid ___ dogs.", options:["in","at","of","for"], ans:2 },
-  { q:"Choose correct: He depends ___ his father.", options:["on","in","at","for"], ans:0 },
-  { q:"Choose correct: She is married ___ him.", options:["with","to","by","on"], ans:1 }
-);
-
-
-
-bank.English.hard.push(
-  { q:"Meaning of 'inevitable'?", options:["avoidable","certain","weak","slow"], ans:1 },
-  { q:"Meaning of 'inevitable'?", options:["avoidable","certain","weak","slow"], ans:1 },
-  { q:"Meaning of 'abandon'?", options:["leave","eat","run","build"], ans:0 },
-  { q:"Meaning of 'transparent'?", options:["clear","dirty","heavy","weak"], ans:0 },
-  { q:"Meaning of 'persistent'?", options:["continuous","lazy","weak","slow"], ans:0 },
-  { q:"Meaning of 'fragile'?", options:["strong","breakable","heavy","fast"], ans:1 },
-
-  { q:"Correct passive: 'They made a plan.'", options:["A plan made","A plan was made","Plan is made","Plan made"], ans:1 },
-  { q:"Correct passive: 'He writes a letter.'", options:["A letter is written by him","A letter was written","A letter written","Letter is wrote"], ans:0 },
-  { q:"Correct passive: 'She cooks food.'", options:["Food cooked","Food is cooked","Food was cooked","Food is cook"], ans:1 },
-  { q:"Correct passive: 'They help me.'", options:["I am helped by them","I helped by them","I was help by them","I is helped"], ans:0 },
-  { q:"Correct passive: 'We play cricket.'", options:["Cricket played","Cricket is played","Cricket was play","Cricket is play"], ans:1 },
-
-  { q:"One word: A person who speaks many languages", options:["Linguist","Scientist","Poet","Teacher"], ans:0 },
-  { q:"One word: One who hates mankind", options:["Misanthrope","Optimist","Philanthropist","Pessimist"], ans:0 },
-  { q:"One word: One who loves books", options:["Bibliophile","Philosopher","Librarian","Editor"], ans:0 },
-  { q:"One word: A handwriting expert", options:["Graphologist","Geologist","Biologist","Zoologist"], ans:0 },
-  { q:"One word: One who can do many works", options:["Versatile","Lazy","Weak","Slow"], ans:0 },
-
-  { q:"Choose correct: He insisted ___ going.", options:["in","on","at","for"], ans:1 },
-  { q:"Choose correct: She is capable ___ doing it.", options:["in","at","of","for"], ans:2 },
-  { q:"Choose correct: He is responsible ___ this.", options:["in","at","for","of"], ans:2 },
-  { q:"Choose correct: She is angry ___ me.", options:["with","at","for","to"], ans:0 },
-  { q:"Choose correct: He is afraid ___ failure.", options:["in","at","of","for"], ans:2 },
-
-  { q:"Spot error: He do not like tea.", options:["He","do","not","like"], ans:1 },
-  { q:"Spot error: She have finished work.", options:["She","have","finished","work"], ans:1 },
-  { q:"Spot error: They is playing cricket.", options:["They","is","playing","cricket"], ans:1 },
-  { q:"Spot error: I has a pen.", options:["I","has","a","pen"], ans:1 },
-  { q:"Spot error: We was happy.", options:["We","was","happy","."], ans:1 },
-
-  { q:"Choose correct: If I ___ rich, I would help you.", options:["am","was","were","be"], ans:2 },
-  { q:"Choose correct: He said that he ___ busy.", options:["is","was","were","be"], ans:1 },
-  { q:"Choose correct: I wish I ___ a car.", options:["have","had","has","having"], ans:1 },
-  { q:"Choose correct: It is time we ___ home.", options:["go","went","gone","going"], ans:1 },
-  { q:"Choose correct: She suggested that he ___ rest.", options:["take","takes","took","taken"], ans:0 }
-);
 // =========================
 // UP POLICE - ADD QUESTIONS
 // =========================
