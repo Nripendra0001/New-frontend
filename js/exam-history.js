@@ -9,7 +9,7 @@
 const EXAMS = {
   "UP Police Constable": {
     years: [
-      { year: 2025, papers: 1, vacancy: 0, applicants: 5200000, level: "MEDIUM", changes: "Re-exam/Update year (data pending)", pattern: "150 Q • 300 Marks • Negative: Yes", source: "Estimated", cutoff: { GENERAL: 0, OBC: 0, SC: 0, ST: 0 } },
+      { year: 2025, papers: 1, vacancy: 32689, applicants: 5200000, level: "MEDIUM", changes: "Re-exam/Update year (data pending)", pattern: "150 Q • 300 Marks • Negative: Yes", source: "Estimated", cutoff: { GENERAL: 0, OBC: 0, SC: 0, ST: 0 } },
       { year: 2024, papers: 1, vacancy: 60244, applicants: 4800000, level: "MEDIUM", changes: "High competition year", pattern: "150 Q • 300 Marks • Negative: Yes", source: "Estimated", cutoff: { GENERAL: 72, OBC: 69, SC: 63, ST: 58 } },
       { year: 2023, papers: 0, vacancy: 0, applicants: 0, level: "—", changes: "Exam नहीं हुआ", pattern: "—", source: "—", cutoff: { GENERAL: 0, OBC: 0, SC: 0, ST: 0 } },
       { year: 2022, papers: 1, vacancy: 26310, applicants: 3200000, level: "EASY", changes: "Paper easy → cutoff spike", pattern: "150 Q • 300 Marks • Negative: Yes", source: "Estimated", cutoff: { GENERAL: 78, OBC: 74, SC: 67, ST: 61 } },
