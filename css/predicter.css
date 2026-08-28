@@ -1,0 +1,317 @@
+/* ======================================
+   RANK PREDICTOR – OLD DARK STYLE (FINAL)
+   Purane jaisa clean premium dark
+====================================== */
+
+:root{
+  --bg:#0b1020;
+  --card:#0f1730;
+
+  --text:#eaf0ff;
+  --muted:rgba(234,240,255,.75);
+
+  --border:rgba(255,255,255,.10);
+
+  --amazon:#ff9900;
+  --amazon-dark:#e88a00;
+
+  --radius:18px;
+}
+
+/* =========================
+   RESET
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+body{
+  min-height:100vh;
+  background: var(--bg);
+  color:var(--text);
+}
+
+/* =========================
+   TOPBAR
+========================= */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  width:100%;
+  padding:14px 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background: rgba(10,14,30,.92);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+/* Left brand */
+.topbar-logo{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+}
+
+.topbar-logo .brand{
+  font-size:18px;
+  font-weight:900;
+  color:var(--amazon);
+  letter-spacing:.3px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:70vw;
+}
+
+.topbar-logo .tag{
+  font-size:12px;
+  font-weight:700;
+  color:rgba(234,240,255,.65);
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:70vw;
+}
+
+/* Right actions */
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+/* =========================
+   WRAP
+========================= */
+.wrap{
+  width:min(980px, 94vw);
+  margin:18px auto 40px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+/* =========================
+   HERO HEADER
+========================= */
+.hero-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.hero-title{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:.3px;
+  margin:0;
+  color:#fff;
+}
+
+.hero-sub{
+  margin-top:8px;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.6;
+  color:rgba(234,240,255,.72);
+}
+
+/* Badge */
+.hero-badge{
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(234,240,255,.90);
+}
+
+/* Divider */
+.divider{
+  margin:16px 0 16px;
+  height:1px;
+  width:100%;
+  background:rgba(255,255,255,.10);
+}
+
+/* =========================
+   FORM
+========================= */
+.form{
+  margin-top:4px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+label{
+  font-weight:900;
+  font-size:13px;
+  color: rgba(234,240,255,.88);
+}
+
+.req{
+  color:var(--amazon);
+  font-weight:900;
+}
+
+/* Inputs */
+input, select{
+  width:100%;
+  padding:12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  outline:none;
+  font-size: 14px;
+}
+
+input:focus, select:focus{
+  border-color: rgba(255,153,0,.35);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn{
+  border:none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 900;
+  cursor:pointer;
+  font-size: 14px;
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  transition: transform .08s ease, filter .12s ease;
+}
+
+.btn:active{ transform: scale(.98); }
+
+.btn{
+  background: linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+}
+
+.btn:hover{
+  filter:brightness(1.05);
+  transform:translateY(-2px);
+}
+
+.btn.ghost{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color: var(--text);
+}
+
+.btn.full{
+  grid-column:1/-1;
+}
+
+.form-btn{
+  margin-top:4px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:720px){
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-title{
+    font-size:22px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-actions .btn{
+    width:100%;
+  }
+}
+
+/* iPhone zoom fix */
+button, input, select{
+  font-size:16px;
+}
+/* =========================
+   DROPDOWN OPTIONS FIX
+========================= */
+select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+}
+
+/* Dropdown list options */
+select option{
+  background: #0f1730;   /* dark background */
+  color: #eaf0ff;        /* white text */
+}
+
+/* For better highlight on hover/selected (supported browsers) */
+
+/* Pro option highlight */
+.pro-option {
+  color: #ff9900 !important;
+  font-weight: 900 !important;
+}
+
+

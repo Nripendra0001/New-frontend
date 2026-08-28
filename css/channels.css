@@ -1,0 +1,302 @@
+/* =========================================
+   CHANNELS PAGE – OLD STYLE (LIGHT THEME)
+   Same UI, only colors changed
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, sans-serif;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+body{
+  background:#f6f8ff;
+  color:#0f172a;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  width:100%;
+  padding:16px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background:rgba(246,248,255,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid rgba(15,23,42,.12);
+}
+
+/* Back button */
+.back-btn{
+  border:none;
+  padding:10px 14px;
+  border-radius:14px;
+  cursor:pointer;
+
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.12);
+  color:#0f172a;
+
+  font-weight:800;
+  font-size:13px;
+
+  transition:0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(15,23,42,.20);
+}
+
+.back-btn:active{
+  transform:scale(.98);
+}
+
+/* Brand */
+.brand{
+  text-align:center;
+  line-height:1.1;
+}
+
+.brand h1{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:0.2px;
+  color:#ff9900;
+}
+
+.brand p{
+  margin-top:4px;
+  font-size:12px;
+  font-weight:600;
+  color:rgba(71,85,105,.90);
+}
+
+/* Prep pill */
+.prep-pill{
+  padding:10px 14px;
+  border-radius:999px;
+
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.12);
+
+  font-size:12px;
+  font-weight:800;
+  color:#0f172a;
+  white-space:nowrap;
+}
+
+/* ==========================
+   MAIN AREA
+========================== */
+.main{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 18px 40px;
+}
+
+/* Hero */
+.hero{
+  margin-top:10px;
+  margin-bottom:18px;
+  text-align:left;
+}
+
+.hero h2{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:0.2px;
+}
+
+.hero p{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:600;
+  color:rgba(71,85,105,.95);
+}
+
+/* ==========================
+   GRID
+========================== */
+.grid{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+/* ==========================
+   CHANNEL CARD
+========================== */
+.box{
+  width:100%;
+  min-height:110px;
+  padding:16px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.25s ease;
+
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.10);
+  box-shadow:0 18px 55px rgba(15,23,42,.10);
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* shine */
+.box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left, rgba(0,0,0,0.06), transparent 60%);
+  pointer-events:none;
+}
+
+/* hover */
+.box:hover{
+  transform:translateY(-6px);
+  border-color:rgba(15,23,42,.18);
+  box-shadow:0 24px 70px rgba(15,23,42,.14);
+}
+
+/* ==========================
+   CARD ROW (LOGO + TEXT + ARROW)
+========================== */
+.card-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.ch-logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  object-fit:cover;
+  background:#f1f5f9;
+  border:1px solid rgba(15,23,42,.10);
+  flex-shrink:0;
+}
+
+.ch-text{
+  flex:1;
+  min-width:0;
+}
+
+.ch-text h2{
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:0.2px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.ch-text p{
+  margin-top:6px;
+  font-size:12px;
+  font-weight:600;
+  color:rgba(71,85,105,.90);
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.ch-arrow{
+  font-size:22px;
+  font-weight:900;
+  color:rgba(15,23,42,.35);
+  transition:0.25s;
+}
+
+.box:hover .ch-arrow{
+  transform:translateX(4px);
+  color:#0f172a;
+}
+
+/* ==========================
+   NOTE
+========================== */
+.note{
+  text-align:center;
+  margin-top:22px;
+  font-size:13px;
+  font-weight:600;
+  color:rgba(71,85,105,.90);
+}
+
+/* ==========================
+   MOBILE
+========================== */
+@media(max-width:900px){
+
+  .brand h1{
+    font-size:18px;
+  }
+
+  .main{
+    padding:16px 14px 35px;
+  }
+
+  .hero h2{
+    font-size:22px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .box{
+    min-height:100px;
+    border-radius:18px;
+  }
+}
+
+@media(max-width:520px){
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .back-btn{
+    width:100%;
+  }
+
+  .prep-pill{
+    width:100%;
+    text-align:center;
+  }
+}
+
+/* iPhone zoom fix */
+button, input, select{
+  font-size:16px;
+}
+

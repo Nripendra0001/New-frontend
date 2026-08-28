@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statement of Marks - Official Portal</title>
+  <link rel="stylesheet" href="./css/result-gov.css">
+  <link rel="stylesheet" href="./css/analysis.css">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <!-- Handwritten Font for Signature -->
+  <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Qualified Status Glow */
+    #cStatus.qualified {
+      color: #006400;
+      text-shadow: 0 0 10px rgba(0, 100, 0, 0.3);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { text-shadow: 0 0 5px rgba(0, 100, 0, 0.2); }
+      50% { text-shadow: 0 0 20px rgba(0, 100, 0, 0.5); }
+    }
+
+    /* Signature Drawing Animation */
+    .handwritten-sig {
+      font-family: 'Mrs Saint Delafield', cursive;
+      font-size: 30px;
+      color: var(--pen-blue);
+      margin-bottom: -18px;
+      opacity: 0;
+      transform: rotate(-3deg);
+      animation: signDraw 1.5s forwards 0.5s;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    @keyframes signDraw {
+      from { opacity: 0; width: 0; }
+      to { opacity: 0.9; width: 100%; }
+    }
+
+    /* Button Hover Physics */
+    .btn-print:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 100, 0, 0.2);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-back:hover {
+      transform: translateX(-3px);
+      transition: all 0.2s;
+    }
+  </style>
+</head>
+<body class="gov-portal">
+  <!-- Repeating Security Watermark -->
+  <div class="watermark-pattern" aria-hidden="true"></div>
+  
+  <!-- Magic Confetti Canvas -->
+  <canvas id="confettiCanvas" class="no-print" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:20000;"></canvas>
+
+  <main class="sheet-container paper-physics" id="paperSheet">
+    <!-- Action Bar (Hidden on Print) -->
+    <div class="action-bar no-print">
+      <button class="btn-back" onclick="window.location.href='./predicter.html'">← Back</button>
+      <button class="btn-print" onclick="openAnalysis()" style="background: #006400;">📊 Detailed Analysis</button>
+      <button class="btn-print" onclick="window.print()">Print Result</button>
+    </div>
+
+    <div class="sheet-border">
+      <!-- Perforation Effect -->
+      <div class="perforation-line no-print"></div>
+      
+      <!-- Hologram Moved to Top-Right -->
+      <div class="hologram-sticker" aria-hidden="true">
+        <div class="hologram-inner">GOI</div>
+      </div>
+
+      <header class="nic-header">
+        <div class="header-top-line">भारत सरकार / GOVERNMENT OF INDIA</div>
+        
+        <div class="header-main">
+          <!-- Left: Emblem -->
+          <div class="emblem-container">
+            <div class="ashoka-emblem"></div>
+          </div>
+          
+          <!-- Center: Authority -->
+          <div class="authority-title">
+            <h1 id="examAuthorityHeading">NATIONAL TESTING AGENCY</h1>
+            <h2 class="doc-title">STATEMENT OF RESULT</h2>
+            <p id="examTitle">Competitive Examination Score Card</p>
+          </div>
+          
+          <!-- Right: Barcode -->
+          <div class="barcode-block">
+            <div class="barcode-visual">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <p id="serialNo" class="serial-text">S.No: 00000000</p>
+          </div>
+        </div>
+        
+        <div class="double-border"></div>
+        
+        <div class="header-meta">
+          <span id="refNo">Ref No: SN/EXAM/2026/--</span>
+          <span id="genTime">Date of Issue: --</span>
+        </div>
+      </header>
+
+      <!-- Section 1: Candidate Details -->
+      <section class="nic-section">
+        <h3 class="section-title">1. CANDIDATE DETAILS</h3>
+        <table class="nic-table">
+          <tbody>
+            <tr>
+              <th width="20%">Candidate's Name</th>
+              <td width="30%" id="cName" class="highlight-text">--</td>
+              <th width="20%">Roll Number</th>
+              <td width="30%" id="cRoll" class="highlight-text data-value">--</td>
+            </tr>
+            <tr>
+              <th>Application No.</th>
+              <td id="cAppNo" class="data-value">--</td>
+              <th>Category</th>
+              <td id="cCat">--</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td id="cGender">--</td>
+              <th>Date of Birth</th>
+              <td id="cDob">--</td>
+            </tr>
+            <tr>
+              <th>Mother's/Father's Name</th>
+              <td id="cParent">--</td>
+              <th>Test Mode</th>
+              <td id="cMode">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 2: Examination Details -->
+      <section class="nic-section">
+        <h3 class="section-title">2. EXAMINATION DETAILS</h3>
+        <table class="nic-table">
+          <tbody>
+            <tr>
+              <th width="20%">Name of Exam</th>
+              <td width="30%" id="cExam">--</td>
+              <th width="20%">Result Date</th>
+              <td width="30%" id="cResultDate">--</td>
+            </tr>
+            <tr>
+              <th>Examination Body</th>
+              <td id="examAuthority">--</td>
+              <th>Language of Exam</th>
+              <td>Hindi / English</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 3: Marks Details -->
+      <section class="nic-section">
+        <h3 class="section-title">3. MARKS DETAILS (STATEMENT OF MARKS)</h3>
+        <table class="nic-table centered-cells">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Subject Area</th>
+              <th>Subject Code</th>
+              <th>Correct</th>
+              <th>Incorrect</th>
+              <th>Max Marks</th>
+              <th>Score Obtained</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="text-left">Subject Knowledge & Aptitude</td>
+              <td class="data-value">041</td>
+              <td id="mCorrect">--</td>
+              <td id="mWrong">--</td>
+              <td id="mMax">--</td>
+              <td id="mGained">--</td>
+            </tr>
+            <tr class="summary-row">
+              <th colspan="6">AGGREGATE SCORE OBTAINED</th>
+              <td id="mScore" class="bold-score">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 4: Result Status -->
+      <section class="nic-section">
+        <h3 class="section-title">4. RESULT STATUS</h3>
+        <div class="status-container">
+          <p class="status-text">RESULT STATUS: <span id="cStatus">--</span></p>
+        </div>
+      </section>
+
+      <!-- Section 5: Merit Information -->
+      <section class="nic-section">
+        <h3 class="section-title">5. MERIT INFORMATION & PERFORMANCE CLASSIFICATION</h3>
+        <table class="nic-table">
+          <tbody>
+            <tr>
+              <th width="25%">NTA Percentile Score</th>
+              <td width="25%" id="pPercentile" class="bold-blue">--</td>
+              <th width="25%">All India Rank (Estimated)</th>
+              <td width="25%" id="pRank" class="bold-blue">--</td>
+            </tr>
+            <tr>
+              <th>Performance Classification</th>
+              <td id="pLevel">--</td>
+              <th>Total Candidates</th>
+              <td id="pTotal">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 6: Instructions -->
+      <section class="nic-section">
+        <h3 class="section-title">IMPORTANT INSTRUCTIONS FOR CANDIDATES</h3>
+        <div class="instructions-box">
+          <ol class="instructions-list">
+            <li>The result displayed is a system-generated estimation for practice and self-assessment purposes only.</li>
+            <li>Rank and Percentile are calculated based on standardized normalization procedures across all candidate pools.</li>
+            <li>This document is protected by unique Security Hash and Serial Number. Any unauthorized modification is detectable.</li>
+            <li>This score card remains the property of the Examination Authority and can be verified against official records.</li>
+            <li>In case of any discrepancy in candidate details, please refer to the original application data.</li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="auth-footer">
+        <div class="verification-details">
+          <div class="qr-block">
+            <div class="qr-box-inner"></div>
+            <p>VERIFY QR</p>
+          </div>
+          <div class="hash-block">
+            <p class="hash-label">Security Hash ID:</p>
+            <p id="securityHash" class="hash-value">--</p>
+          </div>
+        </div>
+        
+        <!-- Validation Box -->
+        <div class="validity-box no-print">
+          <div class="validity-inner">
+            <div class="check-icon">✓</div>
+            <div>
+              <p class="val-title">CERTIFIED DOCUMENT</p>
+              <p class="val-sub">Verified by NIC Audit Cell</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="official-seal">
+          <div class="seal-inner">
+            <span>OFFICIAL SEAL</span>
+            <span>EXAMINATION DIV.</span>
+            <span>GOVT. OF INDIA</span>
+          </div>
+        </div>
+        
+        <div class="sig-block">
+          <div class="handwritten-sig">S. K. Pandey</div>
+          <div class="sig-line"></div>
+          <p class="sig-name">Controller of Examination</p>
+          <p class="sig-auth">Institutional Recruitment Division</p>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <!-- Micro-printing Border -->
+        <div class="micro-border no-print">ORIGINAL DOCUMENT • OFFICIAL STATEMENT OF MARKS • GOVERNMENT OF INDIA • ORIGINAL DOCUMENT</div>
+        
+        <p>This is a computer-generated statement of result and does not require any physical signature.</p>
+        <p class="formal-disclaimer">Disclaimer: This is a practice-based estimation portal and not an official Government publication.</p>
+        <div class="footer-ref">
+          <span id="footerSerial">S.No: 00000000</span>
+          <span>© SarkariNext Examination Division</span>
+        </div>
+        <!-- Decorative Bottom Ribbon -->
+        <div class="footer-ribbon"></div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Analysis Modal (PowerBI Style Dashboard) -->
+  <div id="analysisModal" class="analysis-modal">
+    <div class="analysis-content">
+      <div class="analysis-header">
+        <h2>📊 Performance Analysis Dashboard</h2>
+        <button class="close-analysis" onclick="closeAnalysis()">✕</button>
+      </div>
+      <div class="analysis-body">
+        <!-- Advanced KPI Grid (Executive Summary) -->
+        <div class="analysis-section kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Selection Chance</span>
+              <span id="chanceTrend" class="kpi-trend">--</span>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-val" id="kpiChance">--</span>
+              <div class="kpi-sparkline"><div class="spark-bar" style="height:40%"></div><div class="spark-bar" style="height:60%"></div><div class="spark-bar" style="height:85%"></div></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Efficiency Rate</span>
+              <span id="effTrend" class="kpi-trend">--</span>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-val" id="kpiEfficiency">--</span>
+              <div class="kpi-sparkline"><div class="spark-bar" style="height:70%"></div><div class="spark-bar" style="height:50%"></div><div class="spark-bar" style="height:90%"></div></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-label">Percentile Rank</span>
+              <span id="rankTrend" class="kpi-trend">--</span>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-val" id="kpiRank">--</span>
+              <div class="kpi-sparkline"><div class="spark-bar" style="height:30%"></div><div class="spark-bar" style="height:55%"></div><div class="spark-bar" style="height:95%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Charts Row -->
+        <div class="analysis-section charts-grid-advanced">
+          <div class="chart-box main-donut">
+            <h3>Response Distribution</h3>
+            <div class="chart-canvas-wrapper">
+              <canvas id="scorePieChart"></canvas>
+              <div class="donut-center">
+                <span id="centerScore">--</span>
+                <small>Total Score</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chart-box skill-radar">
+            <h3>Subject Skill Balance</h3>
+            <canvas id="skillRadarChart"></canvas>
+          </div>
+
+          <div class="chart-box status-gauge">
+            <h3>Accuracy Meter</h3>
+            <canvas id="accuracyGaugeChart"></canvas>
+            <div class="gauge-audit">
+              <span class="audit-label">Weighted Net:</span>
+              <span id="netAccVal" class="audit-val">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic List Row -->
+        <div class="analysis-section">
+          <h3>Topic Performance Indicators</h3>
+          <div id="topicAnalysisList" class="topic-analysis-list"></div>
+        </div>
+
+        <!-- Power BI Style Subject Matrix -->
+        <div class="analysis-section matrix-section">
+          <h3>Subject Mastery Matrix</h3>
+          <div id="subjectMatrix" class="subject-matrix-grid"></div>
+        </div>
+
+        <!-- Detailed Question Review Section -->
+        <div class="analysis-section review-section">
+          <div class="review-header">
+            <h3>Detailed Question Audit</h3>
+            <!-- Tabbed Review Navigation -->
+            <div class="review-tabs-container">
+              <button class="rev-tab-btn active" onclick="switchReviewTab('all')">All</button>
+              <button class="rev-tab-btn" onclick="switchReviewTab('correct')">Correct (<span id="cntCorrect">0</span>)</button>
+              <button class="rev-tab-btn" onclick="switchReviewTab('wrong')">Incorrect (<span id="cntWrong">0</span>)</button>
+              <button class="rev-tab-btn" onclick="switchReviewTab('skipped')">Skipped (<span id="cntSkipped">0</span>)</button>
+            </div>
+          </div>
+          
+          <!-- Question Navigation Strip -->
+          <div id="qNavStrip" class="q-nav-strip no-print"></div>
+
+          <div id="detailedQuestionReview" class="detailed-review-container">
+             <!-- All categories are rendered inside these containers -->
+             <div id="reviewCorrect" class="review-tab-content active"></div>
+             <div id="reviewWrong" class="review-tab-content active"></div>
+             <div id="reviewSkipped" class="review-tab-content active"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/predict-result.js"></script>
+  <script src="./js/analysis.js"></script>
+</body>
+</html>

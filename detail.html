@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Details - Sarkari Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/updates.css">
+    <link rel="icon" type="image/png" href="./favicon.png">
+</head>
+<body class="updates-body">
+
+    <!-- Header -->
+    <header class="up-header">
+        <a href="updates.html" class="back-btn" id="headerBackBtn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to List
+        </a>
+        <h1>SarkariNext Updates</h1>
+    </header>
+
+    <div class="up-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="updates.html">Updates</a> > 
+            <a href="#" id="breadcrumbType">Type</a> > 
+            <span id="breadcrumbTitle">Detail</span>
+        </div>
+
+        <!-- Main Detail Card -->
+        <div class="up-detail-card">
+            
+            <h1 class="up-page-title" id="pageTitle" style="text-align: left; margin-bottom: 1rem;">Loading...</h1>
+            <div id="statusBadge" class="status-badge status-success">Loading...</div>
+
+            <!-- Mimicking the view.html 4-card structure -->
+            <div class="mini-info">
+                <div class="mini-card">
+                    <span class="mini-label">Organization</span>
+                    <span class="mini-value" id="orgName">-</span>
+                </div>
+                <div class="mini-card">
+                    <span class="mini-label">State</span>
+                    <span class="mini-value" id="stateName">-</span>
+                </div>
+                <div class="mini-card" style="grid-column: span 2;">
+                    <span class="mini-label">Status Date</span>
+                    <span class="mini-value" id="examDate">-</span>
+                </div>
+            </div>
+
+            <!-- Important Instructions using new premium styles -->
+            <h3 class="sec-title">Important Instructions</h3>
+            <div class="detail-table" style="padding: 1.5rem;">
+                <p id="descriptionText" style="margin: 0; font-weight: 500; color: var(--up-text-muted);">Loading description...</p>
+            </div>
+
+            <!-- Important Links using new premium tables -->
+            <h3 class="sec-title">Important Links</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Official Website</span>
+                <span class="value">
+                  <a href="#" id="officialLink" class="link-btn" target="_blank">Visit Official Portal</a>
+                </span>
+              </div>
+            </div>
+
+            <!-- Apply Wrapper matching view.html -->
+            <div class="apply-wrap" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#" id="mainActionBtn" class="apply-btn" style="flex: 1; min-width: 250px;" target="_blank">Loading...</a>
+                <button class="btn btn-secondary share-btn" onclick="sharePage()" style="flex: 0 1 200px;">
+                    Share Update
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/detail.js"></script>
+</body>
+</html>

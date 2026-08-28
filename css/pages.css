@@ -1,0 +1,525 @@
+/* =====================================================
+   SARKARINEXT – PAGES.CSS (LIGHT PREMIUM FINAL)
+   About / Contact / Disclaimer / Privacy / Team
+===================================================== */
+
+:root{
+  /* ✅ Light Amazon Cream BG */
+  --bg:#fff7d6;
+
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+
+  --border:rgba(15,23,42,.12);
+  --shadow:0 18px 55px rgba(15,23,42,.10);
+
+  --amazon:#ffd814;
+  --amazon-dark:#fcd200;
+
+  --radius:18px;
+}
+
+/* ---------- RESET ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+.pg-topbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  width:100%;
+  padding:14px 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  background: rgba(246,248,255,.88);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+.pg-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.pg-brand img{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#fff;
+  padding:6px;
+  border:1px solid var(--border);
+  box-shadow:0 12px 30px rgba(15,23,42,.10);
+  flex:0 0 auto;
+}
+
+.pg-brand span{
+  font-size:18px;
+  font-weight:900;
+  color:#0f172a;
+  letter-spacing:.2px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:60vw;
+}
+
+.pg-back{
+  border:none;
+  padding:10px 14px;
+  border-radius:14px;
+  cursor:pointer;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  font-weight:900;
+  font-size:13px;
+
+  transition:.2s;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pg-back:hover{
+  transform:translateY(-2px);
+}
+
+.pg-back:active{
+  transform:scale(.98);
+}
+
+/* =====================================================
+   PAGE WRAP
+===================================================== */
+.pg-wrap{
+  width:min(1100px, 92vw);
+  margin:22px auto 60px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.pg-hero{
+  padding:24px 20px;
+  border-radius:22px;
+  margin-bottom:18px;
+
+  background: var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.pg-hero h1{
+  font-size:30px;
+  font-weight:900;
+  margin-bottom:10px;
+  letter-spacing:.2px;
+}
+
+.pg-hero p{
+  font-size:15px;
+  line-height:1.8;
+  color:rgba(71,85,105,.95);
+  font-weight:500;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+.pg-card{
+  padding:22px 20px;
+  border-radius:20px;
+  margin:18px 0;
+
+  background: var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+
+  transition:.2s ease;
+}
+
+.pg-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(15,23,42,.14);
+  border-color:rgba(15,23,42,.16);
+}
+
+.pg-card h2{
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:12px;
+  color:#0f172a;
+  letter-spacing:.1px;
+}
+
+.pg-card p{
+  font-size:14.5px;
+  line-height:1.8;
+  color:rgba(71,85,105,.95);
+  font-weight:500;
+  margin-bottom:12px;
+}
+
+/* =====================================================
+   LIST
+===================================================== */
+.pg-list{
+  margin-top:10px;
+  padding-left:18px;
+}
+
+.pg-list li{
+  margin:10px 0;
+  font-size:14px;
+  line-height:1.7;
+  color:rgba(71,85,105,.95);
+  font-weight:600;
+}
+
+/* =====================================================
+   LINKS
+===================================================== */
+.pg-card a{
+  color:#0f172a;
+  font-weight:800;
+  text-decoration:underline;
+}
+
+.pg-card a:hover{
+  opacity:.85;
+}
+
+/* =====================================================
+   CONTACT FORM (Contact Page)
+===================================================== */
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:14px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text);
+  outline:none;
+  font-size:14px;
+  font-weight:700;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:rgba(252,208,0,.90);
+  box-shadow:0 0 0 3px rgba(252,208,0,.20);
+}
+
+.contact-form button{
+  border:none;
+  border-radius:14px;
+  padding:12px 14px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:14px;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.contact-form button:hover{
+  transform:translateY(-2px);
+}
+
+.note-box{
+  padding:14px 14px;
+  border-radius:16px;
+  background:#ffffff;
+  border:1px dashed rgba(15,23,42,.18);
+  color:rgba(71,85,105,.95);
+  font-weight:700;
+}
+
+/* =====================================================
+   TEAM PAGE (ORGANIZED)
+===================================================== */
+
+/* Badges under hero */
+.hero-badges{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.hero-badges span{
+  padding:9px 12px;
+  border-radius:999px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  font-weight:900;
+  font-size:12px;
+  color:#0f172a;
+}
+
+/* =========================
+   TEAM PAGE (COMPACT + ANIMATED)
+========================= */
+
+.team-grid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+}
+
+.team-card{
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.12);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 14px 40px rgba(15,23,42,.08);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:8px;
+
+  transition:.25s ease;
+}
+
+.team-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 22px 60px rgba(15,23,42,.12);
+  border-color:rgba(15,23,42,.16);
+}
+
+/* Photo frame (smaller + animated) */
+.team-photo{
+  width:120px;
+  height:120px;
+  border-radius:16px;
+  overflow:hidden;
+
+  border:1px solid rgba(15,23,42,.14);
+  background:#f1f5f9;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:.25s ease;
+}
+
+/* hover animation on photo frame */
+.team-card:hover .team-photo{
+  transform:scale(1.05);
+  box-shadow:0 16px 35px rgba(15,23,42,.18);
+  border-color:rgba(252,208,0,.85);
+}
+
+/* Photo */
+.team-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+/* Name */
+.team-card h3{
+  margin-top:4px;
+  font-size:16px;
+  font-weight:900;
+  color:#0f172a;
+}
+
+/* Role */
+.team-role{
+  font-size:12px;
+  font-weight:800;
+  color:rgba(71,85,105,.95);
+}
+
+/* Bio (optional) */
+.team-bio{
+  font-size:12.5px;
+  line-height:1.65;
+  color:rgba(71,85,105,.95);
+  font-weight:600;
+  max-width:320px;
+}
+
+/* Links */
+.team-links{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+
+  /* ✅ GitHub/LinkedIn ka margin photo se kam */
+  margin-top:2px;
+}
+
+.team-links a{
+  text-decoration:none;
+  font-weight:900;
+  font-size:12px;
+
+  padding:9px 11px;
+  border-radius:999px;
+
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,.12);
+  color:#0f172a;
+
+  transition:.2s;
+}
+
+.team-links a:hover{
+  transform:translateY(-2px);
+  border-color:rgba(15,23,42,.20);
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .team-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px){
+  .team-photo{
+    width:110px;
+    height:110px;
+    border-radius:14px;
+  }
+}
+
+/* CTA Note card */
+.pg-note{
+  text-align:center;
+}
+
+.pg-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:12px;
+  padding:12px 16px;
+  border-radius:999px;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  font-weight:900;
+  text-decoration:none;
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.pg-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.pg-footer{
+  width:100%;
+  text-align:center;
+  padding:16px 12px;
+  margin-top:40px;
+
+  background:rgba(255,255,255,.65);
+  border-top:1px solid rgba(15,23,42,.10);
+
+  color:rgba(71,85,105,.95);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+@media(max-width:900px){
+  .team-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+
+  .pg-topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .pg-back{
+    width:100%;
+  }
+
+  .pg-hero h1{
+    font-size:24px;
+  }
+
+  .pg-card h2{
+    font-size:19px;
+  }
+
+  .pg-hero,
+  .pg-card{
+    padding:18px 16px;
+    border-radius:18px;
+  }
+
+  .pg-wrap{
+    width:94vw;
+  }
+
+  .team-photo{
+    height:200px;
+  }
+}
+
+/* iPhone zoom fix */
+input, select, textarea, button{
+  font-size:16px;
+}
+

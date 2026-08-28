@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Analytics Dashboard | SarkariNext</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/exam-history.css" />
+</head>
+<body>
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- SCAN LINE OVERLAY -->
+  <div class="scanlines"></div>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-wrap">
+        <div class="logo-pulse"></div>
+        <div class="logo">Sarkari<span>Next</span></div>
+      </div>
+      <div class="tag"> Exam Analytics Dashboard &nbsp;•&nbsp; Cutoff &nbsp;•&nbsp; Vacancy &nbsp;•&nbsp; Applicants</div>
+    </div>
+    <a class="home-btn" href="index.html">
+      <span class="home-icon"></span>
+      <span>Home</span>
+    </a>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          LIVE ANALYTICS
+        </div>
+        <h1> Exam Analytics<br><span class="gradient-text">Dashboard</span></h1>
+        <p>Exam select करो और PowerBI style dashboard में पूरा analysis देखो: <b>Cutoff trend, Vacancy, Applicants, Competition ratio, Safe score</b></p>
+
+        <div class="hero-controls">
+          <div class="field">
+            <label>
+              <span class="label-icon">📋</span>
+              Exam चुनें
+            </label>
+            <div class="select-wrap">
+              <select id="examSelect">
+                <option value="">-- Select Exam --</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>
+              <span class="label-icon">🎯</span>
+              Category
+            </label>
+            <div class="select-wrap">
+              <select id="catSelect">
+                <option value="GENERAL">GENERAL</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <button id="loadBtn" class="primary-btn">
+            <span class="btn-glow"></span>
+            <span class="btn-text">⚡ Load Dashboard</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI CARDS -->
+    <section class="kpi-grid" id="kpiGrid" style="display:none;">
+      <div class="kpi" data-delay="0">
+        <div class="kpi-icon">📝</div>
+        <div class="kpi-body">
+          <h3 id="kpiPapers" class="kpi-val counter">—</h3>
+          <p>Total Papers</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi" data-delay="1">
+        <div class="kpi-icon">💼</div>
+        <div class="kpi-body">
+          <h3 id="kpiVacancy" class="kpi-val">—</h3>
+          <p>Total Vacancy</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi" data-delay="2">
+        <div class="kpi-icon">🔼</div>
+        <div class="kpi-body">
+          <h3 id="kpiHigh" class="kpi-val">—</h3>
+          <p>Highest Cutoff</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi" data-delay="3">
+        <div class="kpi-icon">🔽</div>
+        <div class="kpi-body">
+          <h3 id="kpiLow" class="kpi-val">—</h3>
+          <p>Lowest Cutoff</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi" data-delay="4">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-body">
+          <h3 id="kpiStability" class="kpi-val">—</h3>
+          <p>Stability Score</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+      <div class="kpi" data-delay="5">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-body">
+          <h3 id="kpiSafe" class="kpi-val">—</h3>
+          <p>Safe Score (Avg)</p>
+        </div>
+        <div class="kpi-bar"></div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD GRID -->
+    <section class="dash-grid" id="dashGrid" style="display:none;">
+
+      <!-- CHART 1: Cutoff Trend -->
+      <div class="card col-8 chart-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge">TREND</span>
+            <h2>📈 Cutoff Trend Analysis</h2>
+          </div>
+          <span class="hint">Category wise • Year on Year</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="cutoffChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: Vacancy vs Applicants -->
+      <div class="card col-4 chart-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge blue">COMPETE</span>
+            <h2>⚔️ Vacancy vs Applicants</h2>
+          </div>
+          <span class="hint">Competition view</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="vaChart"></canvas>
+        </div>
+      </div>
+
+      <!-- COMPETITION RATIO CHART -->
+      <div class="card col-4 chart-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge red">RATIO</span>
+            <h2>🔥 Competition Ratio</h2>
+          </div>
+          <span class="hint">Applicants per seat</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="ratioChart"></canvas>
+        </div>
+      </div>
+
+      <!-- SAFE SCORE GAUGE AREA -->
+      <div class="card col-4 chart-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge green">TARGET</span>
+            <h2>🛡️ Safe Score Trend</h2>
+          </div>
+          <span class="hint">Recommended target</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="safeChart"></canvas>
+        </div>
+      </div>
+
+      <!-- TABLE 1: Year Summary -->
+      <div class="card col-6">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge">DATA</span>
+            <h2>📋 Year Summary</h2>
+          </div>
+          <span class="hint">Complete year data</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Vacancy</th>
+                <th>Applicants</th>
+                <th>Cutoff</th>
+                <th>Ratio</th>
+              </tr>
+            </thead>
+            <tbody id="summaryTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 2: Trend + Reason -->
+      <div class="card col-6">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge blue">ANALYSIS</span>
+            <h2>📉 Level + Pattern</h2>
+          </div>
+          <span class="hint">Paper level analysis</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Level</th>
+                <th>Pattern</th>
+              </tr>
+            </thead>
+            <tbody id="trendTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 3: Timeline -->
+      <div class="card col-12">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge red">TIMELINE</span>
+            <h2>⏱️ Important Changes Timeline</h2>
+          </div>
+          <span class="hint">Pattern / Rule changes</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Level</th>
+                <th>Key Changes</th>
+              </tr>
+            </thead>
+            <tbody id="changeTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INSIGHTS -->
+      <div class="card col-12 insight-card">
+        <div class="card-head">
+          <div class="card-title-group">
+            <span class="card-badge green">AI</span>
+            <h2>🤖 Smart Insights</h2>
+          </div>
+          <span class="hint">Auto generated analysis</span>
+        </div>
+        <div class="insight-grid" id="insightList"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/exam-history.js"></script>
+</body>
+</html>

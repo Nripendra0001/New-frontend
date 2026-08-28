@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SarkariNext Test Series</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./favicon.png"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Base Premium UI Styles -->
+  <link rel="stylesheet" href="./css/updates.css"/>
+  <!-- Series Specific Styles -->
+  <link rel="stylesheet" href="./css/series.css"/>
+</head>
+<body class="updates-body">
+
+  <!-- Premium Header (Matches Updates & Home) -->
+  <header class="up-header">
+    <a href="index.html" class="back-btn">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Back to Home
+    </a>
+    <h1>SarkariNext</h1>
+  </header>
+
+  <main class="up-container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> > 
+      <span>Test Series</span>
+    </div>
+
+    <!-- Latest Updates Quick Links (Matches Home ecosystem) -->
+    <div class="quick-links" id="quickLinksSection">
+      <a href="latest_job.html" class="quick-pill">💼 Latest Jobs</a>
+      <a href="result.html" class="quick-pill">🏆 Results</a>
+      <a href="admit.html" class="quick-pill">🎟️ Admit Card</a>
+      <a href="answer.html" class="quick-pill">🔑 Answer Key</a>
+    </div>
+
+    <!-- Setup -->
+    <section id="setupBox" class="up-detail-card">
+      <h2 class="up-page-title" style="text-align: left; color: var(--up-secondary); margin-bottom: 0.5rem;">Configure Your Test</h2>
+      <p style="color: var(--up-text-muted); font-weight: 500; margin-bottom: 2rem;">Customize your test environment and start practicing instantly.</p>
+
+      <div class="formGrid">
+        <div class="input-group">
+          <label>Select Exam</label>
+          <select id="exam" class="premium-select">
+            <option value="up-police">UP Police</option>
+            <option value="ssc-gd">SSC GD</option>
+            <option value="railway-ntpc">Railway NTPC</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Select Subject</label>
+          <select id="subject" class="premium-select">
+            <option value="all">All Subjects</option>
+            <option value="gk">GK</option>
+            <option value="math">Math</option>
+            <option value="reasoning">Reasoning</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="computer">Computer</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Number of Questions</label>
+          <select id="limit" class="premium-select">
+            <option value="10">10 Questions</option>
+            <option value="25" selected>25 Questions</option>
+            <option value="50">50 Questions</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Time Duration</label>
+          <select id="time" class="premium-select">
+            <option value="0">No Timer (Practice Mode)</option>
+            <option value="10">10 Minutes</option>
+            <option value="15" selected>15 Minutes</option>
+            <option value="30">30 Minutes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="apply-wrap" style="margin-top: 1.5rem;">
+        <button class="apply-btn" onclick="startTest()">Start Test Now</button>
+      </div>
+
+      <div class="note-box" style="margin-top: 2rem;">
+        <h3>Important Note</h3>
+        <p>Test में questions हर बार Random होंगे। Submit के बाद detailed score और accuracy show होगा।</p>
+      </div>
+    </section>
+
+    <!-- Quiz Engine -->
+    <section id="quizBox" class="hidden quizLayout">
+
+      <!-- Left: Question Area -->
+      <div class="up-detail-card quizMain" style="padding: 1.5rem;">
+        <div class="quizTop">
+          <div>
+            <h2 id="qCount" style="margin: 0; font-weight: 800; color: var(--up-secondary);">Question</h2>
+            <p class="small" id="metaText" style="margin-top: 0.25rem;">Attempt smartly!</p>
+          </div>
+
+          <div class="timerWrap">
+            <p id="timerBox" class="timer-badge hidden">⏳ <span id="timeLeft"></span></p>
+            <button class="btn btn-secondary" onclick="openSubmitPopup()">Submit Test</button>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progressBar">
+          <div id="progressFill"></div>
+        </div>
+
+        <h3 id="questionText" class="question-title"></h3>
+
+        <div id="options" class="options-container"></div>
+
+        <div class="quiz-nav">
+          <button class="btn btn-secondary" onclick="prevQ()">⬅ Prev</button>
+          <button class="btn btn-secondary" onclick="clearAnswer()">🧹 Clear</button>
+          <button class="btn btn-primary" onclick="nextQ()">Next ➡</button>
+        </div>
+      </div>
+
+      <!-- Right: Palette -->
+      <div class="up-detail-card paletteBox" style="padding: 1.5rem; height: max-content;">
+        <h3 style="margin: 0 0 0.5rem 0; font-weight: 800;">Question Palette</h3>
+        <p class="small" style="margin-bottom: 1rem;">Click to jump to any question</p>
+        
+        <div id="palette" class="palette"></div>
+
+        <div class="legend">
+          <div><span class="dot green"></span> Attempted</div>
+          <div><span class="dot gray"></span> Not Attempted</div>
+          <div><span class="dot orange"></span> Current</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Result Dashboard -->
+    <section id="resultBox" class="up-detail-card hidden">
+      <h2 class="up-page-title" style="color: #16a34a; text-align: left;">Test Submitted Successfully!</h2>
+      
+      <div class="mini-info" style="margin-top: 2rem;">
+        <div class="mini-card">
+          <span class="mini-label" style="color: var(--up-primary);">Score</span>
+          <span class="mini-value" id="scoreMain" style="font-size: 1.5rem;">--</span>
+        </div>
+        <div class="mini-card" style="border-bottom: 4px solid #16a34a;">
+          <span class="mini-label" style="color: #16a34a;">Correct</span>
+          <span class="mini-value" id="correctMain" style="font-size: 1.5rem;">--</span>
+        </div>
+        <div class="mini-card" style="border-bottom: 4px solid #dc2626;">
+          <span class="mini-label" style="color: #dc2626;">Wrong</span>
+          <span class="mini-value" id="wrongMain" style="font-size: 1.5rem;">--</span>
+        </div>
+        <div class="mini-card">
+          <span class="mini-label" style="color: var(--up-primary);">Accuracy</span>
+          <span class="mini-value" id="accuracyMain" style="font-size: 1.5rem;">--</span>
+        </div>
+      </div>
+
+      <p id="resultText" class="resultText" style="font-size: 1.1rem; font-weight: 600; text-align: center; margin: 2rem 0;"></p>
+
+      <div class="apply-wrap">
+        <button class="apply-btn" onclick="restart()">🔁 Start New Test</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Submit Popup Overlay -->
+  <div id="submitPopup" class="popup-overlay hidden">
+    <div class="popup-card">
+      <h2 style="font-weight: 800; color: var(--up-secondary); margin-bottom: 1rem;">Submit Test?</h2>
+      <p id="popupText" style="color: var(--up-text-muted); margin-bottom: 2rem;">Are you sure you want to submit your test before the timer ends?</p>
+
+      <div style="display: flex; gap: 1rem;">
+        <button class="btn btn-secondary" style="flex: 1;" onclick="closeSubmitPopup()">Cancel</button>
+        <button class="btn" style="flex: 1; background: #dc2626; color: white;" onclick="submitTest()">Yes, Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/question.js"></script>
+  <script src="./js/series.js"></script>
+</body>
+</html>

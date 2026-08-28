@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SarkariNext – Select Channel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/channels.css">
+  <link rel="icon" type="image/png" href="./favicon.png">
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="back-btn" onclick="window.location.href='prepare.html'">← Back</button>
+
+    <div class="brand">
+      <h1>⚡ SarkariNext</h1>
+      <p>Premium Learning Hub</p>
+    </div>
+
+    <div id="prepName" class="prep-pill">Loading...</div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <section class="hero">
+      <h2>Select your best channel</h2>
+      <p>Choose a trusted platform for your preparation</p>
+    </section>
+
+    <!-- GRID (ONLY ONE) -->
+    <section class="grid" id="channelGrid"></section>
+
+    <div class="note">
+      Channel select करने के बाद course UI open होगा
+    </div>
+  </main>
+
+  <script src="./js/channels.js"></script>
+</body>
+</html>

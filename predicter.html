@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rank Predictor – nripendra.online</title>
+
+  <link rel="stylesheet" href="./css/predicter.css" />
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">
+      <span class="brand">SarkariNext</span>
+      <span class="tag">Rank Predictor • nripendra.online</span>
+    </div>
+
+    <div class="top-actions">
+      <a href="index.html" class="btn ghost">Home</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- MAIN FORM CARD -->
+    <section class="card hero">
+
+      <div class="hero-top">
+        <div>
+          <h1 class="hero-title">Rank Predictor</h1>
+          <p class="hero-sub">
+            Start your CBT mock and get score + percentile + rank instantly.
+          </p>
+        </div>
+
+        <div class="hero-badge">
+          CBT MODE
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- FORM -->
+      <form id="studentForm" class="form form-grid">
+
+        <div class="field">
+          <label for="stuName">
+            Student Name <span class="req">*</span>
+          </label>
+          <input type="text" id="stuName" required placeholder="Enter full name" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="stuExam">
+            Select Exam <span class="req">*</span>
+          </label>
+          <select id="stuExam" required>
+            <option value="">-- Select Exam --</option>
+
+            <optgroup label="SSC">
+              <option value="ssc_gd">SSC GD</option>
+              <option value="ssc_cgl">SSC CGL</option>
+              <option value="ssc_cgl_pro" class="pro-option">SSC CGL Pro (₹11)</option>
+              <option value="ssc_chsl">SSC CHSL</option>
+            </optgroup>
+
+            <optgroup label="Railway">
+              <option value="rrb_ntpc">RRB NTPC</option>
+            </optgroup>
+
+            <optgroup label="State + Others">
+              <option value="up_police">UP Police</option>
+              <option value="upsssc_pet">UPSSSC PET</option>
+              <option value="delhi_police">Delhi Police</option>
+              <option value="army_gd">Army GD</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="stuCat">Category</label>
+          <select id="stuCat">
+            <option value="">-- Optional --</option>
+            <option value="GEN">GEN</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="stuMode">Test Mode</label>
+          <select id="stuMode" required>
+            <option value="practice">Practice (20 Questions)</option>
+            <option value="full" selected>Full CBT (50 Questions)</option>
+          </select>
+        </div>
+
+        <button class="btn full form-btn" type="button" id="startBtn">
+          Start CBT Paper →
+        </button>
+
+      
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/pridicter.js"></script>
+</body>
+</html>

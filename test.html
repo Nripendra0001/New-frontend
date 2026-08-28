@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBT Mock Test - SarkariNext</title>
+  <link rel="stylesheet" href="./css/test.css">
+</head>
+<body>
+  <div class="exam-shell">
+    <header class="topbar">
+      <div class="brandBlock">
+        <div class="brandSeal" aria-hidden="true">SN</div>
+        <div class="brandText">
+          <p class="brandKicker">CBT Mock Examination Interface</p>
+          <h1 id="examTitle">Exam CBT Test</h1>
+          <p id="examMeta">Loading...</p>
+        </div>
+      </div>
+
+      <div class="topActions">
+        <button class="iconBtn mobileOnly" id="paletteToggle" type="button">Questions</button>
+        <div class="timerBox">
+          <span class="tLabel">Time Left</span>
+          <span class="tTime" id="timer">00:00:00</span>
+        </div>
+        <button class="btn danger" id="submitBtnTop" type="button">Submit Test</button>
+      </div>
+    </header>
+
+    <section class="candidateStrip">
+      <div class="candidateBox">
+        <span class="stripLabel">Candidate</span>
+        <span class="stripValue" id="candidateName">Student</span>
+      </div>
+      <div class="candidateBox">
+        <span class="stripLabel">Mode</span>
+        <span class="stripValue">Computer Based Test</span>
+      </div>
+      <div class="candidateBox">
+        <span class="stripLabel">Question Type</span>
+        <span class="stripValue">Multiple Choice Questions</span>
+      </div>
+      <div class="candidateBox">
+        <span class="stripLabel">Language</span>
+        <div class="lang-toggle">
+            <button class="btn-lang active" id="btn-en" onclick="engine.setLanguage('en')">English</button>
+            <button class="btn-lang" id="btn-hi" onclick="engine.setLanguage('hi')">हिन्दी</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout">
+      <aside class="panel leftPanel" id="leftPanel">
+        <div class="panelHead">
+          <div>
+            <h2>Question Palette</h2>
+            <p class="muted">Jump directly to any question</p>
+          </div>
+          <button class="iconBtn mobileOnly" id="closePalette" type="button">Close</button>
+        </div>
+
+        <div class="legend">
+          <span class="legendItem"><i class="legendDot current"></i> Current</span>
+          <span class="legendItem"><i class="legendDot answered"></i> Answered</span>
+          <span class="legendItem"><i class="legendDot review"></i> Review</span>
+          <span class="legendItem"><i class="legendDot skipped"></i> Not Answered</span>
+          <span class="legendItem"><i class="legendDot notvisited"></i> Not Visited</span>
+        </div>
+
+        <div class="palette" id="palette"></div>
+      </aside>
+
+      <section class="panel centerPanel">
+        <div class="workspaceTop">
+          <div class="questionMeta">
+            <h2 id="qNo">Question 1</h2>
+            <p id="qTopic">Topic: --</p>
+          </div>
+          <div class="workspaceActions">
+            <button class="btn ghost" id="clearBtn" type="button">Clear Response</button>
+          </div>
+        </div>
+
+        <div class="instructionBar">
+          <span id="questionStatusText">Question not visited yet.</span>
+        </div>
+
+        <article class="questionCard">
+          <div class="qText" id="qText">Loading question...</div>
+          <div class="options" id="optionsBox"></div>
+        </article>
+
+        <div class="navRow">
+          <button class="btn ghost" id="prevBtn" type="button">Previous</button>
+          <div class="navRight">
+            <button class="btn warning" id="markBtn" type="button">Mark for Review</button>
+            <button class="btn" id="saveNextBtn" type="button">Save and Next</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel rightPanel">
+        <div class="panelHead">
+          <h2>Test Summary</h2>
+          <p class="muted">Live response status</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat total">
+            <span class="label">Total</span>
+            <span class="value" id="stTotal">0</span>
+          </div>
+          <div class="stat answered">
+            <span class="label">Answered</span>
+            <span class="value" id="stAnswered">0</span>
+          </div>
+          <div class="stat review">
+            <span class="label">Review</span>
+            <span class="value" id="stReview">0</span>
+          </div>
+          <div class="stat skipped">
+            <span class="label">Not Answered</span>
+            <span class="value" id="stNotAnswered">0</span>
+          </div>
+          <div class="stat neutral">
+            <span class="label">Not Visited</span>
+            <span class="value" id="stNotVisited">0</span>
+          </div>
+          <div class="stat progress">
+            <span class="label">Attempt Rate</span>
+            <span class="value" id="stAttemptRate">0%</span>
+          </div>
+        </div>
+
+        <div class="summaryCard">
+          <h3>Test Controls</h3>
+          <p>Use the palette to navigate. Save your response before moving to the next question.</p>
+        </div>
+
+        <button class="btn danger full" id="submitBtn" type="button">Submit Test</button>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./js/test.js"></script>
+</body>
+</html>

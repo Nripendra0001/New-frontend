@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Job Details – SarkariNext</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/updates.css">
+<link rel="icon" type="image/png" href="./favicon.png">
+</head>
+
+<body class="updates-body">
+
+    <header class="up-header">
+        <a href="latest_job.html" class="back-btn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Jobs
+        </a>
+        <h1>SarkariNext</h1>
+    </header>
+
+    <div class="up-container">
+
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> > 
+            <a href="latest_job.html">Latest Jobs</a> > 
+            <span id="breadcrumbTitle">Detail</span>
+        </div>
+
+        <div class="up-detail-card">
+            
+            <h1 class="up-page-title" id="title" style="text-align: left; margin-bottom: 1rem;">Loading...</h1>
+            <div class="status-badge status-success">Active Recruitment</div>
+
+            <div class="mini-info">
+              <div class="mini-card">
+                <span class="mini-label">Organization</span>
+                <span class="mini-value" id="org">--</span>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Total Posts</span>
+                <span class="mini-value" id="posts">--</span>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Job Type</span>
+                <span class="mini-value" id="jobType">--</span>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Location</span>
+                <span class="mini-value" id="state">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Important Dates</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Post Date</span>
+                <span class="value" id="postDate">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Application Start</span>
+                <span class="value" id="startDate">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Last Date</span>
+                <span class="value" id="lastDate">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Exam Date</span>
+                <span class="value" id="examDate">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Admit Card</span>
+                <span class="value" id="admitCard">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Application Fee</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">General / OBC</span>
+                <span class="value" id="feeGen">--</span>
+              </div>
+              <div class="row">
+                <span class="label">SC / ST</span>
+                <span class="value" id="feeScst">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Female</span>
+                <span class="value" id="feeFemale">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Payment Mode</span>
+                <span class="value" id="paymentMode">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Age Limit (As on Date)</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Minimum Age</span>
+                <span class="value" id="ageMin">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Maximum Age</span>
+                <span class="value" id="ageMax">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Age Relaxation</span>
+                <span class="value" id="ageRelax">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Eligibility / Qualification</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Qualification</span>
+                <span class="value" id="qualification">--</span>
+              </div>
+              <div class="row">
+                <span class="label">Extra Requirements</span>
+                <span class="value" id="extraReq">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Selection Process</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Selection Stages</span>
+                <span class="value" id="selection">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Salary / Pay Scale</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Pay Scale</span>
+                <span class="value" id="salary">--</span>
+              </div>
+            </div>
+
+            <h3 class="sec-title">Important Links</h3>
+            <div class="detail-table">
+              <div class="row">
+                <span class="label">Notification PDF</span>
+                <span class="value">
+                  <a id="notificationLink" class="link-btn" target="_blank">Download Notification</a>
+                </span>
+              </div>
+              <div class="row">
+                <span class="label">Official Website</span>
+                <span class="value">
+                  <a id="officialSiteLink" class="link-btn" target="_blank">Visit Official Portal</a>
+                </span>
+              </div>
+            </div>
+
+            <!-- NOTE -->
+            <div class="note-box">
+              <h3>Important Note</h3>
+              <p id="noteText">
+                कृपया Apply करने से पहले Official Notification जरूर पढ़ें। SarkariNext केवल जानकारी देता है।
+              </p>
+            </div>
+
+            <!-- APPLY LAST -->
+            <div class="apply-wrap">
+              <a id="officialLink" target="_blank" class="apply-btn">
+                Apply Online Now
+              </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/job.js"></script>
+    <script>
+        // Update breadcrumb after loading
+        setTimeout(() => {
+            const titleElement = document.getElementById("title");
+            if(titleElement && titleElement.innerText !== "Loading...") {
+                document.getElementById("breadcrumbTitle").innerText = titleElement.innerText;
+            }
+        }, 500);
+    </script>
+</body>
+</html>

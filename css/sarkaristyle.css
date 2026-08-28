@@ -1,0 +1,360 @@
+/* =========================================================
+   SARKARINEXT – UNIVERSAL PAGES CSS (RESULT STYLE)
+   Works for:
+   - admit-card.html
+   - result.html
+   - answer-key.html
+   - job-details.html
+========================================================= */
+
+:root{
+  --bg:#fff7d6;                 /* Light Amazon cream */
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+
+  --border:rgba(15,23,42,.12);
+  --shadow:0 18px 55px rgba(15,23,42,.10);
+
+  --amazon:#ffd814;
+  --amazon-dark:#fcd200;
+
+  --radius:18px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:50px;
+}
+
+/* =========================
+   TOP BAR (All pages)
+========================= */
+
+.top-bar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  width:100%;
+  padding:12px 14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+
+  background:rgba(255,255,255,.78);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border);
+}
+
+.top-bar a{
+  text-decoration:none;
+  font-weight:900;
+  font-size:13px;
+
+  padding:10px 12px;
+  border-radius:999px;
+
+  background:#fff;
+  border:1px solid rgba(15,23,42,.12);
+  color:#0f172a;
+
+  transition:.2s;
+}
+
+.top-bar a:hover{
+  transform:translateY(-2px);
+}
+
+.top-bar a.active{
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  border-color:rgba(0,0,0,.08);
+  color:#111;
+}
+
+/* =========================
+   Page Title
+========================= */
+
+.page-title{
+  width:min(1100px, 92vw);
+  margin:22px auto 14px;
+
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+/* =========================
+   Search Bar (Answer Key)
+========================= */
+
+.top-tools{
+  width:min(1100px, 92vw);
+  margin:14px auto 0;
+}
+
+#searchBox{
+  width:100%;
+  padding:13px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-size:14px;
+  font-weight:800;
+  outline:none;
+}
+
+#searchBox:focus{
+  border-color:rgba(252,208,0,.90);
+  box-shadow:0 0 0 3px rgba(252,208,0,.20);
+}
+
+/* =========================
+   Cards List Layout
+========================= */
+
+.card-container{
+  width:min(1100px, 92vw);
+  margin:0 auto;
+  padding:12px 0;
+
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+}
+
+/* One Card (Result/Admit/Answer) */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:16px 14px;
+  box-shadow:var(--shadow);
+
+  transition:.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(15,23,42,.14);
+  border-color:rgba(15,23,42,.16);
+}
+
+.card h3{
+  font-size:15px;
+  font-weight:900;
+  margin-bottom:10px;
+  line-height:1.35;
+}
+
+.card p{
+  font-size:13px;
+  font-weight:700;
+  color:rgba(71,85,105,.95);
+  line-height:1.6;
+  margin-bottom:10px;
+}
+
+/* Buttons inside cards */
+.card a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+  font-weight:900;
+  font-size:13px;
+
+  padding:11px 12px;
+  border-radius:14px;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+  border:1px solid rgba(0,0,0,.08);
+
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.card a:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   JOB DETAILS PAGE
+========================= */
+
+.detail-wrap{
+  width:min(1100px, 92vw);
+  margin:18px auto 0;
+}
+
+.detail-head{
+  text-align:center;
+  padding:18px 16px;
+  border-radius:22px;
+
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+
+  margin-bottom:16px;
+}
+
+.detail-head h1{
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.detail-head p{
+  font-size:13.5px;
+  font-weight:800;
+  color:rgba(71,85,105,.95);
+}
+
+/* Main detail box */
+.detail-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px 16px;
+  box-shadow:var(--shadow);
+}
+
+.detail-box h2{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:14px;
+  line-height:1.35;
+}
+
+/* Table style */
+.detail-table{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.detail-table .row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+
+  padding:12px 12px;
+  border-radius:16px;
+
+  background:rgba(15,23,42,.03);
+  border:1px solid rgba(15,23,42,.08);
+}
+
+.detail-table .label{
+  font-weight:900;
+  font-size:13px;
+  color:#0f172a;
+}
+
+.detail-table .value{
+  font-weight:900;
+  font-size:13px;
+  color:rgba(71,85,105,.95);
+  text-align:right;
+}
+
+/* Note box */
+.note-box{
+  padding:14px 14px;
+  border-radius:18px;
+  background:#ffffff;
+  border:1px dashed rgba(15,23,42,.18);
+  margin:14px 0;
+}
+
+.note-box h3{
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.note-box p{
+  font-size:13.5px;
+  font-weight:700;
+  line-height:1.7;
+  color:rgba(71,85,105,.95);
+}
+
+/* Apply button */
+.apply-wrap{
+  margin-top:10px;
+  display:flex;
+  justify-content:center;
+}
+
+.apply-btn{
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+
+  padding:14px 14px;
+  border-radius:18px;
+
+  background:linear-gradient(180deg, var(--amazon), var(--amazon-dark));
+  color:#111;
+
+  font-weight:900;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 12px 30px rgba(0,0,0,.10);
+
+  transition:.2s;
+}
+
+.apply-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:900px){
+  .card-container{
+    grid-template-columns:1fr;
+  }
+  .page-title{
+    font-size:22px;
+  }
+  .detail-head h1{
+    font-size:24px;
+  }
+}
+
+@media(max-width:520px){
+  .top-bar{
+    justify-content:flex-start;
+  }
+}
+
+/* iPhone zoom fix */
+input, select, textarea, button{
+  font-size:16px;
+}
