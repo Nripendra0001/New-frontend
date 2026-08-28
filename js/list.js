@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (currentType === "result" || currentType === "admit" || currentType === "answer") {
         listContainer.innerHTML = `<div class="loading">Loading latest ${currentType}s...</div>`;
         try {
-            let endpoint = 'http://localhost:3000/api/results'; // default for result
-            if (currentType === "admit") endpoint = 'http://localhost:3000/api/results/admit';
-            if (currentType === "answer") endpoint = 'http://localhost:3000/api/results/answer';
+            const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : 'https://api.nripendra.online';
+            let endpoint = `${API_BASE}/api/results`; // default for result
+            if (currentType === "admit") endpoint = `${API_BASE}/api/results/admit`;
+            if (currentType === "answer") endpoint = `${API_BASE}/api/results/answer`;
 
             const response = await fetch(endpoint);
             if (response.ok) {

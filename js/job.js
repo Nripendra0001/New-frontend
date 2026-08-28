@@ -2,6 +2,8 @@
 let allJobsData = [];
 let currentCategory = "All";
 
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : 'https://api.nripendra.online';
+
 document.addEventListener("DOMContentLoaded", async () => {
   const box = document.getElementById("jobList");
   if (!box) return;
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   box.innerHTML = '<div class="loading">Loading latest jobs...</div>';
 
   try {
-    const response = await fetch('http://localhost:3000/api/results/jobs');
+    const response = await fetch(`${API_BASE}/api/results/jobs`);
     if (!response.ok) throw new Error('API Error');
     
     const apiData = await response.json();

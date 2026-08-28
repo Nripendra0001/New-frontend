@@ -11,14 +11,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : 'https://api.nripendra.online';
+
     const endpointMap = {
-        'jobs': 'http://localhost:3000/api/results/jobs',
-        'job': 'http://localhost:3000/api/results/jobs',
-        'results': 'http://localhost:3000/api/results',
-        'result': 'http://localhost:3000/api/results',
-        'admit': 'http://localhost:3000/api/results/admit',
-        'answer': 'http://localhost:3000/api/results/answer',
-        'current-affairs': 'http://localhost:3000/api/current-affairs'
+        'jobs': `${API_BASE}/api/results/jobs`,
+        'job': `${API_BASE}/api/results/jobs`,
+        'results': `${API_BASE}/api/results`,
+        'result': `${API_BASE}/api/results`,
+        'admit': `${API_BASE}/api/results/admit`,
+        'answer': `${API_BASE}/api/results/answer`,
+        'current-affairs': `${API_BASE}/api/current-affairs`
     };
 
     const endpoint = endpointMap[typeParam.toLowerCase()];

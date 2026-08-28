@@ -32,7 +32,8 @@ async function fetchCurrentAffairs() {
   if (!box) return;
   box.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b;">Loading today's current affairs...</div>`;
   try {
-    const res = await fetch("http://localhost:3000/api/current-affairs");
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : 'https://api.nripendra.online';
+    const res = await fetch(`${API_BASE}/api/current-affairs`);
     if (!res.ok) throw new Error("Failed to fetch");
     const json = await res.json();
     apiData = json.data || [];
